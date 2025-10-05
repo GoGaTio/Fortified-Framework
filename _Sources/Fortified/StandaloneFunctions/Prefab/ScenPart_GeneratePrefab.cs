@@ -13,11 +13,11 @@ namespace Fortified
     {
         public override void DoEditInterface(Listing_ScenEdit listing)
         {
-            Rect scenPartRect = listing.GetScenPartRect(this, this.maps.Count * 30f + ScenPart.RowHeight);
-            ScenPart_GeneratePrefab.DrawButtonWithIcon(scenPartRect.y, () => ScenPart_GeneratePrefab.DrawFloatMenu(DefDatabase<PrefabDef>.AllDefsListForReading, d => this.maps.Add(d), d => d.defName), () =>
-            ScenPart_GeneratePrefab.DrawFloatMenu(this.maps, d => this.maps.Remove(d), d => d.defName), scenPartRect.width + 20f, 20);
+            Rect scenPartRect = listing.GetScenPartRect(this, height: (maps.Count * 30f) + ScenPart.RowHeight);
+            ScenPart_GeneratePrefab.DrawButtonWithIcon(scenPartRect.y, () => ScenPart_GeneratePrefab.DrawFloatMenu(DefDatabase<PrefabDef>.AllDefsListForReading, d => maps.Add(d), d => d.defName), () =>
+            ScenPart_GeneratePrefab.DrawFloatMenu(maps, d => maps.Remove(d), d => d.defName), scenPartRect.width + 20f, 20);
             scenPartRect.y += 30f;
-            this.maps.ForEach(m =>
+            maps.ForEach(m =>
             {
                 Widgets.Label(scenPartRect, m.defName);
                 scenPartRect.y += 30f;
@@ -57,13 +57,12 @@ namespace Fortified
                 removeAction();
             }
         }
-
         public override void PostMapGenerate(Map map)
         {
             base.PostMapGenerate(map);
             if (map == null || !map.IsStartingMap || map.IsPocketMap) return;
 
-            var prefab = this.maps.RandomElement();
+            var prefab = maps.RandomElement();
 
             CellRect cellRect = GenAdj.OccupiedRect(map.Center, Rot4.Random, prefab.size);
             foreach (var c in cellRect)

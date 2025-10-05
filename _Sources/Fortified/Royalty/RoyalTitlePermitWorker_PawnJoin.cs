@@ -102,7 +102,8 @@ namespace Fortified
             {
                 foreach (Member m in def.GetModExtension<PawnKindExtension>().members)
                 {
-                    Pawn thing = PawnGenerator.GeneratePawn(m.pawnKind, Faction.OfPlayer);
+                    Pawn thing = PawnGenerator.GeneratePawn(m.pawnKind, FactionUtility.DefaultFactionFrom(def.faction));
+                    thing.SetFaction(Faction.OfPlayer);
                     if (m.fixedWeapon != null)
                     {
                         thing.equipment.Remove(thing.equipment.Primary);
@@ -122,7 +123,8 @@ namespace Fortified
             {
                 for (int i = 0; i < def.royalAid.pawnCount; i++)
                 {
-                    Thing thing = PawnGenerator.GeneratePawn(def.royalAid.pawnKindDef, Faction.OfPlayer);
+                    Thing thing = PawnGenerator.GeneratePawn(def.royalAid.pawnKindDef, FactionUtility.DefaultFactionFrom(def.faction));
+                    thing.SetFaction(Faction.OfPlayer);
                     list.Add(thing);
                 }
             }
@@ -147,7 +149,8 @@ namespace Fortified
             {
                 foreach (Member m in def.GetModExtension<PawnKindExtension>().members)
                 {
-                    Pawn pawn = PawnGenerator.GeneratePawn(m.pawnKind, Faction.OfPlayer);
+                    Pawn pawn = PawnGenerator.GeneratePawn(m.pawnKind, FactionUtility.DefaultFactionFrom(def.faction));
+                    pawn.SetFaction(Faction.OfPlayer);
                     if (m.fixedWeapon != null)
                     {
                         pawn.equipment.Remove(pawn.equipment.Primary);
@@ -167,7 +170,8 @@ namespace Fortified
             {
                 for (int i = 0; i < def.royalAid.pawnCount; i++)
                 {
-                    Pawn pawn = PawnGenerator.GeneratePawn(def.royalAid.pawnKindDef, Faction.OfPlayer);
+                    Pawn pawn = PawnGenerator.GeneratePawn(def.royalAid.pawnKindDef, FactionUtility.DefaultFactionFrom(def.faction));
+                    pawn.SetFaction(Faction.OfPlayer);
                     caravan.AddPawn(pawn, false);
                 }
             }
