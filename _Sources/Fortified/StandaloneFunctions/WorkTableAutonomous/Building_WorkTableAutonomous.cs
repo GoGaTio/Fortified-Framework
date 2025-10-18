@@ -49,6 +49,10 @@ namespace Fortified
 
         public void StartBill(Bill_Production bill, Thing thing, Pawn handler)
         {
+            if (bill == null) 
+            {
+                return;
+            }
             activeBill = bill;
             totalWorkAmount = bill.GetWorkAmount(thing);
 
