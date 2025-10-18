@@ -54,7 +54,7 @@ namespace Fortified
             if (GenCelestial.IsDaytime(GenCelestial.CurCelestialSunGlow(Map)))
             {
                 Vector2 vector = GenCelestial.GetLightSourceInfo(Map, GenCelestial.LightType.LightingSun).vector;
-                Log.Message(ageTicks);
+                if (DebugSettings.godMode) Log.Message(ageTicks);
                 Vector3 tempLoc = ShadowDrawPos;
                 tempLoc.y = Altitudes.AltitudeFor(AltitudeLayer.Item);
                 tempLoc += new Vector3(vector.x, 0, vector.y) * (def.skyfaller.zPositionCurve?.Evaluate(ageTicks) ?? 1);

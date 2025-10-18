@@ -60,7 +60,6 @@ namespace Fortified
                 {
                     if (apparelReloadable.RemainingCharges == apparelReloadable.MaxCharges)
                     {
-                        Log.Message("xx");
                         Recycle();
                         DespawnAndDestroy();
                         return;

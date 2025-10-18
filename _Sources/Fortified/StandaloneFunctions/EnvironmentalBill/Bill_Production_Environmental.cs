@@ -41,32 +41,33 @@ namespace Fortified
         }
         protected bool CheckEnvironment()
         {
-            if (Extension == null) return true;
+            bool passed = true;
+            if (Extension == null) return passed;
             if (Extension.OnlyInVacuum && !(WorkBench.Map.Biome.inVacuum || OrbitUtility.InVacuum(WorkBench)))
             {
                 suspended = true;
                 Messages.Message("FFF.Message.BillSuspendedInNonVacuum".Translate(Label, WorkBench.Label), MessageTypeDefOf.CautionInput);
-                return false;
+                passed = false;
             }
             if (Extension.OnlyInMicroGravity && !OrbitUtility.InMicroGravity(WorkBench))
             {
                 suspended = true;
                 Messages.Message("FFF.Message.BillSuspendedInNonMicroGravity".Translate(Label, WorkBench.Label), MessageTypeDefOf.CautionInput);
-                return false;
+                passed = false;
             }
             if (Extension.OnlyInDarkness && !OrbitUtility.InDarkness(WorkBench))
             {
                 suspended = true;
                 Messages.Message("FFF.Message.BillSuspendedInLight".Translate(Label, WorkBench.Label), MessageTypeDefOf.CautionInput);
-                return false;
+                passed = false;
             }
             if (Extension.OnlyInCleanliness && !OrbitUtility.InCleanRoom(WorkBench))
             {
                 suspended = true;
                 Messages.Message("FFF.Message.BillSuspendedInDirtiness".Translate(Label, WorkBench.Label), MessageTypeDefOf.CautionInput);
-                return false;
+                passed = false;
             }
-            return true;
+            return passed;
         }
 
         public override void Notify_IterationCompleted(Pawn billDoer, List<Thing> ingredients)

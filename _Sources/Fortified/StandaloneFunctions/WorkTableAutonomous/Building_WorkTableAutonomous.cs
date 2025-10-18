@@ -324,7 +324,6 @@ namespace Fortified
             Scribe_References.Look(ref activeBill, "activeBill");
             Scribe_Deep.Look(ref innerContainer, "innerContainer", this);
         }
-
         public void Notify_HauledTo(Pawn hauler, Thing thing, int count)
         {
         }

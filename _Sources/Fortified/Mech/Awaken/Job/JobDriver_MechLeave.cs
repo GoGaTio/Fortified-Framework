@@ -31,7 +31,7 @@ namespace Fortified
             Toil toil2 = ToilMaker.MakeToil("MakeNewToils");
             toil2.initAction = delegate ()
             {
-                Log.Message(this.pawn.Position.OnEdge(this.pawn.Map));
+                if (DebugSettings.godMode) Log.Message(this.pawn.Position.OnEdge(this.pawn.Map));
                 if (this.pawn.Position.OnEdge(this.pawn.Map) || this.pawn.Map.exitMapGrid.IsExitCell(this.pawn.Position))
                 {
                     Current.Game.GetComponent<GameComponent_DMS>().OutgoingMeches.Add(new OutgoingMech() { mech = this.pawn });

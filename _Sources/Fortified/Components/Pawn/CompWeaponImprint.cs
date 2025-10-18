@@ -52,7 +52,6 @@ namespace Fortified
                     }
                     else
                     {
-                        Log.Message("5");
                         Hediff_Level h = HediffMaker.MakeHediff(Props.imprintDef, pawn) as Hediff_Level;
                         pawn.health.AddHediff(h, bodyPartRecord);
                         h.SetLevelTo(1 + (skillPoint / Props.pointRequire));

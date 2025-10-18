@@ -129,7 +129,7 @@ namespace Fortified
             base.Notify_DefsHotReloaded();
             foreach (var item in allSubRelays)
             {
-                Log.Message(item.parent.ToString());
+                if (DebugSettings.godMode) Log.Message(item.parent.ToString());
             }
         }
         public override void PostExposeData()

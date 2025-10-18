@@ -11,8 +11,6 @@ namespace Fortified
     {
         public static AcceptanceReport InMicroGravity(Thing thing)
         {
-            //Log.Message("Checking microgravity for " + thing.Label.ToString());
-
             if (thing?.Map == null) return false;
             if (!thing.Spawned) return false;
 
@@ -25,8 +23,6 @@ namespace Fortified
         }
         public static AcceptanceReport InVacuum(Thing thing)
         {
-            //Log.Message("Checking vacuum for " + thing.Label.ToString());
-
             if (thing?.Map == null) return false;
             if (!thing.Spawned) return false;
 

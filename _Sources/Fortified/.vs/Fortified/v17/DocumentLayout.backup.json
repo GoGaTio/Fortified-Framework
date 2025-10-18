@@ -3,36 +3,80 @@
   "WorkspaceRootPath": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\environmentalbill\\orbitutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\environmentalbill\\orbitutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\mech\\humanlikemech\\pawnrendertree_setupdynamicnodes_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:mech\\humanlikemech\\pawnrendertree_setupdynamicnodes_patch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\mech\\patches\\patch_statworker_isdisabledfor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:mech\\patches\\patch_statworker_isdisabledfor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\pawnreplace\\patch_replace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\pawnreplace\\patch_replace.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\mech\\drone\\jobdriver_returntoplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:mech\\drone\\jobdriver_returntoplatform.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\mech\\awaken\\job\\jobdriver_mechleave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:mech\\awaken\\job\\jobdriver_mechleave.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\mech\\humanlikemech\\humanlikemechapparelutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:mech\\humanlikemech\\humanlikemechapparelutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\airsupport\\flybything.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\airsupport\\flybything.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\components\\pawn\\compweaponimprint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:components\\pawn\\compweaponimprint.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\components\\compsubrelay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:components\\compsubrelay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\multiturrets\\compmultipleturretgun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\multiturrets\\compmultipleturretgun.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\mech\\awaken\\compdeadmanswitch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:mech\\awaken\\compdeadmanswitch.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\mech\\mechanitorcommand\\compcommandrelay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:mech\\mechanitorcommand\\compcommandrelay.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\components\\compcastflecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:components\\compcastflecker.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\airsupport\\airsupportdata_launchprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\airsupport\\airsupportdata_launchprojectile.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\worktableautonomous\\building_worktableautonomous.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\worktableautonomous\\building_worktableautonomous.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\environmentalbill\\modext_environmentalbill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\environmentalbill\\modext_environmentalbill.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\stealthdevice\\compshieldingdevice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\stealthdevice\\compshieldingdevice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\patch\\patch_recipedef_specialdisplaystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:patch\\patch_recipedef_specialdisplaystats.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\stealthdevice\\mapcomponent_shieldingpopulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\stealthdevice\\mapcomponent_shieldingpopulation.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\utility\\statworker_heavygear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:utility\\statworker_heavygear.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\utility\\weapontagutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:utility\\weapontagutil.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\mech\\weaponusable\\mechweaponextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:mech\\weaponusable\\mechweaponextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\utility\\checkutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:utility\\checkutility.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\heavyequippable\\heavyequippableextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\heavyequippable\\heavyequippableextension.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|d:\\steam\\steamapps\\common\\rimworld\\mods\\_fortified-framework\\_sources\\fortified\\standalonefunctions\\environmentalbill\\bill_production_environmental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{42386F22-1DFB-5DB7-665F-DF3880365B65}|Fortified.csproj|solutionrelative:standalonefunctions\\environmentalbill\\bill_production_environmental.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -42,114 +86,257 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 0,
+          "SelectedChildIndex": 4,
           "Children": [
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "Building_WorkTableAutonomous.cs",
-              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\WorkTableAutonomous\\Building_WorkTableAutonomous.cs",
-              "RelativeDocumentMoniker": "StandaloneFunctions\\WorkTableAutonomous\\Building_WorkTableAutonomous.cs",
-              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\WorkTableAutonomous\\Building_WorkTableAutonomous.cs",
-              "RelativeToolTip": "StandaloneFunctions\\WorkTableAutonomous\\Building_WorkTableAutonomous.cs",
-              "ViewState": "AgIAABgBAAAAAAAAAAAQwC4BAABXAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T06:28:18.115Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "Patch_RecipeDef_SpecialDisplayStats.cs",
-              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Patch\\Patch_RecipeDef_SpecialDisplayStats.cs",
-              "RelativeDocumentMoniker": "Patch\\Patch_RecipeDef_SpecialDisplayStats.cs",
-              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Patch\\Patch_RecipeDef_SpecialDisplayStats.cs",
-              "RelativeToolTip": "Patch\\Patch_RecipeDef_SpecialDisplayStats.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAD4vxUAAAA2AAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T05:14:01.941Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "ModExt_EnvironmentalBill.cs",
-              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\EnvironmentalBill\\ModExt_EnvironmentalBill.cs",
-              "RelativeDocumentMoniker": "StandaloneFunctions\\EnvironmentalBill\\ModExt_EnvironmentalBill.cs",
-              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\EnvironmentalBill\\ModExt_EnvironmentalBill.cs",
-              "RelativeToolTip": "StandaloneFunctions\\EnvironmentalBill\\ModExt_EnvironmentalBill.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T05:13:54.683Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "MechWeaponExtension.cs",
-              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\WeaponUsable\\MechWeaponExtension.cs",
-              "RelativeDocumentMoniker": "Mech\\WeaponUsable\\MechWeaponExtension.cs",
-              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\WeaponUsable\\MechWeaponExtension.cs",
-              "RelativeToolTip": "Mech\\WeaponUsable\\MechWeaponExtension.cs",
-              "ViewState": "AgIAAAYAAAAAAAAAAIA/wB8AAAAjAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T04:07:32.057Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "HeavyEquippableExtension.cs",
-              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\HeavyEquippable\\HeavyEquippableExtension.cs",
-              "RelativeDocumentMoniker": "StandaloneFunctions\\HeavyEquippable\\HeavyEquippableExtension.cs",
-              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\HeavyEquippable\\HeavyEquippableExtension.cs",
-              "RelativeToolTip": "StandaloneFunctions\\HeavyEquippable\\HeavyEquippableExtension.cs",
-              "ViewState": "AgIAACUAAAAAAAAAAAAQwDsAAABJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T04:06:23.444Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 6,
-              "Title": "CheckUtility.cs",
-              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Utility\\CheckUtility.cs",
-              "RelativeDocumentMoniker": "Utility\\CheckUtility.cs",
-              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Utility\\CheckUtility.cs",
-              "RelativeToolTip": "Utility\\CheckUtility.cs",
-              "ViewState": "AgIAACsAAAAAAAAAAAAkwEEAAAAbAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T04:05:57.876Z",
-              "EditorCaption": ""
-            },
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "WeaponTagUtil.cs",
-              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Utility\\WeaponTagUtil.cs",
-              "RelativeDocumentMoniker": "Utility\\WeaponTagUtil.cs",
-              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Utility\\WeaponTagUtil.cs",
-              "RelativeToolTip": "Utility\\WeaponTagUtil.cs",
-              "ViewState": "AgIAAFwAAAAAAAAAAIAwwGkAAAARAAAAAAAAAA==",
+              "DocumentIndex": 1,
+              "Title": "PawnRenderTree_SetupDynamicNodes_Patch.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\HumanlikeMech\\PawnRenderTree_SetupDynamicNodes_Patch.cs",
+              "RelativeDocumentMoniker": "Mech\\HumanlikeMech\\PawnRenderTree_SetupDynamicNodes_Patch.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\HumanlikeMech\\PawnRenderTree_SetupDynamicNodes_Patch.cs",
+              "RelativeToolTip": "Mech\\HumanlikeMech\\PawnRenderTree_SetupDynamicNodes_Patch.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAAACIAAAAJAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T04:05:34.108Z",
+              "WhenOpened": "2025-10-18T09:54:41.912Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "Patch_StatWorker_IsDisabledFor.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\Patches\\Patch_StatWorker_IsDisabledFor.cs",
+              "RelativeDocumentMoniker": "Mech\\Patches\\Patch_StatWorker_IsDisabledFor.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\Patches\\Patch_StatWorker_IsDisabledFor.cs",
+              "RelativeToolTip": "Mech\\Patches\\Patch_StatWorker_IsDisabledFor.cs",
+              "ViewState": "AgIAABQAAAAAAAAAAAAAABoAAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:54:39.592Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
-              "Title": "StatWorker_HeavyGear.cs",
-              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Utility\\StatWorker_HeavyGear.cs",
-              "RelativeDocumentMoniker": "Utility\\StatWorker_HeavyGear.cs",
-              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Utility\\StatWorker_HeavyGear.cs",
-              "RelativeToolTip": "Utility\\StatWorker_HeavyGear.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "Patch_Replace.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\PawnReplace\\Patch_Replace.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\PawnReplace\\Patch_Replace.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\PawnReplace\\Patch_Replace.cs",
+              "RelativeToolTip": "StandaloneFunctions\\PawnReplace\\Patch_Replace.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAqwBgAAAA2AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-10-18T04:05:30.741Z",
+              "WhenOpened": "2025-10-18T09:54:35.958Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "OrbitUtility.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\EnvironmentalBill\\OrbitUtility.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\EnvironmentalBill\\OrbitUtility.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\EnvironmentalBill\\OrbitUtility.cs",
+              "RelativeToolTip": "StandaloneFunctions\\EnvironmentalBill\\OrbitUtility.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAA+wBEAAABIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:54:16.922Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "JobDriver_ReturnToPlatform.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\Drone\\JobDriver_ReturnToPlatform.cs",
+              "RelativeDocumentMoniker": "Mech\\Drone\\JobDriver_ReturnToPlatform.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\Drone\\JobDriver_ReturnToPlatform.cs",
+              "RelativeToolTip": "Mech\\Drone\\JobDriver_ReturnToPlatform.cs",
+              "ViewState": "AgIAAC0AAAAAAAAAAAAowD0AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:54:06.565Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "JobDriver_MechLeave.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\Awaken\\Job\\JobDriver_MechLeave.cs",
+              "RelativeDocumentMoniker": "Mech\\Awaken\\Job\\JobDriver_MechLeave.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\Awaken\\Job\\JobDriver_MechLeave.cs",
+              "RelativeToolTip": "Mech\\Awaken\\Job\\JobDriver_MechLeave.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAACEAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:53:59.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "HumanlikeMechApparelUtility.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\HumanlikeMech\\HumanlikeMechApparelUtility.cs",
+              "RelativeDocumentMoniker": "Mech\\HumanlikeMech\\HumanlikeMechApparelUtility.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\HumanlikeMech\\HumanlikeMechApparelUtility.cs",
+              "RelativeToolTip": "Mech\\HumanlikeMech\\HumanlikeMechApparelUtility.cs",
+              "ViewState": "AgIAAGEAAAAAAAAAAAAAAHwAAAAbAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:53:47.017Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "FlyByThing.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\AirSupport\\FlyByThing.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\AirSupport\\FlyByThing.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\AirSupport\\FlyByThing.cs",
+              "RelativeToolTip": "StandaloneFunctions\\AirSupport\\FlyByThing.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAqwDgAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:53:38.437Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "CompWeaponImprint.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Components\\Pawn\\CompWeaponImprint.cs",
+              "RelativeDocumentMoniker": "Components\\Pawn\\CompWeaponImprint.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Components\\Pawn\\CompWeaponImprint.cs",
+              "RelativeToolTip": "Components\\Pawn\\CompWeaponImprint.cs",
+              "ViewState": "AgIAAB8AAAAAAAAAAAAkwDUAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:53:27.108Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CompSubRelay.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Components\\CompSubRelay.cs",
+              "RelativeDocumentMoniker": "Components\\CompSubRelay.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Components\\CompSubRelay.cs",
+              "RelativeToolTip": "Components\\CompSubRelay.cs",
+              "ViewState": "AgIAAHcAAAAAAAAAAAA+wIMAAAA2AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:53:16.866Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "CompMultipleTurretGun.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\MultiTurrets\\CompMultipleTurretGun.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\MultiTurrets\\CompMultipleTurretGun.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\MultiTurrets\\CompMultipleTurretGun.cs",
+              "RelativeToolTip": "StandaloneFunctions\\MultiTurrets\\CompMultipleTurretGun.cs",
+              "ViewState": "AgIAABEBAAAAAAAAAAAuwCQBAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:52:59.769Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "CompDeadManSwitch.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\Awaken\\CompDeadManSwitch.cs",
+              "RelativeDocumentMoniker": "Mech\\Awaken\\CompDeadManSwitch.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\Awaken\\CompDeadManSwitch.cs",
+              "RelativeToolTip": "Mech\\Awaken\\CompDeadManSwitch.cs",
+              "ViewState": "AgIAAIcAAAAAAAAAAAAuwJUAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:52:53.414Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "CompCommandRelay.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\MechanitorCommand\\CompCommandRelay.cs",
+              "RelativeDocumentMoniker": "Mech\\MechanitorCommand\\CompCommandRelay.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Mech\\MechanitorCommand\\CompCommandRelay.cs",
+              "RelativeToolTip": "Mech\\MechanitorCommand\\CompCommandRelay.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAC4AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:52:51.317Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "CompCastFlecker.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Components\\CompCastFlecker.cs",
+              "RelativeDocumentMoniker": "Components\\CompCastFlecker.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Components\\CompCastFlecker.cs",
+              "RelativeToolTip": "Components\\CompCastFlecker.cs",
+              "ViewState": "AgIAAEAAAAAAAAAAAAAuwEwAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:52:49.077Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "AirSupportData_LaunchProjectile.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\AirSupport\\AirSupportData_LaunchProjectile.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\AirSupport\\AirSupportData_LaunchProjectile.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\AirSupport\\AirSupportData_LaunchProjectile.cs*",
+              "RelativeToolTip": "StandaloneFunctions\\AirSupport\\AirSupportData_LaunchProjectile.cs*",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAADkAAAAyAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:52:42.857Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MapComponent_ShieldingPopulation.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\StealthDevice\\MapComponent_ShieldingPopulation.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\StealthDevice\\MapComponent_ShieldingPopulation.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\StealthDevice\\MapComponent_ShieldingPopulation.cs",
+              "RelativeToolTip": "StandaloneFunctions\\StealthDevice\\MapComponent_ShieldingPopulation.cs",
+              "ViewState": "AgIAACQAAAAAAAAAAAA3wDYAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:52:23.789Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "CompShieldingDevice.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\StealthDevice\\CompShieldingDevice.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\StealthDevice\\CompShieldingDevice.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\StealthDevice\\CompShieldingDevice.cs",
+              "RelativeToolTip": "StandaloneFunctions\\StealthDevice\\CompShieldingDevice.cs",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAYwFYAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T09:52:22.644Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Building_WorkTableAutonomous.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\WorkTableAutonomous\\Building_WorkTableAutonomous.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\WorkTableAutonomous\\Building_WorkTableAutonomous.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\WorkTableAutonomous\\Building_WorkTableAutonomous.cs",
+              "RelativeToolTip": "StandaloneFunctions\\WorkTableAutonomous\\Building_WorkTableAutonomous.cs",
+              "ViewState": "AgIAACYAAAAAAAAAAAAYwDcAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T08:24:31.656Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "Bill_Production_Environmental.cs",
+              "DocumentMoniker": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\EnvironmentalBill\\Bill_Production_Environmental.cs",
+              "RelativeDocumentMoniker": "StandaloneFunctions\\EnvironmentalBill\\Bill_Production_Environmental.cs",
+              "ToolTip": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\StandaloneFunctions\\EnvironmentalBill\\Bill_Production_Environmental.cs",
+              "RelativeToolTip": "StandaloneFunctions\\EnvironmentalBill\\Bill_Production_Environmental.cs",
+              "ViewState": "AgIAACMAAAAAAAAAAAAswCoAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T08:21:06.862Z",
               "EditorCaption": ""
             }
           ]

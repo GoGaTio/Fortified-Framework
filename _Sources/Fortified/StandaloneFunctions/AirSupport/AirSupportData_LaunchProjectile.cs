@@ -55,7 +55,7 @@ namespace Fortified
             {
                 origin = deltaZ;
             }
-            Log.Message($"{deltaX.ToIntVec3()} {deltaZ.ToIntVec3()} {origin}");
+            if (DebugSettings.godMode) Log.Message($"{deltaX.ToIntVec3()} {deltaZ.ToIntVec3()} {origin}");
             base.Trigger();
         }
     }
