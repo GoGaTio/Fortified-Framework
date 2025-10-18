@@ -40,7 +40,7 @@ namespace Fortified
                 }
                 return false;
             });
-            Building_WorkTableAutonomous building = base.TargetThingA as Building_WorkTableAutonomous;
+            Building_WorkTableAutonomous building = (Building_WorkTableAutonomous)TargetThingA;
             AddEndCondition(delegate
             {
                 Thing thing = GetActor().jobs.curJob.GetTarget(TargetIndex.A).Thing;
@@ -56,7 +56,7 @@ namespace Fortified
             Toil toil = Toils_General.WaitWith(TargetIndex.A, building.GetWorkTime(), useProgressBar: true, maintainPosture: true);
             toil.AddFinishAction(delegate
             {
-                building.StartBill((Bill_Production)job.bill, base.TargetThingA, pawn);
+                building.StartBill((Bill_Production)job.bill, TargetThingA, pawn);
             });
             yield return toil;
         }

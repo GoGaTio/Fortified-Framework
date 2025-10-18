@@ -12,6 +12,7 @@
   <!-- EN: {0} Completed -->
   <FFF.Autofacturer.WorkerDone>{0}已完成</FFF.Autofacturer.WorkerDone>
 
+  <FFF.Autofacturer.CurrentRecipe>當前進行中: {0}</FFF.Autofacturer.CurrentRecipe>
   <!-- EN: current processes have completed, require colonist to work -->
   <FFF.Autofacturer.WorkerFinished>所有工序已完成，需要殖民者進行工作</FFF.Autofacturer.WorkerFinished>
   <!-- EN: Remaining work amount: {0}\nRemaining stages: {1} -->

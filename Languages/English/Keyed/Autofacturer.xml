@@ -8,6 +8,7 @@
 
 <FFF.Autofacturer.WorkerDone>{0} Completed</FFF.Autofacturer.WorkerDone>
 
+  <FFF.Autofacturer.CurrentRecipe>current bill: {0}</FFF.Autofacturer.CurrentRecipe>
 <FFF.Autofacturer.WorkerFinished>current processes have completed, require colonist to work</FFF.Autofacturer.WorkerFinished>
 <FFF.Autofacturer.Information>Remaining work amount: {0}\nRemaining stages: {1}</FFF.Autofacturer.Information>
 <FFF.Autofacturer.Prepared>Completed, require colonist to work</FFF.Autofacturer.Prepared>

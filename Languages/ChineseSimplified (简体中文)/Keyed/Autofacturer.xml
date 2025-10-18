@@ -7,7 +7,7 @@
   <FFF.Autofacturer.WorkerCanceled>当前执行的工作清单已取消，但需要停止运行。</FFF.Autofacturer.WorkerCanceled>
 
   <FFF.Autofacturer.WorkerDone>{0}已完成</FFF.Autofacturer.WorkerDone>
-
+  <FFF.Autofacturer.CurrentRecipe>当前进行中: {0}</FFF.Autofacturer.CurrentRecipe>
   <FFF.Autofacturer.WorkerFinished>所有工序已完成，需要殖民者进行工作</FFF.Autofacturer.WorkerFinished>
   <FFF.Autofacturer.Information>当前阶段剩余工作时间：{0}\n剩余阶段：{1}</FFF.Autofacturer.Information>
   <FFF.Autofacturer.Prepared>已完成，需要殖民者进行工作</FFF.Autofacturer.Prepared>

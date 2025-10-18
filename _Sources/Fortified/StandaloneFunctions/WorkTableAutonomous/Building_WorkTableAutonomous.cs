@@ -204,7 +204,7 @@ namespace Fortified
             {
                 curWorkAmount = 0f;
                 prepared = false;
-                if (totalWorkAmount <= 0f) modExtension?.GetEffecterDef_DoneTrigger(this.Rotation)?.SpawnAttached(this, this.Map).Trigger(this, this);
+                if (totalWorkAmount <= 0f) modExtension?.GetEffecterDef_DoneTrigger(Rotation)?.SpawnAttached(this, Map).Trigger(this, this);
             }
         }
         private bool effectActive = false;
@@ -291,13 +291,14 @@ namespace Fortified
             StringBuilder stringBuilder = new StringBuilder(base.GetInspectString());
             if (activeBill != null)
             {
+                stringBuilder.AppendInNewLine("FFF.Autofacturer.CurrentRecipe".Translate(activeBill.Label));
                 if (prepared)
                 {
                     stringBuilder.AppendInNewLine("FFF.Autofacturer.Information".Translate(((int)curWorkAmount).ToStringTicksToPeriodVerbose(true, true), Mathf.CeilToInt(totalWorkAmount / GetWorkAmountStage())));
                 }
                 else
                 {
-                    if (totalWorkAmount > 0)
+                    if (totalWorkAmount == 0)
                     {
                         stringBuilder.AppendInNewLine("FFF.Autofacturer.WorkerFinished".Translate(Label));
                     }

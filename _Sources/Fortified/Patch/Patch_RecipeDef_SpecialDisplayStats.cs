@@ -8,7 +8,6 @@ namespace Fortified;
 [HarmonyPatch(typeof(RecipeDef), nameof(RecipeDef.SpecialDisplayStats))]
 internal static class Patch_RecipeDef_SpecialDisplayStats
 {
-    // 参考阅读: https://harmony.pardeike.net/articles/patching-postfix.html#pass-through-postfixes
     public static IEnumerable<StatDrawEntry> Postfix(
         IEnumerable<StatDrawEntry> values,
         RecipeDef __instance)
