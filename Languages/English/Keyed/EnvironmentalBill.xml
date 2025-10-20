@@ -1,21 +1,34 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <LanguageData>
 
-  <FFF.Message.BillSuspendedInNonVacuum>{0} on {1} is suspended: require Vacuum environment</FFF.Message.BillSuspendedInNonVacuum>
-  <FFF.Cannot.TableNotInVacuum>Cannot operate: require in vacuum environment</FFF.Cannot.TableNotInVacuum>
+  <FFF.Message.BillSuspended>{0} on {1} were suspended</FFF.Message.BillSuspended>
 
-  <FFF.Message.BillSuspendedInNonMicroGravity>{0} on {1} is suspended: require Micro gravity environment</FFF.Message.BillSuspendedInNonMicroGravity>
-  <FFF.Cannot.TableNotInMicroGravity>Cannot operate: require micro gravity environment</FFF.Cannot.TableNotInMicroGravity>
+  <FFF.Cannot.TableNotInCleanRoom>require dust-free environment with a cleanliness level higher than {1}. Current: {0}</FFF.Cannot.TableNotInCleanRoom>
+  <FFF.Cannot.TableNotInTemperatureBetween>require temperature environment between {1} and {2}. Current: {0}</FFF.Cannot.TableNotInTemperatureBetween>
 
-    <FFF.Message.BillSuspendedInLight>{0} on {1} is suspended: require Dark room environment</FFF.Message.BillSuspendedInLight>
-  <FFF.Cannot.TableNotInDarkness>Cannot operate: require dark environment</FFF.Cannot.TableNotInDarkness>
+  <FFF.Cannot.TableNotInLightnessBetween>require light environment between {1} and {2}. Current: {0}</FFF.Cannot.TableNotInLightnessBetween>
+  <FFF.Cannot.TableNotInLightness>require bright environment with light level higher than {1}. Current: {0}</FFF.Cannot.TableNotInLightness>
+  <FFF.Cannot.TableNotInDarkness>require dark environment with light level lower than {1}. Current: {0}</FFF.Cannot.TableNotInDarkness>
 
-  <FFF.Message.BillSuspendedInDirtiness>{0} on {1} is suspended: require Clean room environment</FFF.Message.BillSuspendedInDirtiness>
-  <FFF.Cannot.TableNotInCleanRoom>Cannot operate: require clean environment</FFF.Cannot.TableNotInCleanRoom>
+  <FFF.Cannot.TableNotInPressureBetween>require pressurized environment with a vacuum between {1} and {2}. Current: {0}</FFF.Cannot.TableNotInPressureBetween>
+  <FFF.Cannot.TableNotInPressure>require pressurized environment with vacuum rate lower than {1}. Current: {0}</FFF.Cannot.TableNotInPressure>
+  <FFF.Cannot.TableNotInVacuum>require low-pressure environment with vacuum rate higher than {1}. Current: {0}</FFF.Cannot.TableNotInVacuum>
+
+  <FFF.Cannot.TableNotInMicroGravity>require in a microgravity environment.</FFF.Cannot.TableNotInMicroGravity>
 
   <FFF.EnvironmentRestriction>required environment</FFF.EnvironmentRestriction>
-  <FFF.CleanRoom>clean room</FFF.CleanRoom>
-  <FFF.Darkness>darkness</FFF.Darkness>
-  <FFF.Vacuum>vacuum</FFF.Vacuum>
-  <FFF.MicroGravity>micro gravity</FFF.MicroGravity>
+
+  <FFF.CleanRoom>Indoor cleanliness above: {0}</FFF.CleanRoom>
+  <FFF.Temperature>Indoor temperature between: {0} ~ {1}</FFF.Temperature>
+
+  <FFF.LightnessDarkness>indoor brightness between: {0} ~ {1}</FFF.LightnessDarkness>
+  <FFF.Lightness>Indoor brightness above: {0}</FFF.Lightness>
+  <FFF.Darkness>Indoor brightness below: {0}</FFF.Darkness>
+
+  <FFF.PressureVacuum>Vacuum between: {0} ~ {1}</FFF.PressureVacuum>
+  <FFF.Pressure>Vacuum below: {0}</FFF.Pressure>
+  <FFF.Vacuum>Vacuum above: {0}</FFF.Vacuum>
+
+  <FFF.MicroGravity>Microgravity</FFF.MicroGravity>
+
 </LanguageData>

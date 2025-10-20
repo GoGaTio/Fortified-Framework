@@ -26,8 +26,6 @@
     <reportString>working.</reportString>
   </JobDef>
 
-  
-
   <JobDef>
     <defName>FFF_RepairSelf</defName>
     <driverClass>Fortified.JobDriver_RepairSelf</driverClass>

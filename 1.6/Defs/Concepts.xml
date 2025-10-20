@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <ConceptDef ParentName="NotedOpportunisticBase">
+    <defName>FFF_EnvironmentalBill</defName>
+    <label>environmental recipe</label>
+    <helpText>Some recipes require a production building to be in a vacuum, clean, or microgravity environment. This means that the production building must be in a specific environment to use these recipes.\n\nYou can view the special environment requirements of a recipe in the infocard.</helpText>
+  </ConceptDef>
+</Defs>

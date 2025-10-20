@@ -22,52 +22,104 @@ namespace Fortified
         {
             base.ExposeData();
         }
-
         public override bool ShouldDoNow()
         {
             if (suspended || !base.ShouldDoNow())
             {
                 return false;
             }
-            if (!CheckEnvironment())
+            if (!EnvironmentCanDoNow())
             {
                 if (billStack.billGiver is Building_WorkTableAutonomous at && at.IsWorking())
                 {
                     at.Cancel();
                 }
+                //else if (billStack.billGiver is Building_WorkTable wt && wt.IsWorking())
+                //{
+                //    suspended = true;
+                //}
                 return false;
             }
             return true;
         }
-        protected bool CheckEnvironment()
+
+        protected bool EnvironmentCanDoNow()
         {
             bool passed = true;
-            if (Extension == null) return passed;
-            if (Extension.OnlyInVacuum && !(WorkBench.Map.Biome.inVacuum || OrbitUtility.InVacuum(WorkBench)))
+            if (Extension == null) return true;
+            //if (WorkBench == null) return false;
+            //if (WorkBench.Map == null) return false;
+            //if (!WorkBench.Spawned) return false;
+
+            //潔净度相關
+            if (Extension.OnlyInCleanliness)
             {
-                suspended = true;
-                Messages.Message("FFF.Message.BillSuspendedInNonVacuum".Translate(Label, WorkBench.Label), MessageTypeDefOf.CautionInput);
-                passed = false;
+                AcceptanceReport report = EnvironmentUtility.InCleanRoom(WorkBench, Extension.CleanlinessRequirement);
+                if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
             }
-            if (Extension.OnlyInMicroGravity && !OrbitUtility.InMicroGravity(WorkBench))
+
+            //溫度相關
+            if (Extension.TemperatureRestricted)
             {
-                suspended = true;
-                Messages.Message("FFF.Message.BillSuspendedInNonMicroGravity".Translate(Label, WorkBench.Label), MessageTypeDefOf.CautionInput);
-                passed = false;
+                AcceptanceReport report = EnvironmentUtility.InTemperature(WorkBench, Extension.AllowedTemperatureRange);
+                if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
             }
-            if (Extension.OnlyInDarkness && !OrbitUtility.InDarkness(WorkBench))
+
+            //光照相關
+            if (Extension.LightnessRestricted && Extension.OnlyInDarkness)
             {
-                suspended = true;
-                Messages.Message("FFF.Message.BillSuspendedInLight".Translate(Label, WorkBench.Label), MessageTypeDefOf.CautionInput);
-                passed = false;
+                AcceptanceReport report = EnvironmentUtility.InLightnessBetween(WorkBench, new FloatRange(Extension.LightnessRequirement, Extension.DarknessRequirement));
+                if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
             }
-            if (Extension.OnlyInCleanliness && !OrbitUtility.InCleanRoom(WorkBench))
+            else
             {
-                suspended = true;
-                Messages.Message("FFF.Message.BillSuspendedInDirtiness".Translate(Label, WorkBench.Label), MessageTypeDefOf.CautionInput);
-                passed = false;
+                if (Extension.LightnessRestricted)
+                {
+                    AcceptanceReport report = EnvironmentUtility.InLightness(WorkBench, Extension.LightnessRequirement);
+                    if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
+                }
+                else if (Extension.OnlyInDarkness)
+                {
+                    AcceptanceReport report = EnvironmentUtility.InDarkness(WorkBench, Extension.DarknessRequirement);
+                    if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
+                }
             }
+
+            //真空相關
+            if (Extension.OnlyInVacuum && Extension.PressureRestricted)
+            {
+                AcceptanceReport report = EnvironmentUtility.InPressureBetween(WorkBench, new FloatRange(Extension.PressureRequirement, Extension.VacuumRequirement));
+                if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
+            }
+            else
+            {
+                if (Extension.PressureRestricted)
+                {
+                    AcceptanceReport report = EnvironmentUtility.InPressure(WorkBench, Extension.PressureRequirement);
+                    if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
+                }
+                else if (Extension.OnlyInVacuum)
+                {
+                    AcceptanceReport report = EnvironmentUtility.InVacuum(WorkBench,Extension.VacuumRequirement);
+                    if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
+                }
+            }
+
+            //重力相關
+            if (Extension.OnlyInMicroGravity)
+            {
+                AcceptanceReport report = EnvironmentUtility.InMicroGravity(WorkBench);
+                if (!report.Accepted) passed = SendSuspendedMessage(report.Reason);
+            }
+
             return passed;
+        }
+        private bool SendSuspendedMessage(string reason)
+        {
+            if(!suspended) suspended = true;
+            if (DebugSettings.godMode) Log.Message(reason);
+            Messages.Message("FFF.Message.BillSuspended".Translate(Label, WorkBench.Label) + ": " + reason, lookTargets: WorkBench, MessageTypeDefOf.CautionInput);
+            return false;
         }
 
         public override void Notify_IterationCompleted(Pawn billDoer, List<Thing> ingredients)
