@@ -6,7 +6,6 @@ using static UnityEngine.GraphicsBuffer;
 
 namespace Fortified
 {
-    [StaticConstructorOnStartup]
     public class Projectile_ConeExplosive : Projectile_Explosive
     {
         protected float coneSway = 10f;
@@ -19,29 +18,31 @@ namespace Fortified
         }
         protected void DoExplosion()
         {
-            if (this.def.HasModExtension<ExplosiveExtension>())
+            if (def.HasModExtension<ExplosiveExtension>())
             {
-                ExplosiveExtension ext = this.def.GetModExtension<ExplosiveExtension>();
-                int dmg = ext.damageAmount != -1 ? ext.damageAmount : this.DamageAmount;
-                float armorPen = ext.armorPen != -1 ? ext.armorPen : this.ArmorPenetration;
+                ExplosiveExtension ext = def.GetModExtension<ExplosiveExtension>();
                 IntVec3 offsetPos = Position - (Angle * ext.preExplosionOffset).ToIntVec3();
-                var things = Map.listerThings.ThingsInGroup(ThingRequestGroup.Projectile);
-                GenExplosion.DoExplosion(
-                    center: offsetPos,
-                    Map,
-                    ext.range,
-                    ext.damage,
-                    this.Launcher,
-                    dmg, armorPen,
-                    ext.sound,
-                    this.EquipmentDef,
-                    projectile: this.def,
-                    affectedAngle: new FloatRange(Angle.ToAngleFlat() - ext.swayAngle, Angle.ToAngleFlat() + ext.swayAngle),
-                    doVisualEffects: ext.doVisualEffects,
-                    doSoundEffects: ext.sound != null,
-                    ignoredThings: things);
-
-                ext.effecterDef?.Spawn(offsetPos, DestinationCell, this.Map, 1);
+                if (ext.damage != null)
+                {
+                    int dmg = ext.damageAmount != -1 ? ext.damageAmount : DamageAmount;
+                    float armorPen = ext.armorPen != -1 ? ext.armorPen : ArmorPenetration;
+                    var things = Map.listerThings.ThingsInGroup(ThingRequestGroup.Projectile);
+                    GenExplosion.DoExplosion(
+                        center: offsetPos,
+                        Map,
+                        ext.range,
+                        ext.damage,
+                        launcher,
+                        dmg, armorPen,
+                        ext.sound,
+                        EquipmentDef,
+                        projectile: this.def,
+                        affectedAngle: new FloatRange(Angle.ToAngleFlat() - ext.swayAngle, Angle.ToAngleFlat() + ext.swayAngle),
+                        doVisualEffects: ext.doVisualEffects,
+                        doSoundEffects: ext.sound != null,
+                        ignoredThings: things);
+                }
+                ext.effecterDef?.Spawn(offsetPos, DestinationCell, Map, 1);
             }
             else //默認值
             {

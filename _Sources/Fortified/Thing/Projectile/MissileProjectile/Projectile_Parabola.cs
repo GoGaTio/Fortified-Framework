@@ -1,8 +1,64 @@
-﻿using UnityEngine;
+﻿using RimWorld;
+using UnityEngine;
 using Verse;
 
 namespace Fortified
 {
+    public class Projectile_Parabola_ConeExplosive : Projectile_Parabola
+    {
+        protected float coneSway = 10f;
+        protected Vector3 Angle => (destination - origin).normalized;
+        protected float Sway => Angle.RotatedBy(coneSway).ToAngleFlat();
+        protected override void Impact(Thing hitThing, bool blockedByShield = false)
+        {
+            DoExplosion();
+            base.Impact(hitThing, blockedByShield);
+        }
+        protected void DoExplosion()
+        {
+            if (def.HasModExtension<ExplosiveExtension>())
+            {
+                ExplosiveExtension ext = def.GetModExtension<ExplosiveExtension>();
+                IntVec3 offsetPos = Position - (Angle * ext.preExplosionOffset).ToIntVec3();
+                if (ext.damage != null)
+                {
+                    int dmg = ext.damageAmount != -1 ? ext.damageAmount : DamageAmount;
+                    float armorPen = ext.armorPen != -1 ? ext.armorPen : ArmorPenetration;
+                    var things = Map.listerThings.ThingsInGroup(ThingRequestGroup.Projectile);
+                    GenExplosion.DoExplosion(
+                        center: offsetPos,
+                        Map,
+                        ext.range,
+                        ext.damage,
+                        Launcher,
+                        dmg, armorPen,
+                        ext.sound,
+                        EquipmentDef,
+                        projectile: def,
+                        affectedAngle: new FloatRange(Angle.ToAngleFlat() - ext.swayAngle, Angle.ToAngleFlat() + ext.swayAngle),
+                        doVisualEffects: ext.doVisualEffects,
+                        doSoundEffects: ext.sound != null,
+                        ignoredThings: things);
+                }
+                ext.effecterDef?.Spawn(offsetPos, DestinationCell, Map, 1);
+            }
+            else //默認值
+            {
+                GenExplosion.DoExplosion(center: Position - (Angle * 2).ToIntVec3(), Map, 7,
+                    DamageDefOf.Bullet, launcher,
+                    30, 0.5f, weapon: EquipmentDef,
+                    direction: Angle.ToAngleFlat(), affectedAngle: new FloatRange(Angle.ToAngleFlat() - Sway, Angle.ToAngleFlat() + Sway),
+                    doVisualEffects: true, doSoundEffects: false
+                    );
+            }
+        }
+        public override void Destroy(DestroyMode mode = DestroyMode.Vanish)
+        {
+            base.Destroy(mode);
+        }
+    }
+
+
     public class Projectile_Parabola : Projectile_Explosive
     {
         protected CompAfterBurner compAfterBurner;
