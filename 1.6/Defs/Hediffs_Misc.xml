@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Defs>
+
+  <HediffDef>
+    <hediffClass>HediffWithComps</hediffClass>
+    <defName>FFF_Camouflage</defName>
+    <label>camouflage</label>
+    <description>This mech is invisible.</description>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="HediffCompProperties_Invisibility">
+        <visibleToPlayer>false</visibleToPlayer>
+        <fadeDurationTicks>60</fadeDurationTicks>
+        <recoverFromDisruptedTicks>90</recoverFromDisruptedTicks>
+      </li>
+      <li Class="HediffCompProperties_DisappearsOnDeath" />
+    </comps>
+    <stages>
+      <li>
+        <label>hidden</label>
+        <becomeVisible>false</becomeVisible>
+      </li>
+    </stages>
+  </HediffDef>
+
+</Defs>
