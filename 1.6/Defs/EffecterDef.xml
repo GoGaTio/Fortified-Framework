@@ -79,7 +79,7 @@
       </li>
       <li><!--尾焰-->
         <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
-        <fleckDef>DMS_Fleck_RocketFlame</fleckDef>
+        <fleckDef>FFF_Fleck_RocketFlame</fleckDef>
         <positionLerpFactor>-0.05</positionLerpFactor>
         <burstCount>6</burstCount>
         <speed>-6.5~-4</speed>
@@ -93,7 +93,7 @@
       </li>
       <li>
         <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
-        <fleckDef>DMS_Fleck_RocketFlame</fleckDef>
+        <fleckDef>FFF_Fleck_RocketFlame</fleckDef>
         <positionLerpFactor>-0.05</positionLerpFactor>
         <burstCount>6</burstCount>
         <speed>-20.5~-10</speed>
@@ -106,4 +106,20 @@
       </li>
     </children>
   </EffecterDef>
+
+  
+
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>FFF_Fleck_RocketFlame</defName>
+    <graphicData>
+      <texPath>Things/Mote/FireGlow</texPath>
+      <shaderType>MoteGlow</shaderType>
+      <drawSize>1.2</drawSize>
+    </graphicData>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <fadeInTime>0.01</fadeInTime>
+    <solidTime>0.2</solidTime>
+    <fadeOutTime>0.05</fadeOutTime>
+    <growthRate>-5</growthRate>
+  </FleckDef>
 </Defs>
