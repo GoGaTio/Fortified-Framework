@@ -18,6 +18,7 @@ public static class FFF_DefOf
     public static JobDef FFF_EjectDeactivatedMech;
     public static JobDef FFF_HackDeactivatedMech;
     public static JobDef FFF_ResurrectMech;
+    public static HediffDef FFF_Camouflage;
 }
 
 [StaticConstructorOnStartup]
