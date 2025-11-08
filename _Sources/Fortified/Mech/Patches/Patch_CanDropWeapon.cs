@@ -1,6 +1,7 @@
 ﻿using Verse;
 using RimWorld;
 using HarmonyLib;
+using System.Reflection;
 
 namespace Fortified
 {

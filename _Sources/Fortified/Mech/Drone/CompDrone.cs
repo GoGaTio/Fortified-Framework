@@ -14,7 +14,7 @@ namespace Fortified
     /// </summary>
     public class CompDrone : ThingComp
     {
-        private Pawn pawn => parent as Pawn;
+        private Pawn Pawn => parent as Pawn;
         protected Thing parentPlatform = null;
         public Thing Platform => parentPlatform;//召喚的Thing。
         private CompMechPowerCell powerCell;
@@ -45,9 +45,9 @@ namespace Fortified
                     Pawn wearer = Apparel.Wearer;
                     return CanDraftAsPawnPlatform(wearer);
                 }
-                else if (parentPlatform.GetType().IsAssignableFrom(typeof(Pawn)))
+                else if (parentPlatform is Pawn p)
                 {
-                    return CanDraftAsPawnPlatform(parentPlatform as Pawn);
+                    return CanDraftAsPawnPlatform(p);
                 }
                 return CanDraftAsBuildingPlatform();
             }
@@ -57,7 +57,7 @@ namespace Fortified
             //玩家召喚的並不會有自帶裝備。
             if (this.parent.Faction == Faction.OfPlayer)
             {
-                pawn.equipment?.DestroyAllEquipment(DestroyMode.Vanish);
+                Pawn.equipment?.DestroyAllEquipment(DestroyMode.Vanish);
             }
         }
         public override void PostSpawnSetup(bool respawningAfterLoad)
@@ -69,8 +69,8 @@ namespace Fortified
                 if (this.parent.TryGetComp<CompExplosiveOnMelee>(out var e) && Rand.Chance(0.5f))
                 {
                     Thing shell = ThingMaker.MakeThing(ThingDefOf.Shell_HighExplosive);
-                    pawn.inventory ??= new Pawn_InventoryTracker(pawn);
-                    pawn.inventory.innerContainer.TryAdd(shell, 1);
+                    Pawn.inventory ??= new Pawn_InventoryTracker(Pawn);
+                    Pawn.inventory.innerContainer.TryAdd(shell, 1);
                 }
             }
         }
@@ -145,9 +145,9 @@ namespace Fortified
             if (!parent.Spawned || (parent as Pawn).DeadOrDowned) return;
 
             if (!parent.IsHashIntervalTick(500)) return;
-            if (!CanDraft && pawn.drafter != null) pawn.drafter.Drafted = false;
+            if (!CanDraft && Pawn.drafter != null) Pawn.drafter.Drafted = false;
 
-            if (pawn.CurJobDef != Props.returnToDraftPlatformJob && powerCell != null && powerCell.PowerTicksLeft < 5000)
+            if (Pawn.CurJobDef != Props.returnToDraftPlatformJob && powerCell != null && powerCell.PowerTicksLeft < 5000)
             {
                 ReturnToPlatform();
             }
@@ -167,12 +167,12 @@ namespace Fortified
             if (isApparelPlatform)
             {
                 //pawn.jobs.StopAll();
-                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(Props.returnToDraftPlatformJob, PlatformOwner, Apparel), JobTag.DraftedOrder);
+                Pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(Props.returnToDraftPlatformJob, PlatformOwner, Apparel), JobTag.DraftedOrder);
             }
             else
             {
                 //pawn.jobs.StopAll();
-                pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(Props.returnToDraftPlatformJob, PlatformOwner), JobTag.DraftedOrder);
+                Pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(Props.returnToDraftPlatformJob, PlatformOwner), JobTag.DraftedOrder);
             }
         }
         public override void PostExposeData()
