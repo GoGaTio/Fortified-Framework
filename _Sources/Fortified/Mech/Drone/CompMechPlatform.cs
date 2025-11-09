@@ -105,16 +105,30 @@ namespace Fortified
             }
 
             base.PostSpawnSetup(respawningAfterLoad);
+            CleanupSpawnedPawns();
             if (!respawningAfterLoad && !parent.BeingTransportedOnGravship)
             {
-                innerContainer = new ThingOwner<Thing>(this, oneStackOnly: false);
-                if (Props.startingIngredientCount > 0)
+                var c = Props.startingIngredientCount;
+
+                if (!parent.Faction.IsPlayer) //NPC陣營自動填滿。
                 {
-                    Thing thing = ThingMaker.MakeThing(Props.fixedIngredient);
-                    thing.stackCount = Props.startingIngredientCount;
-                    innerContainer.TryAdd(thing, Props.startingIngredientCount);
+                    this.autoDeployEnabled = true;
+                    c = Props.maxIngredientCount;
+                } 
+
+                innerContainer = new ThingOwner<Thing>(this, oneStackOnly: false);
+                if (c > 0)
+                {
+                    int count = c;
+                    while (count > 0)
+                    {
+                        Thing thing = ThingMaker.MakeThing(Props.fixedIngredient);
+                        thing.stackCount = Mathf.Min(count, Props.fixedIngredient.stackLimit);
+                        innerContainer.TryAdd(thing, thing.stackCount);
+                        count -= Mathf.Min(count, Props.fixedIngredient.stackLimit);
+                    }
                 }
-                maxToFill = Props.startingIngredientCount;
+                maxToFill = c;
             }
         }
 
@@ -325,11 +339,13 @@ namespace Fortified
 
         private List<FloatMenuOption> AreaOptions(Map map)
         {
-            var list = new List<FloatMenuOption>();
-            list.Add(new FloatMenuOption("FFF.Drone.NoRestrict".Translate(), () =>
+            var list = new List<FloatMenuOption>
+            {
+                new FloatMenuOption("FFF.Drone.NoRestrict".Translate(), () =>
             {
                 selectedAreaId = -1;
-            }));
+            })
+            };
             foreach (var area in map.areaManager.AllAreas.Where(a=>a.AssignableAsAllowed()))
             {
                 var label = area.Label;
@@ -413,14 +429,30 @@ namespace Fortified
             {
                 return;
             }
+            
 
             for (int i = 0; i < spawnedPawns.Count; i++)
             {
-                if (!spawnedPawns[i].Dead || !spawnedPawns[i].Spawned)
+                if (!spawnedPawns[i].Dead && spawnedPawns[i].Spawned)
                 {
                     GenDraw.DrawLineBetween(parent.TrueCenter(), spawnedPawns[i].TrueCenter());
                 }
             }
+        }
+        protected void CleanupSpawnedPawns()
+        {
+            // 清理失效的生成單位
+            List<Pawn> pawns = spawnedPawns;
+            if (pawns == null || pawns.Count <= 0) return;
+            for (int i = pawns.Count - 1; i >= 0; i--)
+            {
+                var pawn = pawns[i];
+                if (pawn == null || pawn.Dead)
+                {
+                    pawns.RemoveAt(i);
+                }
+            }
+            spawnedPawns = pawns;
         }
         public override void PostExposeData()
         {
@@ -434,7 +466,7 @@ namespace Fortified
             Scribe_Collections.Look(ref spawnedPawns, "spawnedPawns", LookMode.Reference);
             if (Scribe.mode == LoadSaveMode.PostLoadInit)
             {
-                spawnedPawns.RemoveAll((Pawn x) => x == null);
+                spawnedPawns.RemoveAll(x => x == null);
             }
         }
         public override void CompTick()
@@ -450,19 +482,28 @@ namespace Fortified
         private bool autoDeployEnabled = false;
         public override void CompTickInterval(int delta)
         {
+            // 快速檢查是否需要處理冷卻
             if (cooldownTicksRemaining > 0)
             {
                 cooldownTicksRemaining -= delta;
+                return;
             }
-            if (autoDeployTicks > 0) autoDeployTicks -= delta;
-            else if (autoDeployEnabled && spawnedPawns?.Count < Props.maxPawnsToSpawn * 2)
+            // 自動部署邏輯
+            if (autoDeployEnabled)
             {
-                autoDeployTicks = (int)(Props.cooldownTicks * 1.5f);
-                if (CanSpawn.Accepted)
+                if (autoDeployTicks > 0)
                 {
+                    autoDeployTicks -= delta;
+                    return;
+                }
+                // 檢查是否可以生成新單位
+                if (spawnedPawns != null && spawnedPawns.Count < Props.maxPawnsToSpawn * 2 && CanSpawn.Accepted)
+                {
+                    autoDeployTicks = Props.cooldownTicks * 2; // 使用整數乘法代替浮點數
                     TrySpawnPawns();
                 }
             }
+            CleanupSpawnedPawns();
         }
         public void ReleaseOverFilled()
         {
