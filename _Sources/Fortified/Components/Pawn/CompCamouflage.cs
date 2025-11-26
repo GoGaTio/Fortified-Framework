@@ -100,10 +100,7 @@ namespace Fortified
 					{
 						Invisibility.BecomeVisible();
 					}
-					else
-					{
-						Invisibility.BecomeInvisible();
-					}
+					lastDetectedTick = Find.TickManager.TicksGame;
 				};
 				yield return command_Toggle;
 			}
@@ -232,4 +229,5 @@ namespace Fortified
 			lastNotified = RealTime.LastRealTime;
 		}
 	}
+
 }
