@@ -41,3 +41,4 @@ UnityEngine.dll
 *.json
 *.cache
 *.props
+*.cache

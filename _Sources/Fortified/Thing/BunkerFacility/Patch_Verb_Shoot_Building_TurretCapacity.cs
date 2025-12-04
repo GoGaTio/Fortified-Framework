@@ -17,7 +17,7 @@ namespace Fortified
             Pawn pawn = __instance.CurrentTarget.Thing as Pawn;
             if (pawn != null && !pawn.Downed && !pawn.IsColonyMech && castPawn.skills != null)
             {
-                float num = (pawn.HostileTo(castPawn) ? 170f : 20f);
+                float num = (pawn.HostileTo(castPawn) ? 10f : 20f);
                 float num2 = __instance.verbProps.AdjustedFullCycleTime(__instance, __instance.CasterPawn);
                 castPawn.skills.Learn(SkillDefOf.Shooting, num * num2);
             }
