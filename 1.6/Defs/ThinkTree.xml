@@ -1,42 +1,125 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
+
+  <!-- ============= FFF_DroneMain - 主思维树 ============= -->
+  <!-- 处理日常行为：工作、征召命令、闲置等 -->
+  <ThinkTreeDef>
+    <defName>FFF_DroneMain</defName>
+    <thinkRoot Class="ThinkNode_Priority">
+      <subNodes>
+
+        <!-- Despawned -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Despawned</treeDef>
+        </li>
+
+        <!-- Downed -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>Downed</treeDef>
+        </li>
+
+        <!-- 执行队列中的工作 -->
+        <li Class="ThinkNode_QueuedJob" />
+
+        <!-- 玩家阵营：征召命令 -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_Tagger">
+              <tagToGive>DraftedOrder</tagToGive>
+              <subNodes>
+                <li Class="JobGiver_MoveToStandable" />
+                <li Class="JobGiver_Orders" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- Lord任务 -->
+        <li Class="ThinkNode_Subtree">
+          <treeDef>LordDuty</treeDef>
+        </li>
+
+        <!-- 玩家阵营：区域限制（优先级高于工作，但不影响返回充电） -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_ConditionalDoingJob">
+              <invert>true</invert>
+              <jobDef>FFF_ReturnToDronePlatform</jobDef>
+              <subNodes>
+                <li Class="JobGiver_SeekAllowedArea" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- 玩家阵营：工作逻辑 -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <subNodes>
+            <li Class="ThinkNode_ConditionalDoingJob">
+              <invert>true</invert>
+              <jobDef>FFF_ReturnToDronePlatform</jobDef>
+              <subNodes>
+                <li Class="JobGiver_Work">
+                  <emergency>true</emergency>
+                </li>
+                <li Class="JobGiver_Work" />
+              </subNodes>
+            </li>
+          </subNodes>
+        </li>
+
+        <!-- 非玩家阵营：战斗 -->
+        <li Class="ThinkNode_ConditionalOfPlayerFaction">
+          <invert>true</invert>
+          <subNodes>
+            <li Class="JobGiver_AIFightEnemies">
+              <targetAcquireRadius>30</targetAcquireRadius>
+              <targetKeepRadius>35</targetKeepRadius>
+            </li>
+            <li Class="JobGiver_AIGotoNearestHostile" />
+          </subNodes>
+        </li>
+
+        <!-- 闲置：在平台附近游荡 -->
+        <li Class="ThinkNode_Tagger">
+          <tagToGive>Idle</tagToGive>
+          <subNodes>
+            <li Class="Fortified.JobGiver_WanderNearPlatform" />
+            <li Class="JobGiver_WanderAnywhere">
+              <maxDanger>None</maxDanger>
+            </li>
+          </subNodes>
+        </li>
+
+        <li Class="JobGiver_IdleError"/>
+
+      </subNodes>
+    </thinkRoot>
+  </ThinkTreeDef>
+
+  <!-- ============= FFF_DroneConstant - 持续思维树 ============= -->
+  <!-- 只处理紧急响应：战斗、保持距离等 -->
   <ThinkTreeDef>
     <defName>FFF_DroneConstant</defName>
     <thinkRoot Class="ThinkNode_Priority">
       <subNodes>
         <li Class="ThinkNode_ConditionalCanDoConstantThinkTreeJobNow">
           <subNodes>
-            <li Class="ThinkNode_ConditionalOfPlayerFaction">
-              <subNodes>
-                <li Class="ThinkNode_ConditionalDoingJob">
-                  <invert>true</invert>
-                  <jobDef>FFF_ReturnToDronePlatform</jobDef>
-                  <subNodes>
-                    <li Class="JobGiver_SeekAllowedArea" />
-                    <!-- Do a queued job -->
-                    <li Class="ThinkNode_QueuedJob" />
-                    <li Class="JobGiver_Work">
-                      <emergency>true</emergency>
-                    </li>
-                    <li Class="JobGiver_Work" />
-                  </subNodes>
-                </li>
-              </subNodes>
-            </li>
-            <!-- Keep distance -->
+            <!-- 有武器时的战斗逻辑 -->
             <li Class="Fortified.ThinkNode_ConditionalHasWeapon">
               <subNodes>
                 <li Class="JobGiver_AIFightEnemies">
                   <targetAcquireRadius>30</targetAcquireRadius>
                   <targetKeepRadius>72</targetKeepRadius>
                 </li>
-                <!-- AI的可以全圖自鎖敵 -->
+                <!-- AI可以全图自锁敌 -->
                 <li Class="ThinkNode_ConditionalOfPlayerFaction">
                   <invert>true</invert>
                   <subNodes>
                     <li Class="JobGiver_AIGotoNearestHostile" />
                   </subNodes>
                 </li>
+                <!-- 远程武器保持距离 -->
                 <li Class="Fortified.ThinkNode_ConditionalHasWeapon">
                   <onlyRanged>true</onlyRanged>
                   <subNodes>
@@ -48,10 +131,10 @@
                 </li>
               </subNodes>
             </li>
-            <li Class="Fortified.JobGiver_WanderNearPlatform" />
           </subNodes>
         </li>
       </subNodes>
     </thinkRoot>
   </ThinkTreeDef>
-</Defs>	
+
+</Defs>

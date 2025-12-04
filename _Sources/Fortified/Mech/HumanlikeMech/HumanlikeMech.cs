@@ -95,6 +95,10 @@ namespace Fortified
                         }
                     }
                 }
+                
+                // 初始化工作设置，让机械体能够被分配工作
+                workSettings ??= new Pawn_WorkSettings(this);
+                workSettings.EnableAndInitializeIfNotAlreadyInitialized();
             }
         }
         public void Equip(ThingWithComps equipment)

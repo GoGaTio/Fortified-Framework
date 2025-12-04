@@ -149,11 +149,11 @@ namespace Fortified
 
             if (Pawn.CurJobDef != Props.returnToDraftPlatformJob && powerCell != null && powerCell.PowerTicksLeft < 5000)
             {
-                ReturnToPlatform();
+                ReturnToPlatform(forceInterrupt: true);
             }
         }
         bool noPlatformWarning = false;
-        public void ReturnToPlatform()
+        public void ReturnToPlatform(bool forceInterrupt = false)
         {
             if (!HasPlatform && !noPlatformWarning)
             {
@@ -164,14 +164,18 @@ namespace Fortified
             }
             if (!HasPlatform) return;
 
+            // 低电量时尝试强制中断当前工作，防止机械体沉迷工作忘记充电
+            if (forceInterrupt)
+            {
+                Pawn.jobs.StopAll();
+            }
+
             if (isApparelPlatform)
             {
-                //pawn.jobs.StopAll();
                 Pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(Props.returnToDraftPlatformJob, PlatformOwner, Apparel), JobTag.DraftedOrder);
             }
             else
             {
-                //pawn.jobs.StopAll();
                 Pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(Props.returnToDraftPlatformJob, PlatformOwner), JobTag.DraftedOrder);
             }
         }
@@ -200,9 +204,15 @@ namespace Fortified
         [HarmonyPostfix]
         public static void Postfix(Pawn pawn, bool actAsIfSpawned)
         {
-            if (ModsConfig.BiotechActive && pawn.kindDef != null && pawn.TryGetComp<CompDrone>() != null && pawn.workSettings == null)
+            if (!ModsConfig.BiotechActive || pawn.kindDef == null) return;
+            
+            // 处理 CompDrone、WeaponUsableMech 和 HumanlikeMech 的 workSettings 初始化
+            bool needsWorkSettings = pawn.TryGetComp<CompDrone>() != null 
+                || pawn is WeaponUsableMech 
+                || pawn is HumanlikeMech;
+            
+            if (needsWorkSettings && pawn.workSettings == null)
             {
-
                 pawn.workSettings = new Pawn_WorkSettings(pawn);
                 pawn.workSettings.EnableAndInitializeIfNotAlreadyInitialized();
             }
