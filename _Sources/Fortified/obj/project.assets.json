@@ -338,19 +338,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\HaiLu\\.nuget\\packages\\": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\Game\\Steam\\steamapps\\common\\RimWorld\\Mods\\Fortified-Framework\\_Sources\\Fortified\\Fortified.csproj",
+      "projectUniqueName": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Fortified.csproj",
       "projectName": "Fortified",
-      "projectPath": "D:\\Game\\Steam\\steamapps\\common\\RimWorld\\Mods\\Fortified-Framework\\_Sources\\Fortified\\Fortified.csproj",
-      "packagesPath": "C:\\Users\\HaiLu\\.nuget\\packages\\",
-      "outputPath": "D:\\Game\\Steam\\steamapps\\common\\RimWorld\\Mods\\Fortified-Framework\\_Sources\\Fortified\\obj\\",
+      "projectPath": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\Fortified.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "D:\\Steam\\steamapps\\common\\RimWorld\\Mods\\_Fortified-Framework\\_Sources\\Fortified\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\HaiLu\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
         "net472"
@@ -373,7 +373,8 @@
         "enableAudit": "true",
         "auditLevel": "low",
         "auditMode": "direct"
-      }
+      },
+      "SdkAnalysisLevel": "9.0.300"
     },
     "frameworks": {
       "net472": {
@@ -394,7 +395,7 @@
             "version": "[2.4.1, )"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\8.0.400\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.308\\RuntimeIdentifierGraph.json"
       }
     }
   }
