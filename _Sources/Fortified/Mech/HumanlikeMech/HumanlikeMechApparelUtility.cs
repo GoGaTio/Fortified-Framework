@@ -93,7 +93,7 @@ namespace Fortified
                 return null;
             }
 
-            neededWarmth = PawnApparelGenerator.CalculateNeededWarmth(pawn, pawn.Map.Tile, GenLocalDate.Twelfth(pawn));
+            neededWarmth = MechApparelGenerator.CalculateNeededWarmth(pawn, pawn.Map.Tile, GenLocalDate.Twelfth(pawn));
             wornApparelScores.Clear();
             for (int i = 0; i < wornApparel.Count; i++)
             {

@@ -28,7 +28,12 @@ namespace Fortified
             {
                 return;
             }
+            if (faction.IsPlayer) return;// 只為非玩家陣營的機兵添加初始衣服
 
+            PawnGenerationRequest request = new PawnGenerationRequest(kindDef);
+            MechApparelGenerator.GenerateStartingApparelFor(humanlikeMech, request);
+
+            return;
             // 穿上必需的衣服（apparelRequired）
             if (!kindDef.apparelRequired.NullOrEmpty())
             {
@@ -84,7 +89,7 @@ namespace Fortified
                 return false;
             }
 
-            Apparel apparel = PawnApparelGenerator.GenerateApparelOfDefFor(pawn, apparelDef);
+            Apparel apparel = MechApparelGenerator.GenerateApparelOfDefFor(pawn, apparelDef);
             if (apparel == null)
             {
                 return false;
@@ -106,4 +111,5 @@ namespace Fortified
                 .ToList();
         }
     }
+
 }
