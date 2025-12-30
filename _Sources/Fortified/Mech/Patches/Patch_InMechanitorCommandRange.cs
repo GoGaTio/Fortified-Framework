@@ -32,7 +32,7 @@ namespace Fortified
             if (overseenPawns.NullOrEmpty()) return;
             foreach (Pawn item in overseenPawns.Where(p => p.Spawned && p.MapHeld == mech.MapHeld))
             {
-                if (item.TryGetComp<CompCommandRelay>(out var c) && CheckUtility.InRange(item, target, c.SquaredDistance))
+                if (item.TryGetComp<CompCommandRelay>(out var c) && (c.Props.coverWholeMap || CheckUtility.InRange(item, target, c.SquaredDistance)))
                 {
                     __result = true;
                     return;
