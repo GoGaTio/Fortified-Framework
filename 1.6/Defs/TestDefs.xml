@@ -19,24 +19,26 @@
       <!-- 單一自訂 Comp -->
       <li Class="Fortified.CompProperties_AmmoSwitch">
         <defaultIndex>0</defaultIndex>
-        <switchCooldownSeconds>2.0</switchCooldownSeconds>
+        <switchCooldown>100</switchCooldown>
         <ammos>
           <li>
-            <label>標準</label>
-            <projectileDef>Bullet_AssaultRifle</projectileDef>
+            <label>Normal</label>
+            <projectileDef>FFF_Bullet_Rifle</projectileDef>
           </li>
           <li>
-            <label>燃燒</label>
-            <projectileDef>Bullet_IncendiaryLauncher</projectileDef>
+            <label>Shotgun</label>
+            <projectileDef>FFF_Bullet_Shotgun</projectileDef>
+            <rangeFactor>0.5</rangeFactor>
+            <accuracyFactor>0.9</accuracyFactor>
           </li>
           <li>
             <label>EMP</label>
             <projectileDef>Bullet_EMPLauncher</projectileDef>
+            <burstShotCountOverride>1</burstShotCountOverride>
           </li>
         </ammos>
       </li>
     </comps>
-
     <verbs>
       <li>
         <verbClass>Fortified.Verb_LaunchProjectile_AmmoSwitch</verbClass>
@@ -50,7 +52,6 @@
         <muzzleFlashScale>9</muzzleFlashScale>
       </li>
     </verbs>
-
     <statBases>
       <WorkToMake>14000</WorkToMake>
       <Mass>4.2</Mass>
@@ -60,11 +61,47 @@
       <AccuracyLong>0.46</AccuracyLong>
       <RangedWeapon_Cooldown>1.8</RangedWeapon_Cooldown>
     </statBases>
-
     <costList>
       <Steel>60</Steel>
       <ComponentIndustrial>4</ComponentIndustrial>
     </costList>
+  </ThingDef>
+
+  <ThingDef ParentName="BaseBullet" Name="FFF_BaseAmmoSwitchBullet" Abstract="True">
+    <comps>
+      <li Class="Fortified.CompProperties_SwitchableAmmo"/>
+    </comps>
+  </ThingDef>
+
+  <ThingDef ParentName="FFF_BaseAmmoSwitchBullet">
+    <defName>FFF_Bullet_Rifle</defName>
+    <label>revolver bullet</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Small</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>11</damageAmountBase>
+      <stoppingPower>1</stoppingPower>
+      <speed>55</speed>
+    </projectile>
+  </ThingDef>
+
+  <ThingDef ParentName="FFF_BaseAmmoSwitchBullet">
+    <defName>FFF_Bullet_Shotgun</defName>
+    <label>shotgun blast</label>
+    <graphicData>
+      <texPath>Things/Projectile/Bullet_Shotgun</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <projectile>
+      <damageDef>Bullet</damageDef>
+      <damageAmountBase>18</damageAmountBase>
+      <stoppingPower>3</stoppingPower>
+      <armorPenetrationBase>0.14</armorPenetrationBase>
+      <speed>55</speed>
+    </projectile>
   </ThingDef>
 
 </Defs>

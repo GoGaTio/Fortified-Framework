@@ -95,4 +95,10 @@
     <reportString>Replenishing</reportString>
   </JobDef>
 
+  <JobDef>
+    <defName>FFF_SwitchAmmo</defName>
+    <driverClass>Fortified.JobDriver_SwitchAmmo</driverClass>
+    <reportString>Switching ammo</reportString>
+  </JobDef>
+
 </Defs>	

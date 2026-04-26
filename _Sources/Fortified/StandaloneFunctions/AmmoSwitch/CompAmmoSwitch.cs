@@ -1,5 +1,6 @@
 ﻿using RimWorld;
 using System.Collections.Generic;
+using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using UnityEngine;
 using Verse;
@@ -13,7 +14,7 @@ namespace Fortified
     {
         public List<AmmoOption> ammos = new List<AmmoOption>();
         public int defaultIndex = 0;
-        public float switchCooldownSeconds = 1.5f;
+        public int switchCooldown = 90;
 
         public CompProperties_AmmoSwitch()
         {
@@ -23,7 +24,9 @@ namespace Fortified
     public class CompAmmoSwitch : ThingComp
     {
         private int selectedIndex;
-        private int cooldownUntilTick;
+        private int switchingToIndex;
+
+		private int cooldownUntilTick;
 
         public CompProperties_AmmoSwitch Props => (CompProperties_AmmoSwitch)props;
 
@@ -31,7 +34,9 @@ namespace Fortified
         public int OptionCount => HasAnyAmmoOption ? Props.ammos.Count : 0;
         public int SelectedIndex => selectedIndex;
 
-        public AmmoOption CurrentAmmo
+		public int SwitchingToIndex => switchingToIndex;
+
+		public AmmoOption CurrentAmmo
         {
             get
             {
@@ -54,6 +59,24 @@ namespace Fortified
             }
         }
 
+		public override float GetStatFactor(StatDef stat)
+		{
+            if (CurrentAmmo.accuracyFactor != 1f && stat.defName.StartsWith("Accuracy"))
+            {
+                return CurrentAmmo.accuracyFactor;
+			}
+            return base.GetStatFactor(stat);
+		}
+
+		public override void GetStatsExplanation(StatDef stat, StringBuilder sb, string whitespace = "")
+		{
+            if (CurrentAmmo.accuracyFactor != 1f && stat.defName.StartsWith("Accuracy"))
+            {
+				sb.AppendLine();
+				sb.AppendLine(whitespace + "FFF.AmmoSwitch.StatFactor".Translate() + ": x" + CurrentAmmo.accuracyFactor.ToStringByStyle(ToStringStyle.PercentZero));
+			}
+		}
+
         public AmmoOption GetAmmoAt(int index)
         {
             if (!HasAnyAmmoOption) return null;
@@ -71,30 +94,30 @@ namespace Fortified
 
             if (changed && startCooldown)
             {
-                int cdTicks = Mathf.Max(0, Props.switchCooldownSeconds.SecondsToTicks());
-                if (cdTicks > 0 && Find.TickManager != null)
-                    cooldownUntilTick = Find.TickManager.TicksGame + cdTicks;
+                if (Props.switchCooldown > 0 && Find.TickManager != null)
+                    cooldownUntilTick = Find.TickManager.TicksGame + Props.switchCooldown;
             }
         }
 
         public string GetAmmoTooltip(int index)
         {
             AmmoOption ammo = GetAmmoAt(index);
-            if (ammo == null) return "無效彈種";
+            if (ammo == null) return "N/A";
 
             string projText = ammo.projectileDef != null
-                ? $"{ammo.projectileDef.LabelCap} ({ammo.projectileDef.defName})"
-                : "未設定";
+                ? ammo.projectileDef.LabelCap
+                : "N/A";
 
-            return $"彈種：{ammo.ResolveLabel()}\n投射物：{projText}";
+            return "FFF.AmmoSwitch.AmmoTooltip".Translate(ammo.ResolveLabel(), projText);
         }
 
         public string GetGizmoDesc()
         {
             var sb = new StringBuilder();
-            sb.AppendLine($"當前彈種：{CurrentLabel}");
+            //sb.AppendLine($"當前彈種：{CurrentLabel}");
+            sb.AppendLine("FFF.AmmoSwitch.Desc".Translate(CurrentLabel));
 
-            if (CurrentAmmo?.projectileDef != null)
+			if (CurrentAmmo?.projectileDef != null)
                 sb.AppendLine(CurrentAmmo.description);
 
             if (HasAnyAmmoOption)
@@ -103,8 +126,8 @@ namespace Fortified
                 {
                     AmmoOption a = Props.ammos[i];
                     string mark = (i == selectedIndex) ? "✓ " : "  ";
-                    string proj = a?.projectileDef != null ? a.projectileDef.LabelCap : "未設定";
-                    sb.AppendLine($"{mark}{a?.ResolveLabel() ?? "N/A"} -> {proj}");
+                    string proj = a?.projectileDef != null ? a.projectileDef.LabelCap : "FFF.AmmoSwitch.NotInstalled".Translate();//"未設定";
+					sb.AppendLine($"{mark}{a?.ResolveLabel() ?? "N/A"} -> {proj}");
                 }
             }
 
@@ -120,6 +143,48 @@ namespace Fortified
                 selectedIndex = 0;
         }
 
+        public virtual Gizmo GetSwitchGizmo(Thing user)
+        {
+			Command_Action command = new Command_Action
+			{
+				defaultLabel = "FFF.AmmoSwitch.Label".Translate(CurrentLabel),//$"彈種: {comp.CurrentLabel}",
+				defaultDesc = GetGizmoDesc(),//comp.GetGizmoDesc() + "\n\n左鍵：查看目前投射物資訊卡",
+				icon = CurrentIcon
+			};
+            command.action = delegate
+            {
+				List<FloatMenuOption> list = new List<FloatMenuOption>();
+				for (int i = 0; i < OptionCount; i++)
+				{
+					int idx = i;
+					AmmoOption ammo = GetAmmoAt(idx);
+					if (ammo == null) continue;
+					string label = ammo.ResolveLabel();
+					Texture2D icon = ammo.ResolveIcon();
+					FloatMenuOption option = new FloatMenuOption(label, delegate
+                    {
+                        if(user is Pawn pawn)
+                        {
+                            switchingToIndex = idx;
+							pawn.jobs.TryTakeOrderedJob(JobMaker.MakeJob(FFF_DefOf.FFF_SwitchAmmo, parent), JobTag.Misc);
+						}
+                        else
+                        {
+							SetAmmo(idx, startCooldown: true);
+						}
+					}, icon, Color.white, extraPartWidth: 29f, extraPartOnGUI: (Rect r) => Widgets.InfoCardButton(r.x + 5f, r.y + (r.height - 24f) / 2f, ammo.projectileDef));
+					option.tooltip = new TipSignal(GetAmmoTooltip(idx));
+					if (idx == SelectedIndex)
+                    {
+						option.Disabled = true;
+					}
+					list.Add(option);
+				}
+				Find.WindowStack.Add(new FloatMenu(list));
+			};
+			return command;
+		}
+
         public override void PostExposeData()
         {
             base.PostExposeData();
@@ -132,7 +197,74 @@ namespace Fortified
         }
     }
 
-    public class Command_AmmoSwitch : Command_Action
+	public class CompProperties_SwitchableAmmo : CompProperties
+	{
+		public CompProperties_SwitchableAmmo()
+		{
+			compClass = typeof(CompSwitchableAmmo);
+		}
+
+		public override IEnumerable<StatDrawEntry> SpecialDisplayStats(StatRequest req)
+		{
+            ThingDef def = req.Thing?.def ?? (req.Def as ThingDef);
+			if(def == null || def.projectile == null)
+            {
+                yield break;
+            }
+			StatCategoryDef statCat = StatCategoryDefOf.Weapon_Ranged;
+			if (def.projectile.damageDef != null && def.projectile.damageDef.harmsHealth)
+			{
+				StringBuilder stringBuilder2 = new StringBuilder();
+				stringBuilder2.AppendLine("Stat_Thing_Damage_Desc".Translate());
+				stringBuilder2.AppendLine();
+				float num3 = def.projectile.GetDamageAmount(req.Thing, stringBuilder2);
+				yield return new StatDrawEntry(statCat, "Damage".Translate(), num3.ToString(), stringBuilder2.ToString(), 5500);
+				if (def.projectile.damageDef.armorCategory != null)
+				{
+					StringBuilder stringBuilder3 = new StringBuilder();
+					float armorPenetration = def.projectile.GetArmorPenetration(req.Thing, stringBuilder3);
+					TaggedString taggedString = "ArmorPenetrationExplanation".Translate();
+					if (stringBuilder3.Length != 0)
+					{
+						taggedString += "\n\n" + stringBuilder3;
+					}
+					yield return new StatDrawEntry(statCat, "ArmorPenetration".Translate(), armorPenetration.ToStringPercent(), taggedString, 5400);
+				}
+				float buildingDamageFactor = def.projectile.damageDef.buildingDamageFactor;
+				float dmgBuildingsImpassable = def.projectile.damageDef.buildingDamageFactorImpassable;
+				float dmgBuildingsPassable = def.projectile.damageDef.buildingDamageFactorPassable;
+				if (buildingDamageFactor != 1f)
+				{
+					yield return new StatDrawEntry(statCat, "BuildingDamageFactor".Translate(), buildingDamageFactor.ToStringPercent(), "BuildingDamageFactorExplanation".Translate(), 5410);
+				}
+				if (dmgBuildingsImpassable != 1f)
+				{
+					yield return new StatDrawEntry(statCat, "BuildingDamageFactorImpassable".Translate(), dmgBuildingsImpassable.ToStringPercent(), "BuildingDamageFactorImpassableExplanation".Translate(), 5420);
+				}
+				if (dmgBuildingsPassable != 1f)
+				{
+					yield return new StatDrawEntry(statCat, "BuildingDamageFactorPassable".Translate(), dmgBuildingsPassable.ToStringPercent(), "BuildingDamageFactorPassableExplanation".Translate(), 5430);
+				}
+			}
+			float stoppingPower = def.projectile.stoppingPower;
+			if (stoppingPower > 0f)
+			{
+				StringBuilder stoppingPowerExplanation = new StringBuilder("StoppingPowerExplanation".Translate());
+				stoppingPowerExplanation.AppendLine();
+				stoppingPowerExplanation.AppendLine();
+				stoppingPowerExplanation.AppendLine("StatsReport_BaseValue".Translate() + ": " + stoppingPower.ToString("F1"));
+				stoppingPowerExplanation.AppendLine();
+				stoppingPowerExplanation.AppendLine();
+				stoppingPowerExplanation.AppendLine("StatsReport_FinalValue".Translate() + ": " + stoppingPower.ToString("F1"));
+				yield return new StatDrawEntry(statCat, "StoppingPower".Translate(), stoppingPower.ToString("F1"), stoppingPowerExplanation.ToString(), 5402);
+			}
+		}
+	}
+	public class CompSwitchableAmmo : ThingComp
+	{
+	}
+
+	/*public class Command_AmmoSwitch : Command_Action
     {
         public CompAmmoSwitch comp;
         public LocalTargetInfo messageTarget;
@@ -185,5 +317,5 @@ namespace Fortified
         {
             comp.SetAmmo(index, startCooldown: true);
         }
-    }
+    }*/
 }

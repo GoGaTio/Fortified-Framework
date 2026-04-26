@@ -14,23 +14,13 @@ namespace Fortified
             CompAmmoSwitch comp = primary?.TryGetComp<CompAmmoSwitch>();
             if (comp == null || !comp.HasAnyAmmoOption) return;
 
-            __result = Append(__result, comp, primary);
+            __result = Append(__result, comp, __instance.pawn);
         }
 
-        private static IEnumerable<Gizmo> Append(IEnumerable<Gizmo> original, CompAmmoSwitch comp, ThingWithComps weapon)
+        private static IEnumerable<Gizmo> Append(IEnumerable<Gizmo> original, CompAmmoSwitch comp, Pawn pawn)
         {
             foreach (var g in original) yield return g;
-
-            var cmd = new Command_AmmoSwitch
-            {
-                comp = comp,
-                messageTarget = weapon,
-                defaultLabel = $"彈種: {comp.CurrentLabel}",
-                defaultDesc = comp.GetGizmoDesc() + "\n\n左鍵：查看目前投射物資訊卡",
-                icon = comp.CurrentIcon
-            };
-            cmd.action = cmd.OpenCurrentProjectileInfoCard;
-            yield return cmd;
+            yield return comp.GetSwitchGizmo(pawn);
         }
     }
 }

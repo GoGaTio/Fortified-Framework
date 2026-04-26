@@ -17,17 +17,7 @@ namespace Fortified
 
             CompAmmoSwitch comp = __instance.gun.TryGetComp<CompAmmoSwitch>();
             if (comp == null || !comp.HasAnyAmmoOption) yield break;
-
-            var cmd = new Command_AmmoSwitch
-            {
-                comp = comp,
-                messageTarget = __instance,
-                defaultLabel = $"彈種: {comp.CurrentLabel}",
-                defaultDesc = comp.GetGizmoDesc() + "\n\n左鍵：查看目前投射物資訊卡",
-                icon = comp.CurrentIcon
-            };
-            cmd.action = cmd.OpenCurrentProjectileInfoCard;
-            yield return cmd;
-        }
+			yield return comp.GetSwitchGizmo(__instance);
+		}
     }
 }
