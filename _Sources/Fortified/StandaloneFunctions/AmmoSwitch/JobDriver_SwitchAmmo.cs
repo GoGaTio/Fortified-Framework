@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Verse;
 using Verse.AI;
+using Verse.Sound;
 using static HarmonyLib.Code;
 
 namespace Fortified
@@ -46,7 +47,8 @@ namespace Fortified
 			toil.defaultCompleteMode = ToilCompleteMode.Instant;
 			toil.initAction = delegate
 			{
-				Comp.SetAmmo(Comp.SwitchingToIndex, false);
+				Comp.PlaySound(new TargetInfo(Comp.parent.Position, Comp.parent.Map));
+                Comp.SetAmmo(Comp.SwitchingToIndex, false);
 			};
 			yield return toil;
 		}
