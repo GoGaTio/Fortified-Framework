@@ -71,8 +71,7 @@ namespace Fortified
             catch (System.Exception e) { Log.ErrorOnce($"[Fortified] 涂装补丁异常: {e}", pawn.thingIDNumber ^ 0xABCD); }
         }
 
-        // 应用朝向属性
-        private static System.Reflection.FieldInfo subGraphicsField = AccessTools.Field(typeof(Graphic_Collection), "subGraphics");
+        private static readonly System.Reflection.FieldInfo subGraphicsField = AccessTools.Field(typeof(Graphic_Collection), "subGraphics");
 
         public static void ApplyPerDirectionProps(Graphic graphic, FFF_CamoDef camo, FFF_OverlayDef overlay)
         {
