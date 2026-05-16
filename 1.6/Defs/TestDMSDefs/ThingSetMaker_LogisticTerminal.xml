@@ -2,7 +2,7 @@
 <Defs>
 
 
-  <ThingSetMakerDef>
+  <ThingSetMakerDef MayRequire="Aoba.DeadManSwitch.Core">
     <defName>DMS_LogisticTerminal</defName>
     <root Class="ThingSetMaker_Sum">
       <options>

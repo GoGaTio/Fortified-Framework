@@ -54,7 +54,7 @@
     </placeWorkers>
   </ThingDef>
 
-  <ThingDef ParentName="BuildingBase">
+  <ThingDef MayRequire="Aoba.DeadManSwitch.Core" ParentName="BuildingBase">
     <defName>DMS_LogisticTerminal</defName>
     <label>logistic terminal</label>
     <description>Logistic terminal linked to cargo line below.</description>
