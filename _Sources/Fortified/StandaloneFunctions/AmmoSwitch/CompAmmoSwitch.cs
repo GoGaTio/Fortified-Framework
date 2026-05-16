@@ -15,6 +15,7 @@ namespace Fortified
         public List<AmmoOption> ammos = new List<AmmoOption>();
         public int defaultIndex = 0;
         public int switchCooldown = 90;
+        public SoundDef soundSwitch;
 
         public CompProperties_AmmoSwitch()
         {
@@ -67,7 +68,17 @@ namespace Fortified
 			}
             return base.GetStatFactor(stat);
 		}
-
+        public void PlaySound(SoundInfo soundInfo)
+        {
+            if (Props?.soundSwitch != null)
+            {
+                Props.soundSwitch.PlayOneShot(soundInfo);
+            }
+            else
+            {
+                parent.def.soundInteract?.PlayOneShot(soundInfo);
+            }
+        }
 		public override void GetStatsExplanation(StatDef stat, StringBuilder sb, string whitespace = "")
 		{
             if (CurrentAmmo.accuracyFactor != 1f && stat.defName.StartsWith("Accuracy"))
@@ -114,22 +125,8 @@ namespace Fortified
         public string GetGizmoDesc()
         {
             var sb = new StringBuilder();
-            //sb.AppendLine($"當前彈種：{CurrentLabel}");
             sb.AppendLine("FFF.AmmoSwitch.Desc".Translate(CurrentLabel));
-
-			if (CurrentAmmo?.projectileDef != null)
-                sb.AppendLine(CurrentAmmo.description);
-
-            if (HasAnyAmmoOption)
-            {
-                for (int i = 0; i < Props.ammos.Count; i++)
-                {
-                    AmmoOption a = Props.ammos[i];
-                    string mark = (i == selectedIndex) ? "✓ " : "  ";
-                    string proj = a?.projectileDef != null ? a.projectileDef.LabelCap : "FFF.AmmoSwitch.NotInstalled".Translate();//"未設定";
-					sb.AppendLine($"{mark}{a?.ResolveLabel() ?? "N/A"} -> {proj}");
-                }
-            }
+            sb.AppendLine(CurrentAmmo.description);
 
             return sb.ToString().TrimEnd();
         }

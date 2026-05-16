@@ -1,4 +1,5 @@
 ﻿using System;
+using RimWorld;
 using UnityEngine;
 using Verse;
 using Verse.Sound;
@@ -12,6 +13,9 @@ namespace Fortified
         public LocalTargetInfo usedTarget = LocalTargetInfo.Invalid;
         public SoundDef soundDef;
 
+        // CE 兼容管线
+        public static Func<Thing, Thing, Vector3, LocalTargetInfo, LocalTargetInfo, bool> ceProjectileLauncher = null;
+
         public override void ExposeData()
         {
             base.ExposeData();
@@ -23,9 +27,86 @@ namespace Fortified
 
         public override void Trigger()
         {
-            Projectile projectile = (Projectile)GenSpawn.Spawn(projectileDef, origin.ToIntVec3(), map);
-            projectile.Launch(triggerer, origin, usedTarget.IsValid ? usedTarget : target, target, ProjectileHitFlags.IntendedTarget);
-            soundDef?.PlayOneShot(SoundInfo.InMap(new TargetInfo(origin.ToIntVec3(), map)));
+            if (projectileDef == null)
+            {
+                Log.Error("[Fortified] AirSupportData_LaunchProjectile: projectileDef为空");
+                return;
+            }
+
+            // 确保生成位置在地图内
+            IntVec3 spawnPos = origin.ToIntVec3();
+            if (!spawnPos.InBounds(map))
+            {
+                // 如果在地图外，将其限制到地图边缘
+                spawnPos.x = Mathf.Clamp(spawnPos.x, 0, map.Size.x - 1);
+                spawnPos.z = Mathf.Clamp(spawnPos.z, 0, map.Size.z - 1);
+            }
+
+            Thing spawnedThing = GenSpawn.Spawn(projectileDef, spawnPos, map);
+
+            if (spawnedThing == null)
+            {
+                Log.Error($"[Fortified] AirSupportData_LaunchProjectile: 无法生成 {projectileDef.defName}");
+                return;
+            }
+
+            Thing launcher = GetLauncher();
+
+            if (launcher != null)
+            {
+                LaunchProjectile(spawnedThing, launcher);
+            }
+            else
+            {
+                Log.Warning($"[Fortified] AirSupportData_LaunchProjectile: 无法为抛射物 {projectileDef.defName} 创建发射者");
+                spawnedThing.Destroy();
+            }
+
+            soundDef?.PlayOneShot(SoundInfo.InMap(new TargetInfo(spawnPos, map)));
+        }
+
+        protected virtual Thing GetLauncher()
+        {
+            if (triggerer != null) return triggerer;
+
+            if (triggerFaction != null)
+            {
+                PawnKindDef kind = triggerFaction.def.basicMemberKind ?? PawnKindDefOf.Colonist;
+                if (kind != null)
+                {
+                    Pawn virtualLauncher = PawnGenerator.GeneratePawn(kind, triggerFaction);
+                    if (virtualLauncher != null)
+                    {
+                        // 生成的 Pawn 默认未 Spawn，无需 DeSpawn
+                        return virtualLauncher;
+                    }
+                }
+            }
+
+            return null;
+        }
+
+        protected virtual void LaunchProjectile(Thing projectile, Thing launcher)
+        {
+            // 优先使用 CE 管线
+            if (ceProjectileLauncher != null)
+            {
+                if (ceProjectileLauncher(projectile, launcher, origin, usedTarget.IsValid ? usedTarget : target, target))
+                {
+                    return;
+                }
+            }
+
+            // 原版发射逻辑
+            if (projectile is Projectile vanillaProjectile)
+            {
+                vanillaProjectile.Launch(launcher, origin, usedTarget.IsValid ? usedTarget : target, target, ProjectileHitFlags.IntendedTarget);
+            }
+            else
+            {
+                Log.Error($"[Fortified] AirSupportData_LaunchProjectile: {projectileDef.defName} 不是Projectile类型");
+                projectile.Destroy();
+            }
         }
     }
     public class AirSupportData_LaunchProjectileOnEdge : AirSupportData_LaunchProjectile

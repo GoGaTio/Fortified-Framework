@@ -9,7 +9,7 @@ namespace Fortified
     {
         public WorldObjectCompProperties_PeriodicRaid Props => (WorldObjectCompProperties_PeriodicRaid)props;
 
-        private int ticksToNextRaid;
+        private int nextRaidTick;
 
         // 检查据点组件有效性
         private bool IsActive()
@@ -35,30 +35,31 @@ namespace Fortified
         public override void CompTick()
         {
             base.CompTick();
-            
-            // 激活状态时更新冷却时间
+
             if (parent.Destroyed || !IsActive()) return;
 
-            ticksToNextRaid--;
-            if (ticksToNextRaid <= 0)
+            int now = Find.TickManager.TicksGame;
+
+            // while循环补偿时间加速
+            while (nextRaidTick > 0 && now >= nextRaidTick)
             {
                 GenerateRaid();
-                ResetTimer();
+                nextRaidTick = now + Mathf.RoundToInt(Props.daysBetweenRaids.RandomInRange * GenDate.TicksPerDay);
             }
         }
 
         private void ResetTimer()
         {
-            ticksToNextRaid = Mathf.RoundToInt(Props.daysBetweenRaids.RandomInRange * GenDate.TicksPerDay);
+            nextRaidTick = Find.TickManager.TicksGame + Mathf.RoundToInt(Props.daysBetweenRaids.RandomInRange * GenDate.TicksPerDay);
         }
 
         private void GenerateRaid()
         {
             Map map = Find.AnyPlayerHomeMap;
             if (map == null) return;
-            
+
             IncidentParms parms = StorytellerUtility.DefaultParmsNow(IncidentCategoryDefOf.ThreatBig, map);
-            
+
             if (Props.forcedFaction != null)
             {
                 parms.faction = Find.FactionManager.FirstFactionOfDef(Props.forcedFaction) ?? parms.faction;
@@ -67,17 +68,17 @@ namespace Fortified
             {
                 parms.faction = parent.Faction ?? Find.FactionManager.RandomEnemyFaction(false, false, true, TechLevel.Industrial);
             }
-            
+
             parms.points = StorytellerUtility.DefaultThreatPointsNow(map) * Props.pointsFactor;
-            
+
             if (IncidentDefOf.RaidEnemy.Worker.TryExecute(parms))
             {
                 if (!Props.letterLabel.NullOrEmpty())
                 {
                     Find.LetterStack.ReceiveLetter(
-                        Props.letterLabel.Translate(), 
-                        Props.letterText.Translate(), 
-                        LetterDefOf.ThreatBig, 
+                        Props.letterLabel.Translate(),
+                        Props.letterText.Translate(),
+                        LetterDefOf.ThreatBig,
                         new RimWorld.Planet.GlobalTargetInfo(parms.target.Tile));
                 }
             }
@@ -91,13 +92,14 @@ namespace Fortified
 
             if (!IsActive()) return null;
 
-            return "FFF_NextRaidIn".Translate(ticksToNextRaid.ToStringTicksToPeriod());
+            int ticksRemaining = nextRaidTick - Find.TickManager.TicksGame;
+            return "FFF_NextRaidIn".Translate(ticksRemaining.ToStringTicksToPeriod());
         }
 
         public override void PostExposeData()
         {
             base.PostExposeData();
-            Scribe_Values.Look(ref ticksToNextRaid, "ticksToNextRaid", 0);
+            Scribe_Values.Look(ref nextRaidTick, "nextRaidTick", 0);
         }
     }
 }

@@ -1,8 +1,0 @@
-D:\Steam\steamapps\common\RimWorld\Mods\Dead-Man-Switch\_Source\DMSCE\obj\Debug\DMSCE.csproj.AssemblyReference.cache
-D:\Steam\steamapps\common\RimWorld\Mods\Dead-Man-Switch\_Source\DMSCE\obj\Debug\DMSCE.csproj.CoreCompileInputs.cache
-D:\Steam\steamapps\common\RimWorld\Mods\Dead-Man-Switch\_Source\DMSCE\bin\Debug\DMSCE.dll
-D:\Steam\steamapps\common\RimWorld\Mods\Dead-Man-Switch\_Source\DMSCE\bin\Debug\DMSCE.pdb
-D:\Steam\steamapps\common\RimWorld\Mods\Dead-Man-Switch\_Source\DMSCE\bin\Debug\CombatExtended.dll
-D:\Steam\steamapps\common\RimWorld\Mods\Dead-Man-Switch\_Source\DMSCE\obj\Debug\DMSCE.csproj.Up2Date
-D:\Steam\steamapps\common\RimWorld\Mods\Dead-Man-Switch\_Source\DMSCE\obj\Debug\DMSCE.dll
-D:\Steam\steamapps\common\RimWorld\Mods\Dead-Man-Switch\_Source\DMSCE\obj\Debug\DMSCE.pdb

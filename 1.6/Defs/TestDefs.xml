@@ -16,17 +16,19 @@
     </weaponTags>
 
     <comps>
-      <!-- 單一自訂 Comp -->
       <li Class="Fortified.CompProperties_AmmoSwitch">
         <defaultIndex>0</defaultIndex>
         <switchCooldown>100</switchCooldown>
+        <soundSwitch>Interact_Rifle</soundSwitch>
         <ammos>
           <li>
             <label>Normal</label>
+            <description>basic round suitable for typical situation.</description>
             <projectileDef>FFF_Bullet_Rifle</projectileDef>
           </li>
           <li>
-            <label>Shotgun</label>
+            <label>Pellet</label>
+            <description>pellet round for close-range suppress and take down enemy.</description>
             <projectileDef>FFF_Bullet_Shotgun</projectileDef>
             <rangeFactor>0.5</rangeFactor>
             <accuracyFactor>0.9</accuracyFactor>
@@ -69,13 +71,14 @@
 
   <ThingDef ParentName="BaseBullet" Name="FFF_BaseAmmoSwitchBullet" Abstract="True">
     <comps>
-      <li Class="Fortified.CompProperties_SwitchableAmmo"/>
+      <li Class="Fortified.CompProperties_SwitchableAmmo" />
     </comps>
   </ThingDef>
 
   <ThingDef ParentName="FFF_BaseAmmoSwitchBullet">
     <defName>FFF_Bullet_Rifle</defName>
     <label>revolver bullet</label>
+    <description>Assault rifle with switchable projectile presets.</description>
     <graphicData>
       <texPath>Things/Projectile/Bullet_Small</texPath>
       <graphicClass>Graphic_Single</graphicClass>

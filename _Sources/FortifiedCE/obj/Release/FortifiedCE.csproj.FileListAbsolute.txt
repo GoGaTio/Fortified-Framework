@@ -1,5 +1,0 @@
-d:\SteamLibrary\steamapps\common\RimWorld\Mods\Fortified-Framework\1.6\CE\Assemblies\FortifiedCE.dll
-d:\SteamLibrary\steamapps\common\RimWorld\Mods\Fortified-Framework\_Sources\FortifiedCE\obj\Release\FortifiedCE.csproj.AssemblyReference.cache
-d:\SteamLibrary\steamapps\common\RimWorld\Mods\Fortified-Framework\_Sources\FortifiedCE\obj\Release\FortifiedCE.GeneratedMSBuildEditorConfig.editorconfig
-d:\SteamLibrary\steamapps\common\RimWorld\Mods\Fortified-Framework\_Sources\FortifiedCE\obj\Release\FortifiedCE.csproj.CoreCompileInputs.cache
-d:\SteamLibrary\steamapps\common\RimWorld\Mods\Fortified-Framework\_Sources\FortifiedCE\obj\Release\FortifiedCE.dll

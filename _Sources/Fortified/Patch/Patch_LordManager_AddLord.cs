@@ -20,7 +20,7 @@ namespace Fortified
                 foreach (var comp in obj.AllComps)
                 {
                     if (comp is WorldObjectComp_PeriodicAirSupport airSupport)
-                        airSupport.OnHostilityStarted(map);
+                        airSupport.OnHostilityStarted(map, faction);
                 }
             }
         }

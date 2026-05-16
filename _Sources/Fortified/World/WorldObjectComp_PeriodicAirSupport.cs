@@ -15,6 +15,7 @@ namespace Fortified
         private int remainingCycles;
         private bool wasThreatActive;
         private Map targetMap; // 锁定当前正在处理的袭击地图
+        private Faction raidFaction; // 记录发起袭击的派系
         private int shellSequenceIndex; // 记录弹药序列当前位置
 
         private bool IsActive()
@@ -37,7 +38,7 @@ namespace Fortified
             ticksToNextStrike = 0;
         }
 
-        public void OnHostilityStarted(Map map)
+        public void OnHostilityStarted(Map map, Faction raidFaction = null)
         {
             if (!IsActive() || map == null) return;
 
@@ -45,6 +46,7 @@ namespace Fortified
             if (!Rand.Chance(Props.triggerChance)) return;
 
             this.targetMap = map;
+            this.raidFaction = raidFaction;
             remainingCycles = Props.strikeCycles;
 
             if (remainingCycles > 0)
@@ -96,6 +98,7 @@ namespace Fortified
         {
             wasThreatActive = false;
             targetMap = null;
+            raidFaction = null;
         }
 
         private void ExecuteStrike(Map map)
@@ -271,7 +274,7 @@ namespace Fortified
                         target = impact,
                         triggerTick = Find.TickManager.TicksGame + baseDelay + wDelay + i * Props.projectileIntervalTicks,
                         origin = origin,
-                        triggerFaction = parent.Faction
+                        triggerFaction = raidFaction ?? parent.Faction
                     });
                 }
             }
@@ -341,6 +344,7 @@ namespace Fortified
             Scribe_Values.Look(ref remainingCycles, "remainingCycles", 0);
             Scribe_Values.Look(ref wasThreatActive, "wasThreatActive", false);
             Scribe_Values.Look(ref shellSequenceIndex, "shellSequenceIndex", 0);
+            Scribe_References.Look(ref raidFaction, "raidFaction");
         }
     }
 }

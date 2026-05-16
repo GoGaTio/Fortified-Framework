@@ -4,6 +4,8 @@
 /Source/.vs/*
 Source/*/obj/*
 Source/*/bin/*
+_Sources/*/obj/*
+_Sources/*/bin/*
 /Source/*/*.csproj.user
 .vscode
 # ReSharper is a .NET coding add-in
