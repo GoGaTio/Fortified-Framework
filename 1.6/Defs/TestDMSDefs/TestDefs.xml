@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <ThingDef MayRequire="Aoba.DeadManSwitch.AncientCorps" ParentName="BuildingBase">
+    <defName>DMS_Building_RollingDoor</defName>
+    <label>rolling door</label>
+    <description>a locked rolling door.</description>
+    <thingClass>Fortified.Building_RollingDoor</thingClass>
+    <graphicData>
+      <graphicClass>Graphic_Multi</graphicClass>
+      <texPath>Things/Building/door/RollingDoor</texPath>
+      <drawOffset>(0,0,0)</drawOffset>
+      <drawSize>(4,1)</drawSize>
+    </graphicData>
+    <size>(4,1)</size>
+    <category>Building</category>
+    <altitudeLayer>DoorMoveable</altitudeLayer>
+    <fillPercent>1</fillPercent>
+    <useHitPoints>true</useHitPoints>
+    <statBases>
+      <MaxHitPoints>500</MaxHitPoints>
+      <Flammability>0.7</Flammability>
+      <DoorOpenSpeed>0.3</DoorOpenSpeed>
+    </statBases>
+    <leaveResourcesWhenKilled>false</leaveResourcesWhenKilled>
+    <selectable>true</selectable>
+    <tickerType>Normal</tickerType>
+    <rotatable>false</rotatable>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <holdsRoof>true</holdsRoof>
+    <staticSunShadowHeight>1.0</staticSunShadowHeight>
+    <blockLight>true</blockLight>
+    <drawerType>RealtimeOnly</drawerType>
+    <building>
+      <isInert>true</isInert>
+      <canPlaceOverWall>true</canPlaceOverWall>
+      <soundDoorOpenPowered>Door_OpenPowered</soundDoorOpenPowered>
+      <soundDoorClosePowered>Door_ClosePowered</soundDoorClosePowered>
+      <soundDoorOpenManual>Door_OpenManual</soundDoorOpenManual>
+      <soundDoorCloseManual>Door_CloseManual</soundDoorCloseManual>
+      <ai_chillDestination>false</ai_chillDestination>
+      <unpoweredDoorCloseSpeedFactor>0.2</unpoweredDoorCloseSpeedFactor>
+      <poweredDoorCloseSpeedFactor>0.2</poweredDoorCloseSpeedFactor>
+      <paintable>true</paintable>
+    </building>
+    <comps>
+      <li Class="CompProperties_Forbiddable">
+        <allowNonPlayer>true</allowNonPlayer>
+      </li>
+    </comps>
+    <placeWorkers>
+      <li>PlaceWorker_DoorLearnOpeningSpeed</li>
+    </placeWorkers>
+  </ThingDef>
+
+  <ThingDef ParentName="BuildingBase">
+    <defName>DMS_LogisticTerminal</defName>
+    <label>logistic terminal</label>
+    <description>Logistic terminal linked to cargo line below.</description>
+    <thingClass>Fortified.Building_LogisticTerminal</thingClass>
+    <uiIconPath>Things/Building/DMS_LogisticTerminal/DMS_LogisticTerminal_Icon</uiIconPath>
+    <graphicData>
+      <graphicClass>Graphic_Single</graphicClass>
+      <texPath>Things/Building/DMS_LogisticTerminal/DMS_LogisticTerminal</texPath>
+      <drawOffset>(0,0,0)</drawOffset>
+      <drawSize>(5,5)</drawSize>
+    </graphicData>
+    <size>(4,4)</size>
+    <category>Building</category>
+    <altitudeLayer>FloorEmplacement</altitudeLayer>
+    <fillPercent>0.1</fillPercent>
+    <useHitPoints>false</useHitPoints>
+    <statBases>
+      <Flammability>0</Flammability>
+    </statBases>
+    <selectable>true</selectable>
+    <tickerType>Normal</tickerType>
+    <rotatable>false</rotatable>
+    <soundImpactDefault>BulletImpact_Metal</soundImpactDefault>
+    <terrainAffordanceNeeded>Light</terrainAffordanceNeeded>
+    <holdsRoof>true</holdsRoof>
+    <blockLight>false</blockLight>
+    <drawerType>RealtimeOnly</drawerType>
+    <passability>Impassable</passability>
+    <building>
+      <isInert>true</isInert>
+      <canPlaceOverWall>true</canPlaceOverWall>
+      <ai_chillDestination>true</ai_chillDestination>
+      <paintable>false</paintable>
+      <targetable>false</targetable>
+    </building>
+    <noRightClickDraftAttack>true</noRightClickDraftAttack>
+    <inspectorTabs>
+      <li>Fortified.ITab_Contents</li>
+    </inspectorTabs>
+    <comps>
+      <li Class="Fortified.CompProperties_LogisticTerminal">
+        <lootMaker>DMS_LogisticTerminal</lootMaker>
+        <ticksTillArrivalRange>5000~10000</ticksTillArrivalRange>
+        <lootPortionsRange>2~4</lootPortionsRange>
+        <noLootLeftReport>No supply left</noLootLeftReport>
+        <noLootLeftMessage>Logistic terminal has no supply left!</noLootLeftMessage>
+        <cartArrivedMessage>Logistic terminal cart arrived!</cartArrivedMessage>
+        <!-- Interactable -->
+        <activeTicks>1</activeTicks>
+        <ticksToActivate>180</ticksToActivate>
+        <jobString>activate terminal</jobString>
+        <activateLabelString>Activate terminal...</activateLabelString>
+        <activateDescString>Activate terminal.</activateDescString>
+        <activateTexPath>UI/Misc/BadTexture</activateTexPath>
+        <activatingString>activating {0}: {1}s</activatingString>
+        <targetingParameters>
+          <canTargetBuildings>false</canTargetBuildings>
+          <canTargetAnimals>false</canTargetAnimals>
+          <canTargetMechs>false</canTargetMechs>
+          <onlyTargetControlledPawns>true</onlyTargetControlledPawns>
+        </targetingParameters>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>
