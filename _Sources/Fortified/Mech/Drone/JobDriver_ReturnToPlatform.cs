@@ -1,5 +1,4 @@
-﻿using Fortified.Mech.Drone;
-using HarmonyLib;
+﻿using HarmonyLib;
 using RimWorld;
 using RimWorld.Planet;
 using System.Collections.Generic;

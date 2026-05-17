@@ -19,13 +19,12 @@
       <li Class="Fortified.CompProperties_AmmoSwitch">
         <defaultIndex>0</defaultIndex>
         <switchCooldown>100</switchCooldown>
-        <soundSwitch>Interact_Rifle</soundSwitch>
         <ammos>
-          <li>
+          <!-- <li>
             <label>Normal</label>
             <description>basic round suitable for typical situation.</description>
             <projectileDef>FFF_Bullet_Rifle</projectileDef>
-          </li>
+          </li> -->
           <li>
             <label>Pellet</label>
             <description>pellet round for close-range suppress and take down enemy.</description>

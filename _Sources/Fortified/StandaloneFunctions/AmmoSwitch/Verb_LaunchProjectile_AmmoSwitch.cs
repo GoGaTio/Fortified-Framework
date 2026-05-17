@@ -1,7 +1,7 @@
 ﻿using Verse;
 
-namespace Fortified
-{
+namespace Fortified;
+
 	public class Verb_LaunchProjectile_AmmoSwitch : Verb_LaunchProjectile
 	{
 		private CompAmmoSwitch compInt;
@@ -18,13 +18,13 @@ namespace Fortified
 				return compInt;
 			}
 		}
-        public override ThingDef Projectile
+    public override ThingDef Projectile
+    {
+        get
         {
-            get
-            {
-                CompAmmoSwitch comp = Comp;
-                if (comp?.CurrentProjectile != null)
-                    return comp.CurrentProjectile;
+            CompAmmoSwitch comp = Comp;
+            if (comp?.CurrentProjectile != null)
+                return comp.CurrentProjectile;
 
 				return base.Projectile;
 			}
@@ -36,30 +36,29 @@ namespace Fortified
 
 		public override float EffectiveRange => base.EffectiveRange * (Comp?.CurrentAmmo?.rangeFactor ?? 1f);
 
-        public override bool Available()
-        {
-            if (!base.Available()) return false;
+    public override bool Available()
+    {
+        if (!base.Available()) return false;
 
-            CompAmmoSwitch comp = Comp;
-            if (comp != null && comp.IsOnSwitchCooldown && state != VerbState.Bursting)
-                return false;
+        CompAmmoSwitch comp = Comp;
+        if (comp != null && comp.IsOnSwitchCooldown && state != VerbState.Bursting)
+            return false;
 
-            return true;
-        }
+        return true;
+    }
 
-        public override bool TryStartCastOn(
-            LocalTargetInfo castTarg,
-            LocalTargetInfo destTarg,
-            bool surpriseAttack = false,
-            bool canHitNonTargetPawns = true,
-            bool preventFriendlyFire = false,
-            bool nonInterruptingSelfCast = false)
-        {
-            var comp = Comp;
-            if (comp != null && comp.IsOnSwitchCooldown && state != VerbState.Bursting)
-                return false;
+    public override bool TryStartCastOn(
+        LocalTargetInfo castTarg,
+        LocalTargetInfo destTarg,
+        bool surpriseAttack = false,
+        bool canHitNonTargetPawns = true,
+        bool preventFriendlyFire = false,
+        bool nonInterruptingSelfCast = false)
+    {
+        var comp = Comp;
+        if (comp != null && comp.IsOnSwitchCooldown && state != VerbState.Bursting)
+            return false;
 
 			return base.TryStartCastOn(castTarg, destTarg, surpriseAttack, canHitNonTargetPawns, preventFriendlyFire, nonInterruptingSelfCast);
 		}
-    }
 }

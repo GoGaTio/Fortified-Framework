@@ -54,10 +54,7 @@ namespace FortifiedCE
         }
         public void AddThingsIgnoredByExplosion(List<Thing> things)
         {
-            if (thingsIgnoredByExplosion == null)
-            {
-                thingsIgnoredByExplosion = new List<Thing>();
-            }
+            thingsIgnoredByExplosion ??= new List<Thing>();
             thingsIgnoredByExplosion.AddRange(things);
         }
 
@@ -142,11 +139,8 @@ namespace FortifiedCE
 
         private void EndWickSustainer()
         {
-            if (wickSoundSustainer != null)
-            {
-                wickSoundSustainer.End();
-                wickSoundSustainer = null;
-            }
+            wickSoundSustainer?.End();
+            wickSoundSustainer = null;
         }
 
         private void UpdateOverlays()
