@@ -125,19 +125,20 @@ public static partial class CheckUtility
             return false;
         }
 
-        // 如果啟用了武器過濾，則只允許通過白名單
+        // 如果啟用了武器過濾，則使用白名單判斷（與 UseableInStatic 行為一致）
         if (mechExtension.EnableWeaponFilter)
+        {
+            return mechExtension.CanUse(weapon);
+        }
+
+        // 當 EnableWeaponFilter 為 false 時，透過 Pawn 體型判斷是否能作為重型武器裝備（與 UseableInStatic 保持一致）
+        var pawn = mech as Pawn;
+        if (pawn == null)
         {
             return false;
         }
 
-        // 當 EnableWeaponFilter 為 false 時，允許根據 HeavyEquippableExtension 進行裝備量級檢查
-        if (weapon.def.TryGetModExtension<HeavyEquippableExtension>(out var weaponHeavyExtension))
-        {
-            return weaponHeavyExtension.CanEquippedBy(mech as Pawn);
-        }
-
-        return true;
+        return mechExtension.CanUseAsHeavyWeapon(weapon, pawn.BodySize);
     }
     public static bool HasAnyHediffOf(Pawn pawn, List<HediffDef> hediffDefs)
     {

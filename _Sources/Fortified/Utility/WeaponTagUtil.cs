@@ -11,11 +11,11 @@ namespace Fortified
     [StaticConstructorOnStartup]
     public static class WeaponTagUtil
     {
-        private static readonly Dictionary<string, List<ThingDef>> AllTags = new Dictionary<string, List<ThingDef>>();
+        private static readonly Dictionary<string, HashSet<ThingDef>> AllTags = new Dictionary<string, HashSet<ThingDef>>();
         private static ThingDef[] _turrets = new ThingDef[0];
         private static ThingDef[] _weaponUseableMechs = new ThingDef[0];
         private static ThingDef[] _allWeaponDefs = new ThingDef[0];
-        private static readonly List<ThingDef> _caches = new List<ThingDef>();
+        private static readonly Dictionary<string, ThingDef> _caches = new Dictionary<string, ThingDef>();
 
         public static ThingDef[] GetTurrets => _turrets;
 
@@ -58,14 +58,13 @@ namespace Fortified
                     continue;
                 }
 
-                if (AllTags.ContainsKey(tag))
+                if (!AllTags.TryGetValue(tag, out var set))
                 {
-                    AllTags[tag].AddDistinct(weaponDef);
+                    set = new HashSet<ThingDef>();
+                    AllTags[tag] = set;
                 }
-                else
-                {
-                    AllTags.Add(tag, new List<ThingDef> { weaponDef });
-                }
+
+                set.Add(weaponDef);
             }
         }
 
@@ -108,17 +107,27 @@ namespace Fortified
         /// </summary>
         public static IEnumerable<ThingDef> GetWeapons(List<string> tags)
         {
-            var weapons = new List<ThingDef>();
+            var weapons = new HashSet<ThingDef>();
+
+            if (tags == null)
+            {
+                return weapons;
+            }
 
             foreach (string tag in tags)
             {
-                if (AllTags.ContainsKey(tag))
+                if (string.IsNullOrEmpty(tag))
                 {
-                    weapons.AddRange(AllTags[tag]);
+                    continue;
+                }
+
+                if (AllTags.TryGetValue(tag, out var set))
+                {
+                    weapons.UnionWith(set);
                 }
             }
 
-            return weapons.Distinct();
+            return weapons;
         }
 
         /// <summary>
@@ -126,9 +135,13 @@ namespace Fortified
         /// </summary>
         public static bool WeaponExists(string defName, out ThingDef weaponDef)
         {
-            weaponDef = _caches.FirstOrDefault(def => def.defName == defName);
+            if (string.IsNullOrEmpty(defName))
+            {
+                weaponDef = null;
+                return false;
+            }
 
-            if (weaponDef != null)
+            if (_caches.TryGetValue(defName, out weaponDef))
             {
                 return true;
             }
@@ -137,7 +150,7 @@ namespace Fortified
 
             if (weaponDef != null)
             {
-                _caches.Add(weaponDef);
+                _caches[defName] = weaponDef;
                 return true;
             }
 
