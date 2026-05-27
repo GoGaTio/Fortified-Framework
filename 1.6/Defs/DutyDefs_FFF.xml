@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <DutyDef>
+    <defName>FFF_ScoutAdvance</defName>
+    <alwaysShowWeapon>true</alwaysShowWeapon>
+    <thinkNode Class="ThinkNode_Priority">
+      <subNodes>
+        <!-- 受击或近距威胁时还击 -->
+        <li Class="Fortified.JobGiver_FFFScoutFight">
+          <minRangedReach>12</minRangedReach>
+          <reachMultiplier>1</reachMultiplier>
+          <retaliateWindowTicks>600</retaliateWindowTicks>
+        </li>
+        <!-- 主行为深入玩家建筑群 -->
+        <li Class="Fortified.JobGiver_FFFScoutAdvance">
+          <jobMaxDuration>1500</jobMaxDuration>
+          <visitedRange>6</visitedRange>
+          <sampleLimit>24</sampleLimit>
+        </li>
+        <!-- 忘了 -->
+        <li Class="JobGiver_WanderAnywhere">
+          <maxDanger>Deadly</maxDanger>
+        </li>
+      </subNodes>
+    </thinkNode>
+  </DutyDef>
+
+</Defs>

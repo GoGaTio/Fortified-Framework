@@ -11,11 +11,8 @@ namespace Fortified
     public class CompSubRelay : ThingComp
     {
         public static List<CompSubRelay> allSubRelays = new List<CompSubRelay>();
-        private const bool DebugLog = false;
         private static void DLog(string message)
         {
-            if (DebugLog)
-                Verse.Log.Message($"[SubRelay] {message}");
         }
         public CompProperties_SubRelay Props => (CompProperties_SubRelay)this.props;
         public float CurrentRadius => Props.relayRange;

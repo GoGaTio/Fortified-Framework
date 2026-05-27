@@ -1,10 +1,14 @@
 // 当白昼倾坠之时
+using RimWorld;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.Sound;
+using static UnityEngine.GridBrushBase;
 
 namespace Fortified.Structures
 {
@@ -16,6 +20,7 @@ namespace Fortified.Structures
             public bool includeRoofs = true;
             public bool includeTerrainColors = true;
             public bool includeThings = true;
+            public bool includeExportTools = true;
             public string defName = "NewStructure";
             public HashSet<Def> excludedDefs = new HashSet<Def>();
         }
@@ -62,6 +67,20 @@ namespace Fortified.Structures
             {
                 ExportRoofsOptimized(rect, map, origin, options, sb);
             }
+
+            // 5. Exporting these last since they should be generated last
+            if (options.includeExportTools)
+            {
+				foreach (IntVec3 cell in rect)
+				{
+					ExportTool t = cell.GetFirstThing<ExportTool>(map);
+                    if(t == null)
+                    {
+                        continue;
+                    }
+					t.ExportToXML(origin, sb);
+				}
+			}
 
             sb.AppendLine("    </elements>");
             sb.AppendLine("  </Fortified.Structures.FFF_StructureDef>");
@@ -481,5 +500,5 @@ namespace Fortified.Structures
                 }
             }
         }
-    }
+	}
 }

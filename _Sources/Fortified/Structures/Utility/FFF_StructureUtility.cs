@@ -84,7 +84,7 @@ namespace Fortified.Structures
             var sortedThings = sketch.Things.OrderBy(t => t.SpawnOrder).ToList();
 
             if (Prefs.DevMode)
-                Log.Message($"[FFF] SpawnThings: 尝试生成 {sortedThings.Count} 个物体");
+                Log.Message($"[FFF] SpawnThings: trying to generate {sortedThings.Count} things");
 
             int spawnedCount = 0;
             foreach (var skThing in sortedThings)
@@ -116,7 +116,7 @@ namespace Fortified.Structures
             }
 
             if (Prefs.DevMode)
-                Log.Message($"[FFF] SpawnThings: 成功生成 {spawnedCount}/{sortedThings.Count}");
+                Log.Message($"[FFF] SpawnThings: Successfully generated {spawnedCount} out of {sortedThings.Count} things");
         }
 
 		public static void SpawnPawns(IFFF_Structure def, Rot4 rot, IntVec3 offset, Map map, Faction faction)

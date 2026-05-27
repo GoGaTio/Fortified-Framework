@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-
+<!-- 
   <ThingDef ParentName="BaseGun">
     <defName>Gun_AssaultRifle_AmmoSwitch</defName>
     <label>assault rifle (ammo switch)</label>
@@ -20,11 +20,6 @@
         <defaultIndex>0</defaultIndex>
         <switchCooldown>100</switchCooldown>
         <ammos>
-          <!-- <li>
-            <label>Normal</label>
-            <description>basic round suitable for typical situation.</description>
-            <projectileDef>FFF_Bullet_Rifle</projectileDef>
-          </li> -->
           <li>
             <label>Pellet</label>
             <description>pellet round for close-range suppress and take down enemy.</description>
@@ -104,6 +99,6 @@
       <armorPenetrationBase>0.14</armorPenetrationBase>
       <speed>55</speed>
     </projectile>
-  </ThingDef>
+  </ThingDef> -->
 
 </Defs>

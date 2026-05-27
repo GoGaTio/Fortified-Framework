@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+   <!-- 示例侦察+炮击+主袭击周期式袭击 -->
+  <IncidentDef>
+    <defName>FFF_ScoutedRaidExample</defName>
+    <label>scouted bombardment raid</label>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>Fortified.IncidentWorker_FFF_ScoutedRaid</workerClass>
+    <category>ThreatBig</category>
+    <baseChance>0</baseChance>
+    <pointsScaleable>true</pointsScaleable>
+    <minRefireDays>30</minRefireDays>
+    <canOccurOnAllPlanetLayers>false</canOccurOnAllPlanetLayers>
+
+    <modExtensions>
+      <li Class="Fortified.IncidentExtension_ScoutedRaid">
+
+        <!-- ======================== 周期与袭击点数 ======================== -->
+        <!-- 侦察+炮击循环次数末轮结束后进入主袭击 -->
+        <cycleCount>2</cycleCount>
+
+        <!-- 全部侦察轮共享的总袭击点数=原始袭击点数×scoutPointsFactor÷cycleCount -->
+        <scoutPointsFactor>0.3</scoutPointsFactor>
+        <!-- 主袭击袭击点数=原始袭击点数×mainPointsFactor -->
+        <mainPointsFactor>0.7</mainPointsFactor>
+        <!-- 单轮侦察点数下限 -->
+        <scoutMinPoints>80</scoutMinPoints>
+        <!-- 炮击预估时长末段在结束前lead tick提前推进 0关闭 中段=进入下一轮侦察 末轮=进入主袭击等待 -->
+        <earlyScoutLeadTicks>300</earlyScoutLeadTicks>
+
+        <!-- ======================== 派系与到达 ======================== -->
+        <!-- 派系到达模式战术均支持单值或权重列表列表非空时优先 -->
+
+        <!-- 侦察派系留空走原版抽取默认与主袭击同派系 -->
+        <!-- <scoutFactionDef>SomeHostileFaction</scoutFactionDef> -->
+        <!-- 主袭击派系留空走原版抽取 -->
+        <!-- <mainFactionDef>SomeHostileFaction</mainFactionDef> -->
+        <!-- 侦察派系池weight控制权重 -->
+        <!-- <scoutFactionPool>
+          <li><factionDef>OutlanderCivil</factionDef><weight>1</weight></li>
+          <li><factionDef>Pirate</factionDef><weight>2</weight></li>
+        </scoutFactionPool> -->
+        <!-- 主袭击派系池 -->
+        <!-- <mainFactionPool>
+          <li><factionDef>Pirate</factionDef><weight>1</weight></li>
+        </mainFactionPool> -->
+
+        <!-- 侦察到达模式默认EdgeWalkIn -->
+        <scoutArriveMode>EdgeWalkIn</scoutArriveMode>
+        <!-- 主袭击到达模式 -->
+        <mainArriveMode>EdgeWalkIn</mainArriveMode>
+        <!-- 主袭击战术 -->
+        <mainStrategyDef>ImmediateAttack</mainStrategyDef>
+        <!-- 侦察到达模式池 -->
+        <!-- <scoutArriveModePool>
+          <li><arrivalModeDef>EdgeWalkIn</arrivalModeDef><weight>2</weight></li>
+          <li><arrivalModeDef>EdgeDrop</arrivalModeDef><weight>1</weight></li>
+        </scoutArriveModePool> -->
+        <!-- 主袭击到达模式池 -->
+        <!-- <mainArriveModePool>
+          <li><arrivalModeDef>EdgeWalkIn</arrivalModeDef><weight>3</weight></li>
+          <li><arrivalModeDef>EdgeDrop</arrivalModeDef><weight>1</weight></li>
+          <li><arrivalModeDef>CenterDrop</arrivalModeDef><weight>1</weight></li>
+        </mainArriveModePool> -->
+        <!-- 主袭击战术池 -->
+        <!-- <mainStrategyPool>
+          <li><raidStrategyDef>ImmediateAttack</raidStrategyDef><weight>2</weight></li>
+          <li><raidStrategyDef>StageThenAttack</raidStrategyDef><weight>1</weight></li>
+          <li><raidStrategyDef>Siege</raidStrategyDef><weight>1</weight></li>
+        </mainStrategyPool> -->
+        <!-- 侦察组类型按派系PawnGroupMaker模板出兵留空默认Combat -->
+        <!-- <scoutGroupKind>Combat</scoutGroupKind> -->
+        <!-- 侦察组类型池非空时优先 -->
+        <!-- <scoutGroupKindPool>
+          <li><pawnGroupKindDef>Combat</pawnGroupKindDef><weight>3</weight></li>
+          <li><pawnGroupKindDef>Settlers</pawnGroupKindDef><weight>1</weight></li>
+        </scoutGroupKindPool> -->
+
+        <!-- ======================== 侦察方式 ======================== -->
+        <!-- GroundParty=地面小队AerialDrone=空中侦察机默认GroundParty -->
+        <scoutVariant>GroundParty</scoutVariant>
+        <!-- 侦察小队屋顶分级NoRoofOnly仅露天AllowConstructed可建筑屋顶AllowThinRock可薄岩顶AllowAny任意 -->
+        <scoutMarkRoofTier>AllowThinRock</scoutMarkRoofTier>
+
+        <!-- ======================== 撤离条件 ======================== -->
+        <!-- 撤离触发模式TimeoutOnly仅超时AllDeadOrLostFraction仅损失Either两者任一 -->
+        <withdrawCondition>AllDeadOrLostFraction</withdrawCondition>
+        <!-- 超时撤离阈值AllDeadOrLostFraction模式下不参与判定 -->
+        <scoutWithdrawAfterTicks>80000</scoutWithdrawAfterTicks>
+        <!-- 撤离伤亡比numPawnsLostViolently÷numPawnsEverGained达到时撤离全员存活也会因ownedPawns清空触发 -->
+        <scoutLossWithdrawFraction>0.5</scoutLossWithdrawFraction>
+        <!-- 标记容量耗尽撤离开关与withdrawCondition是OR关系maxTotalMarks>0全局上限达到或全员存活成员各自持满maxMarksPerPawn即触发侦察机分支只看全局上限 -->
+        <withdrawWhenMarksExhausted>true</withdrawWhenMarksExhausted>
+        <!-- 侦察兵AI开关启用后路径使用avoidGridSmart炮塔与敌方pawn有效射程被打高代价侦察兵会绕行仅作用于地面分支侦察机不受影响 -->
+        <scoutAvoidEnemyRanges>true</scoutAvoidEnemyRanges>
+        <!-- 空手侦察兵死亡补标启用后无标记的侦察兵阵亡时按其最后记录位置就近挑一个未锁定玩家建筑写一发标记仅地面分支 -->
+        <deadScoutMarksFallback>true</deadScoutMarksFallback>
+
+        <!-- ======================== 时序 ======================== -->
+        <!-- 撤退后到投放第一发信号弹的延迟首发炮弹再叠加firstStrikeDelayTicks -->
+        <bombardmentDelayTicks>180~360</bombardmentDelayTicks>
+        <!-- 周期间等待两轮侦察之间的休整tick -->
+        <interCycleDelayTicks>2500~4500</interCycleDelayTicks>
+        <!-- 末轮炮击结束到主袭击发起的延迟 -->
+        <preMainRaidDelayTicks>900~1800</preMainRaidDelayTicks>
+
+        <!-- ======================== 照明弹 ======================== -->
+        <!-- 信号弹弹种默认FFF_FlareShell -->
+        <flareProjectileDef>FFF_FlareShell</flareProjectileDef>
+        <!-- 信号弹颜色RGBA -->
+        <flareColor>(1, 0.85, 0.4, 1)</flareColor>
+        <!-- 点亮持续时间 -->
+        <flareIgniteDurationTicks>900</flareIgniteDurationTicks>
+        <!-- 开伞悬浮高度 -->
+        <flareIgniteHoverHeight>6</flareIgniteHoverHeight>
+        <!-- 高空下坠起始高度 -->
+        <flareDescendStartHeight>15</flareDescendStartHeight>
+        <!-- 高空下坠时长 -->
+        <flareDescendDurationTicks>90</flareDescendDurationTicks>
+        <!-- 入射方向北向锥角度上限 -->
+        <flareConeAngleDegrees>25</flareConeAngleDegrees>
+        <!-- 入射origin距离范围 -->
+        <originDistanceRange>20~30</originDistanceRange>
+
+        <!-- ======================== 重型flare合成 ======================== -->
+        <!-- 把多个普通mark合并为一发重型flare的规则 -->
+        <!-- anchor=优先级最高的种子mark其周围半径内的mark被吸收为同一发重型 -->
+        <markFusionRadius>5</markFusionRadius>
+        <!-- 凑齐这么多mark才能升级为一发重型不足则anchor降级为普通flare -->
+        <marksPerHeavyFlare>3</marksPerHeavyFlare>
+        <!-- 任意两发重型flare落点之间的最小间距小于则合并 -->
+        <heavyFlareMinSeparation>6</heavyFlareMinSeparation>
+
+        <!-- ======================== 重型标记弹 ======================== -->
+        <!-- 重型标记弹弹种留空复用普通信号弹 -->
+        <!-- <heavyFlareProjectileDef>FFF_FlareShell</heavyFlareProjectileDef> -->
+        <!-- 重型标记弹颜色RGBA -->
+        <heavyFlareColor>(1, 0.2, 0.2, 1)</heavyFlareColor>
+        <!-- 重型下坠起始高度 -->
+        <heavyFlareDescendStartHeight>25</heavyFlareDescendStartHeight>
+        <!-- 重型尺寸倍率 -->
+        <heavyFlareScale>2</heavyFlareScale>
+        <!-- 重型炮击落点散布=spreadRadius×heavySpreadMultiplier -->
+        <heavySpreadMultiplier>2.5</heavySpreadMultiplier>
+        <!-- 未指定重型弹药池时单点炮击投弹倍率 -->
+        <heavyFlareProjectileMultiplier>3</heavyFlareProjectileMultiplier>
+        <!-- 重型炮击专用弹药池留空复用普通弹药池+倍率 -->
+        <!-- <heavyBombardmentShellPool>
+          <li>
+            <projectileDef>Bullet_Shell_HighExplosive</projectileDef>
+            <weight>1</weight>
+          </li>
+        </heavyBombardmentShellPool> -->
+
+        <!-- ======================== 视野与标记权重 ======================== -->
+        <!-- 单标记权重=markBaseWeight+附近玩家建筑数×nearbyBuildingWeight -->
+        <!-- 侦察兵视野半径圆形+真实视线 -->
+        <scoutSightRadius>21</scoutSightRadius>
+        <!-- 武器射程参与视野开启后半径取max(scoutSightRadius,武器射程) -->
+        <weaponRangeExtendsSight>true</weaponRangeExtendsSight>
+        <!-- 主武器加成扫描装备的主武器按thing匹配命中即生效 -->
+        <!-- add为半径绝对加值mul为半径倍率多条命中add累加mul累乘 -->
+        <!-- 例狙击枪+4格半径栓动步枪+2格半径 -->
+        <!-- <weaponDefNameBonuses>
+          <li><thing>Gun_SniperRifle</thing><add>4</add><mul>1</mul></li>
+          <li><thing>Gun_BoltActionRifle</thing><add>2</add><mul>1</mul></li>
+        </weaponDefNameBonuses> -->
+        <!-- 服装加成扫描全身穿戴每命中一件累加一次 -->
+        <!-- 例侦察头盔×1.1倍率+望远镜+5格×1.0倍率 -->
+        <!-- 同时穿戴两件时add合计为5mul合计为1.1 -->
+        <!-- <apparelDefNameBonuses>
+          <li><thing>Apparel_ReconHelmet</thing><add>0</add><mul>1.1</mul></li>
+          <li><thing>Apparel_Binoculars</thing><add>5</add><mul>1.0</mul></li>
+        </apparelDefNameBonuses> -->
+        <!-- 综合公式最终半径=(max(scoutSightRadius,武器射程)+Σadd)×Πmul -->
+        <!-- =====视野与标记权重分隔正文以下为玩家行为采样===== -->
+        <!-- 玩家近期开火窗口仅在窗内开火过的pawn可标记 -->
+        <recentFireWindowTicks>600</recentFireWindowTicks>
+        <!-- 邻域统计半径以mark所在格为中心扫描该半径内玩家建筑数 -->
+        <emplacementCheckRadius>5</emplacementCheckRadius>
+        <!-- 单标记基础权重 -->
+        <markBaseWeight>2</markBaseWeight>
+        <!-- 邻域内单玩家建筑追加权重 -->
+        <nearbyBuildingWeight>0.5</nearbyBuildingWeight>
+        <!-- 邻域计数缓存有效期 -->
+        <nearbyCacheTicks>600</nearbyCacheTicks>
+
+        <!-- ======================== 炮击弹药池 ======================== -->
+        <!-- 弹药列表weight控制权重模式概率 -->
+        <bombardmentShellPool>
+          <li>
+            <projectileDef>Bullet_Shell_HighExplosive</projectileDef>
+            <weight>1</weight>
+          </li>
+        </bombardmentShellPool>
+        <!-- 弹种选取模式Weighted权重随机Sequential顺序循环 -->
+        <shellSelectionMode>Weighted</shellSelectionMode>
+        <!-- 池为空时兜底弹种 -->
+        <fallbackShellDef>Bullet_Shell_HighExplosive</fallbackShellDef>
+
+        <!-- ======================== 炮击节奏 ======================== -->
+        <!-- 单标记弹数范围未配置heavyBombardmentShellPool时重型再乘heavyFlareProjectileMultiplier -->
+        <projectilesPerMark>2~3</projectilesPerMark>
+        <!-- 子波次数 -->
+        <wavesPerStrike>1</wavesPerStrike>
+        <!-- 子波间隔 -->
+        <waveIntervalTicks>45</waveIntervalTicks>
+        <!-- 弹间发射间隔 -->
+        <projectileIntervalTicks>8</projectileIntervalTicks>
+        <!-- 首发延迟范围炮击调度时刻到本轮首发炮弹的延迟 -->
+        <firstStrikeDelayTicks>150~240</firstStrikeDelayTicks>
+        <!-- 弹道散布半径重型再乘heavySpreadMultiplier -->
+        <spreadRadius>4.5</spreadRadius>
+        <!-- 弹道生成高度仅声明字段当前ScoutedRaid炮击未消费 -->
+        <projectileOriginHeight>120</projectileOriginHeight>
+
+        <!-- ======================== 标记上限 ======================== -->
+        <!-- 单pawn持有标记上限 -->
+        <maxMarksPerPawn>2</maxMarksPerPawn>
+        <!-- 全局标记总上限0不限 -->
+        <maxTotalMarks>0</maxTotalMarks>
+        <!-- 标记最大保留时间过期清理同时复用为炮击前活跃威胁的开火/受击采样窗下限600 -->
+        <maxMarkAgeTicks>4500</maxMarkAgeTicks>
+        <!-- 邻近合并半径炮击前过滤标记仅保留与活跃威胁距离≤此半径的mark -->
+        <markMergeRadius>6</markMergeRadius>
+        <!-- 单次炮击最多展开多少个落点簇过滤后超出按权重截断 -->
+        <maxImpactCellsPerStrike>8</maxImpactCellsPerStrike>
+
+        <!-- ======================== 信件文案键 ======================== -->
+        <!-- 标签与正文使用Languages翻译键 -->
+        <scoutLetterLabel>FFF_ScoutedRaid_ScoutLabel</scoutLetterLabel>
+        <scoutLetterText>FFF_ScoutedRaid_ScoutText</scoutLetterText>
+        <bombardLetterLabel>FFF_ScoutedRaid_BombardLabel</bombardLetterLabel>
+        <bombardLetterText>FFF_ScoutedRaid_BombardText</bombardLetterText>
+        <mainRaidLetterLabel>FFF_ScoutedRaid_MainLabel</mainRaidLetterLabel>
+        <mainRaidLetterText>FFF_ScoutedRaid_MainText</mainRaidLetterText>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+
+  <!-- 侦察机变体 不确认能不能工作  -->
+  <!--
+  <IncidentDef>
+    <defName>FFF_ScoutedRaidDroneExample</defName>
+    <label>scouted bombardment raid drone</label>
+    <targetTags>
+      <li>Map_PlayerHome</li>
+    </targetTags>
+    <workerClass>Fortified.IncidentWorker_FFF_ScoutedRaid</workerClass>
+    <category>ThreatBig</category>
+    <baseChance>0</baseChance>
+    <pointsScaleable>true</pointsScaleable>
+    <minRefireDays>30</minRefireDays>
+    <canOccurOnAllPlanetLayers>false</canOccurOnAllPlanetLayers>
+
+    <modExtensions>
+      <li Class="Fortified.IncidentExtension_ScoutedRaid">
+        - 周期与袭击点数 -
+        <cycleCount>2</cycleCount>
+        <scoutPointsFactor>0</scoutPointsFactor>
+        <mainPointsFactor>1.0</mainPointsFactor>
+        <earlyScoutLeadTicks>300</earlyScoutLeadTicks>
+
+        - 切换为侦察机 -
+        <scoutVariant>AerialDrone</scoutVariant>
+        - 屋顶分级 默认仅扫描露天 -
+        <droneMarkRoofTier>NoRoofOnly</droneMarkRoofTier>
+        - 侦察机ThingDef 必须继承Fortified.FlyByThing -
+        <droneFlyByThingDef>YourMod_ScoutDroneFlyBy</droneFlyByThingDef>
+        - 扫描带半宽半长 单位格 -
+        <droneScanHalfWidth>8</droneScanHalfWidth>
+        <droneScanHalfLength>6</droneScanHalfLength>
+        - 扫描间隔tick -
+        <droneScanIntervalTicks>12</droneScanIntervalTicks>
+
+        - 派系到达模式战术 留空走原版抽取 -
+        <mainArriveMode>EdgeWalkIn</mainArriveMode>
+        <mainStrategyDef>ImmediateAttack</mainStrategyDef>
+
+        - 时序 侦察机分支不依赖scoutWithdrawAfterTicks -
+        <bombardmentDelayTicks>180~360</bombardmentDelayTicks>
+        <interCycleDelayTicks>60~180</interCycleDelayTicks>
+        <preMainRaidDelayTicks>900~1800</preMainRaidDelayTicks>
+
+        - 照明弹 -
+        <flareProjectileDef>FFF_FlareShell</flareProjectileDef>
+        <flareColor>(1, 0.85, 0.4, 1)</flareColor>
+        <flareIgniteDurationTicks>900</flareIgniteDurationTicks>
+        <flareIgniteHoverHeight>6</flareIgniteHoverHeight>
+        <flareDescendStartHeight>15</flareDescendStartHeight>
+        <flareDescendDurationTicks>90</flareDescendDurationTicks>
+        <flareConeAngleDegrees>25</flareConeAngleDegrees>
+        <originDistanceRange>20~30</originDistanceRange>
+
+        - 大炮击合成 -
+        <markFusionRadius>3</markFusionRadius>
+        <marksPerHeavyFlare>3</marksPerHeavyFlare>
+
+        - 重型标记弹 -
+        <heavyFlareColor>(1, 0.2, 0.2, 1)</heavyFlareColor>
+        <heavyFlareDescendStartHeight>25</heavyFlareDescendStartHeight>
+        <heavyFlareScale>2</heavyFlareScale>
+        <heavyFlareProjectileMultiplier>3</heavyFlareProjectileMultiplier>
+
+        - 视野与标记权重 -
+        <recentFireWindowTicks>600</recentFireWindowTicks>
+        <emplacementCheckRadius>5</emplacementCheckRadius>
+        <markBaseWeight>2</markBaseWeight>
+        <nearbyBuildingWeight>0.5</nearbyBuildingWeight>
+        <nearbyCacheTicks>600</nearbyCacheTicks>
+
+        - 炮击弹药池 -
+        <bombardmentShellPool>
+          <li>
+            <projectileDef>Bullet_Shell_HighExplosive</projectileDef>
+            <weight>1</weight>
+          </li>
+        </bombardmentShellPool>
+        <shellSelectionMode>Weighted</shellSelectionMode>
+        <fallbackShellDef>Bullet_Shell_HighExplosive</fallbackShellDef>
+
+        - 炮击节奏 -
+        <projectilesPerMark>2~3</projectilesPerMark>
+        <wavesPerStrike>1</wavesPerStrike>
+        <waveIntervalTicks>45</waveIntervalTicks>
+        <projectileIntervalTicks>8</projectileIntervalTicks>
+        <firstStrikeDelayTicks>150~240</firstStrikeDelayTicks>
+        <spreadRadius>4.5</spreadRadius>
+        <projectileOriginHeight>120</projectileOriginHeight>
+
+        - 标记上限 -
+        <maxMarksPerPawn>2</maxMarksPerPawn>
+        <maxTotalMarks>0</maxTotalMarks>
+        <maxMarkAgeTicks>4500</maxMarkAgeTicks>
+        <markMergeRadius>6</markMergeRadius>
+        <maxImpactCellsPerStrike>8</maxImpactCellsPerStrike>
+
+        - 信件 -
+        <scoutLetterLabel>FFF_ScoutedRaid_ScoutLabel</scoutLetterLabel>
+        <scoutLetterText>FFF_ScoutedRaid_ScoutText</scoutLetterText>
+        <bombardLetterLabel>FFF_ScoutedRaid_BombardLabel</bombardLetterLabel>
+        <bombardLetterText>FFF_ScoutedRaid_BombardText</bombardLetterText>
+        <mainRaidLetterLabel>FFF_ScoutedRaid_MainLabel</mainRaidLetterLabel>
+        <mainRaidLetterText>FFF_ScoutedRaid_MainText</mainRaidLetterText>
+      </li>
+    </modExtensions>
+  </IncidentDef>
+  -->
+
+</Defs>

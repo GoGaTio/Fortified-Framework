@@ -148,7 +148,8 @@ namespace Fortified.Structures
             listing.CheckboxLabeled("Include Terrain", ref options.includeTerrain);
             listing.CheckboxLabeled("Include Colors", ref options.includeTerrainColors);
             listing.CheckboxLabeled("Include Things", ref options.includeThings);
-            listing.GapLine();
+			listing.CheckboxLabeled("Include Export Tools", ref options.includeExportTools);
+			listing.GapLine();
         }
 
         private void DrawElementList(Rect rect, Listing_Standard listing)

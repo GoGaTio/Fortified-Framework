@@ -18,9 +18,16 @@ namespace Fortified.Structures
             });
         }
 
+		public static Rot4 Rotation = Rot4.North;
 
+		[DebugAction("Fortified", "Change IFFF_Structure rotation", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		public static void ChangeRotation()
+		{
+			Rotation.Rotate(RotationDirection.Clockwise);
+			Messages.Message("Structure rotation: " + Rotation.ToStringHuman(), MessageTypeDefOf.NeutralEvent, historical: false);
+		}
 
-        [DebugAction("Fortified", "Spawn IFFF_Structure...", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
+		[DebugAction("Fortified", "Spawn IFFF_Structure...", actionType = DebugActionType.Action, allowedGameStates = AllowedGameStates.PlayingOnMap)]
         public static void SpawnStructure()
         {
             List<DebugMenuOption> options = new List<DebugMenuOption>();
@@ -61,7 +68,7 @@ namespace Fortified.Structures
             DebugTool tool = null;
             tool = new DebugTool("Click to spawn " + (def as Def)?.defName, () => 
             {
-                FFF_StructureUtility.Generate(def, UI.MouseCell(), Find.CurrentMap, Faction.OfPlayer, Rot4.Random);
+                FFF_StructureUtility.Generate(def, UI.MouseCell(), Find.CurrentMap, Faction.OfPlayer, Rotation);
 																												  //DebugTools.curTool = null;
 			}, null);
             DebugTools.curTool = tool;

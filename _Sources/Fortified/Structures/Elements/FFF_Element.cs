@@ -434,4 +434,45 @@ namespace Fortified.Structures
             return tasks;
         }
     }
+
+	public class FFF_Element_PawnGroup : FFF_Element, IFFF_TaskProvider
+	{
+		public FFF_Element_PawnGroup() { }
+        public FactionDef factionDef;
+		public IntVec3 pos;
+        public string lordTag = "";
+        public float sendSignalRadius = -1f;
+
+		public FloatRange pointsRange = new FloatRange(1000, 1000);
+		public List<PawnGenOption> options = new List<PawnGenOption>();
+		public override void AddToSketch(Sketch sketch) { }
+
+		public List<IFFF_GenerationTask> GetTasks(Rot4 rot, IntVec3 offset)
+		{
+			List<IFFF_GenerationTask> tasks = new List<IFFF_GenerationTask>();
+			if (factionDef != null)
+			{
+                Faction faction = Find.FactionManager.FirstFactionOfDef(factionDef);
+                if(faction != null)
+                {
+                    List<PawnKindDef> list = new List<PawnKindDef>();
+                    float points = pointsRange.RandomInRange;
+                    while (points > 0)
+                    {
+                        if(options.TryRandomElementByWeight((x)=>x.selectionWeight, out var result))
+                        {
+							list.Add(result.kind);
+                            points -= result.Cost;
+						}
+                        else
+                        {
+                            break;
+                        }
+                    }
+					tasks.Add(new Task_SpawnPawnGroupInRoom { pos = pos.RotatedBy(rot) + offset, faction = faction, pawns = list.ToList(), lordTag = lordTag, sendSignalRadius = sendSignalRadius });
+				}
+			}
+			return tasks;
+		}
+	}
 }

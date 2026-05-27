@@ -2,6 +2,7 @@
 using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
 
 namespace Fortified;
 
@@ -23,6 +24,8 @@ public static class FFF_DefOf
     public static JobDef FFF_EjectMechCapsule;
     public static JobDef FFF_Replenish;
     public static JobDef FFF_SwitchAmmo;
+
+    public static DutyDef FFF_DefendRoom;
 
 	public static HediffDef FFF_Camouflage;
     public static FleckDef FFF_Fleck_DeflectShell;

@@ -1,9 +1,11 @@
 // 当白昼倾坠之时
+using RimWorld;
 using System;
 using System.Collections.Generic;
-using RimWorld;
 using UnityEngine;
 using Verse;
+using Verse.AI;
+using Verse.AI.Group;
 
 namespace Fortified.Structures
 {
@@ -282,4 +284,32 @@ namespace Fortified.Structures
             return new Task_SetTempControl { pos = pos.RotatedBy(rot) + offset, targetTemperature = targetTemperature };
         }
     }
+
+	public class Task_SpawnPawnGroupInRoom : IFFF_GenerationTask
+	{
+		public IntVec3 pos;
+        public Faction faction;
+        public List<PawnKindDef> pawns;
+        public string lordTag = "";
+		public float sendSignalRadius = -1f;
+		public void Execute(Map map, IntVec3 offset)
+		{
+			IntVec3 actualPos = pos + offset;
+			if (!actualPos.InBounds(map)) return;
+            Room room = actualPos.GetRoom(map);
+			List<Pawn> list = new List<Pawn>();
+			foreach (PawnKindDef item in pawns)
+            {
+                Pawn pawn = PawnGenerator.GeneratePawn(item, faction, map.Tile);
+				list.Add(pawn);
+				GenPlace.TryPlaceThing(pawn, room.Cells.RandomElement(), map, ThingPlaceMode.Near);
+			}
+            LordMaker.MakeNewLord(faction, new LordJob_DefendRoom(actualPos, lordTag) { sendSignalRadius = sendSignalRadius }, map, list);
+		}
+
+		public IFFF_GenerationTask Transformed(Rot4 rot, IntVec3 offset)
+		{
+			return new Task_SpawnPawnGroupInRoom { pos = pos.RotatedBy(rot) + offset, pawns = pawns, faction = faction, lordTag = lordTag, sendSignalRadius = sendSignalRadius };
+		}
+	}
 }

@@ -12,12 +12,6 @@ public class MapComponent_Population : MapComponent
 
     public int ColonistCount => lastColonistCount;
     private int lastColonistCount = -1;
-    private const bool DebugLog = false;
-    private void DLog(string message)
-    {
-        if (DebugLog)
-            Verse.Log.Message($"[MapComponent_Population] {message}");
-    }
     private int checkIntervalTicks = 600; // 每 600 ticks ≈ 10 秒
     private int nextCheckTick = 0;
 
@@ -57,7 +51,6 @@ public class MapComponent_Population : MapComponent
         {
             lastColonistCount = current;
             OnColonistCountChanged?.Invoke(lastColonistCount);
-            if (DebugSettings.godMode) DLog($"Colonist count changed: {lastColonistCount}");
         }
     }
 }

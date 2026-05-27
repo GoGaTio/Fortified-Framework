@@ -71,7 +71,7 @@ namespace Fortified
 
         public static void Postfix(MainTabWindow_Architect __instance)
         {
-            bool current = Prefs.DevMode;
+            bool current = Prefs.DevMode && DebugSettings.godMode;
             if (lastDevMode.HasValue && lastDevMode.Value == current)
                 return;
 

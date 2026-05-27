@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- 照明弹 飞越屋顶式抛射 -->
+  <ThingDef ParentName="BaseBullet">
+    <defName>FFF_FlareShell</defName>
+    <label>flare shell</label>
+    <thingClass>Fortified.Projectile_FFF_Flare</thingClass>
+    <graphicData>
+      <texPath>Things/Mote/Bombardment</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+      <shaderType>TransparentPostLight</shaderType>
+      <drawSize>0.6</drawSize>
+    </graphicData>
+    <projectile>
+      <damageDef>Bomb</damageDef>
+      <damageAmountBase>0</damageAmountBase>
+      <speed>40</speed>
+      <flyOverhead>true</flyOverhead>
+      <arcHeightFactor>1.4</arcHeightFactor>
+      <shadowSize>0.6</shadowSize>
+      <soundAmbient>MortarRound_Ambient</soundAmbient>
+      <soundImpactAnticipate>MortarRound_PreImpact</soundImpactAnticipate>
+    </projectile>
+    <comps>
+      <li Class="CompProperties_Glower">
+        <glowColor>(255,210,150,0)</glowColor>
+        <glowRadius>14</glowRadius>
+      </li>
+    </comps>
+  </ThingDef>
+
+</Defs>
