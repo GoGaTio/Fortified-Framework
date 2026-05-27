@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using Multiplayer.API;
 using UnityEngine;
 using Verse;
 using static System.Collections.Specialized.BitVector32;
@@ -16,8 +17,8 @@ namespace Fortified
         {
             GenDraw.DrawRadiusRing(caller.Position, def.royalAid.targetingRange, Color.white);
             supportDef.DrawHighlight(map, caller.Position, target);
-        }
-
+        } 
+        [SyncMethod]
         public override void OrderForceTarget(LocalTargetInfo target)
         {
             supportDef.Trigger(caller, caller.MapHeld, target);
