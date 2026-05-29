@@ -91,7 +91,7 @@ namespace Fortified
 				command_Toggle.hotKey = KeyBindingDefOf.Command_TogglePower;
 				command_Toggle.icon = Icon;
 				command_Toggle.defaultLabel = (Props.commandKey + "_Label").Translate();
-				command_Toggle.defaultDesc = (Props.commandKey + "_Desc").Translate();
+				command_Toggle.defaultDesc = (Props.commandKey + "_Desc").Translate() + ((Find.TickManager.TicksGame > lastDetectedTick + Props.ticksUntilRecover) ? "" : (string)(Props.commandKey + "_CooldownDesc").Translate((lastDetectedTick + Props.ticksUntilRecover - Find.TickManager.TicksGame + 1).ToStringTicksToPeriod()));
 				command_Toggle.isActive = () => active;
 				command_Toggle.toggleAction = delegate  //does not need MP syncing, i think uses a vanilla gizmo to activate
 				{
@@ -109,7 +109,6 @@ namespace Fortified
 		public override void CompTick()
 		{
 			base.CompTick();
-			
 			if (!parent.Spawned || Parent.Downed)
 			{
 				return;

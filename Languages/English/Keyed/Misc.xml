@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <FFF_Camouflage_Label>Camouflage</FFF_Camouflage_Label>
+  <FFF_Camouflage_Desc>Toggle camouflage mode.</FFF_Camouflage_Desc>
+  <FFF_Camouflage_CooldownDesc>Time left till camouflage reset: {0}.</FFF_Camouflage_CooldownDesc>
+  <FFF_MessageLadarTriggered>A perimeter scanner has detected an invisible creature.</FFF_MessageLadarTriggered>
+  <FFF_LadarDetectedInvisible>Invisible object nearby</FFF_LadarDetectedInvisible>
+
+</LanguageData>

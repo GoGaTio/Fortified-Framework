@@ -18,6 +18,10 @@ namespace Fortified
 		{
 			string desc = "";
 			Thing result = null;
+			if(birtherThing == null)
+			{
+				return true;
+			}
 			if(geneticMother?.genes != null)
 			{
 				foreach (Gene gene in geneticMother.genes.GenesListForReading)
@@ -34,7 +38,7 @@ namespace Fortified
 					}
 				}
 			}
-			if (result == null)
+			if (result == null && !genes.NullOrEmpty())
 			{
 				foreach (GeneDef def in genes)
 				{
