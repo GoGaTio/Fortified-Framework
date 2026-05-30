@@ -12,21 +12,73 @@ namespace Fortified
     [StaticConstructorOnStartup]
     public static class Harmony_AirSupportCE
     {
+        private static readonly Type ceProjectileType;
+
+        // 反射缓存
+        private static PropertyInfo cachedTrajectoryWorkerProp;
+        private static FieldInfo cachedSpeedField;
+        private static MethodInfo cachedShotAngleMethod;
+        private static MethodInfo cachedShotRotationMethod;
+        private static MethodInfo cachedLaunchMethod;
+        private static bool reflectionCacheInitialized;
+
         static Harmony_AirSupportCE()
         {
-            // 注册 CE 弹药发射管线
+            ceProjectileType = AccessTools.TypeByName("CombatExtended.ProjectileCE");
+            if (ceProjectileType == null)
+            {
+                Log.Error("[FortifiedCE] 无法找到 ProjectileCE 类型，CE兼容管线未注册");
+                return;
+            }
             AirSupportData_LaunchProjectile.ceProjectileLauncher = LaunchCEProjectile;
             Log.Message("[FortifiedCE] 已注册空中支援 CE 兼容管线");
         }
 
-        // CE 弹药发射处理
-        private static bool LaunchCEProjectile(Thing projectile, Thing launcher, Vector3 origin, LocalTargetInfo usedTarget, LocalTargetInfo target)
+        // 初始化反射缓存
+        private static bool InitReflectionCache(Type propsType, Type projectileType)
+        {
+            if (reflectionCacheInitialized) return true;
+
+            cachedTrajectoryWorkerProp = propsType.GetProperty("TrajectoryWorker");
+            if (cachedTrajectoryWorkerProp == null)
+            {
+                Log.Error("[FortifiedCE] 无法缓存TrajectoryWorker属性");
+                return false;
+            }
+
+            cachedSpeedField = propsType.GetField("speed");
+
+            cachedLaunchMethod = projectileType.GetMethod("Launch",
+                new[] { typeof(Thing), typeof(Vector2), typeof(float), typeof(float),
+                        typeof(float), typeof(float), typeof(Thing), typeof(float) });
+
+            reflectionCacheInitialized = true;
+            return true;
+        }
+
+        // 缓存TrajectoryWorker方法（按worker类型缓存）
+        private static Type cachedTWType;
+        private static void CacheTrajectoryWorkerMethods(object trajectoryWorker, Type propsType)
+        {
+            var twType = trajectoryWorker.GetType();
+            if (twType == cachedTWType) return;
+            cachedTWType = twType;
+            cachedShotAngleMethod = twType.GetMethod("ShotAngle",
+                new[] { propsType, typeof(Vector3), typeof(Vector3), typeof(float?) });
+            cachedShotRotationMethod = twType.GetMethod("ShotRotation",
+                new[] { propsType, typeof(Vector3), typeof(Vector3) });
+        }
+
+        // CE弹药发射处理
+        private static bool LaunchCEProjectile(Thing projectile, Thing launcher, Vector3 origin, LocalTargetInfo usedTarget, LocalTargetInfo target, float configuredSpeed)
         {
             if (projectile == null || launcher == null) return false;
 
             var projectileType = projectile.GetType();
 
-            // 获取ProjectilePropertiesCE
+            // 非CE投射物直接跳过
+            if (!ceProjectileType.IsAssignableFrom(projectileType)) return false;
+
             var projectilePropsCE = projectile.def.projectile;
             if (projectilePropsCE == null)
             {
@@ -34,46 +86,54 @@ namespace Fortified
                 return false;
             }
 
-            // 获取TrajectoryWorker来计算正确的射击角度
-            var trajectoryWorkerField = projectilePropsCE.GetType().GetProperty("TrajectoryWorker");
-            if (trajectoryWorkerField == null)
+            var propsType = projectilePropsCE.GetType();
+
+            // 初始化反射缓存
+            if (!InitReflectionCache(propsType, projectileType)) return false;
+
+            var trajectoryWorker = cachedTrajectoryWorkerProp.GetValue(projectilePropsCE);
+            if (trajectoryWorker == null)
             {
-                Log.Error($"[FortifiedCE] 无法获取TrajectoryWorker");
+                Log.Error("[FortifiedCE] TrajectoryWorker为null");
                 return false;
             }
-            var trajectoryWorker = trajectoryWorkerField.GetValue(projectilePropsCE);
 
-            // 获取速度
-            var speedField = projectilePropsCE.GetType().GetProperty("speed");
-            float shotSpeed = speedField != null ? (float)speedField.GetValue(projectilePropsCE) : 100f;
+            CacheTrajectoryWorkerMethods(trajectoryWorker, propsType);
 
-            // 计算目标位置（地面高度）
-            Vector3 targetPos = target.Cell.ToVector3Shifted();
-            targetPos.y = 0f; // 目标在地面
-
-            // 使用TrajectoryWorker的ShotAngle方法计算正确的射击角度
-            var shotAngleMethod = trajectoryWorker.GetType().GetMethod("ShotAngle",
-                new[] { projectilePropsCE.GetType(), typeof(Vector3), typeof(Vector3), typeof(float?) });
-
-            float shotAngle;
-            if (shotAngleMethod != null)
+            // 优先使用配置速度，投射物自身速度为回退
+            float shotSpeed;
+            if (configuredSpeed > 0f)
             {
-                shotAngle = (float)shotAngleMethod.Invoke(trajectoryWorker, new object[] { projectilePropsCE, origin, targetPos, shotSpeed });
+                shotSpeed = configuredSpeed;
             }
             else
             {
-                Log.Warning($"[FortifiedCE] 无法找到ShotAngle方法，使用默认角度");
+                shotSpeed = cachedSpeedField != null
+                    ? (float)cachedSpeedField.GetValue(projectilePropsCE) : 100f;
+            }
+
+            // 计算目标位置
+            Vector3 targetPos = target.Cell.ToVector3Shifted();
+            targetPos.y = 0f;
+
+            // 计算射击角度
+            float shotAngle;
+            if (cachedShotAngleMethod != null)
+            {
+                shotAngle = (float)cachedShotAngleMethod.Invoke(
+                    trajectoryWorker, new object[] { projectilePropsCE, origin, targetPos, shotSpeed });
+            }
+            else
+            {
                 shotAngle = 45f * Mathf.Deg2Rad;
             }
 
-            // 使用TrajectoryWorker的ShotRotation方法计算旋转
-            var shotRotationMethod = trajectoryWorker.GetType().GetMethod("ShotRotation",
-                new[] { projectilePropsCE.GetType(), typeof(Vector3), typeof(Vector3) });
-
+            // 计算旋转
             float shotRotation;
-            if (shotRotationMethod != null)
+            if (cachedShotRotationMethod != null)
             {
-                shotRotation = (float)shotRotationMethod.Invoke(trajectoryWorker, new object[] { projectilePropsCE, origin, targetPos });
+                shotRotation = (float)cachedShotRotationMethod.Invoke(
+                    trajectoryWorker, new object[] { projectilePropsCE, origin, targetPos });
             }
             else
             {
@@ -81,38 +141,29 @@ namespace Fortified
                 shotRotation = (-90f + Mathf.Rad2Deg * Mathf.Atan2(w.z, w.x)) % 360f;
             }
 
-            // CE 弹药使用不同的 Launch 签名
-            var launchMethod = projectileType.GetMethod("Launch",
-                new[] { typeof(Thing), typeof(Vector2), typeof(float), typeof(float), typeof(float), typeof(float), typeof(Thing), typeof(float) });
-
-            if (launchMethod != null)
+            // 发射
+            if (cachedLaunchMethod != null)
             {
                 try
                 {
                     Vector2 origin2D = new Vector2(origin.x, origin.z);
-                    Vector2 target2D = new Vector2(targetPos.x, targetPos.z);
-                    float distance = (target2D - origin2D).magnitude;
+                    float distance = (new Vector2(targetPos.x, targetPos.z) - origin2D).magnitude;
                     float shotHeight = origin.y;
 
-                    Log.Message($"[FortifiedCE] 发射参数详情:");
-                    Log.Message($"  origin3D={origin}, target3D={targetPos}");
-                    Log.Message($"  origin2D={origin2D}, target2D={target2D}");
-                    Log.Message($"  distance={distance:F1}, rotation={shotRotation:F1}");
-                    Log.Message($"  shotHeight={shotHeight:F1}, shotAngle={shotAngle:F3}rad ({Mathf.Rad2Deg * shotAngle:F1}deg)");
-                    Log.Message($"  shotSpeed={shotSpeed:F1}");
-
-                    launchMethod.Invoke(projectile, new object[] { launcher, origin2D, shotAngle, shotRotation, shotHeight, shotSpeed, null, distance });
+                    cachedLaunchMethod.Invoke(projectile, new object[] {
+                        launcher, origin2D, shotAngle, shotRotation,
+                        shotHeight, shotSpeed, null, distance });
                     return true;
                 }
                 catch (Exception ex)
                 {
-                    Log.Error($"[FortifiedCE] 发射 CE 弹药失败: {ex}");
+                    Log.Error($"[FortifiedCE] 发射CE弹药失败: {ex}");
                     projectile.Destroy();
                     return true;
                 }
             }
 
-            Log.Warning($"[FortifiedCE] 未找到 CE Launch 方法");
+            Log.Warning("[FortifiedCE] 未找到CE Launch方法");
             return false;
         }
     }

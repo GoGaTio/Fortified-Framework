@@ -12,9 +12,10 @@ namespace Fortified
         public Vector3 origin;
         public LocalTargetInfo usedTarget = LocalTargetInfo.Invalid;
         public SoundDef soundDef;
+        public float configuredSpeed = -1f; // 配置速度
 
         // CE 兼容管线
-        public static Func<Thing, Thing, Vector3, LocalTargetInfo, LocalTargetInfo, bool> ceProjectileLauncher = null;
+        public static Func<Thing, Thing, Vector3, LocalTargetInfo, LocalTargetInfo, float, bool> ceProjectileLauncher = null;
 
         public override void ExposeData()
         {
@@ -23,6 +24,7 @@ namespace Fortified
             Scribe_Values.Look(ref origin, "origin");
             Scribe_Defs.Look(ref soundDef, "soundDef");
             Scribe_TargetInfo.Look(ref usedTarget, "usedTarget");
+            Scribe_Values.Look(ref configuredSpeed, "configuredSpeed", -1f);
         }
 
         public override void Trigger()
@@ -91,7 +93,7 @@ namespace Fortified
             // 优先使用 CE 管线
             if (ceProjectileLauncher != null)
             {
-                if (ceProjectileLauncher(projectile, launcher, origin, usedTarget.IsValid ? usedTarget : target, target))
+                if (ceProjectileLauncher(projectile, launcher, origin, usedTarget.IsValid ? usedTarget : target, target, configuredSpeed))
                 {
                     return;
                 }
