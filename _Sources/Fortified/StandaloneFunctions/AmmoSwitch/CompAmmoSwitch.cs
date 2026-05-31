@@ -21,9 +21,6 @@ namespace Fortified
         {
             compClass = typeof(CompAmmoSwitch);
         }
-
-
-
     }
 	public class CompAmmoSwitch: ThingComp
 	{
