@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: camouflage -->
+  <FFF_Camouflage.label>camouflage</FFF_Camouflage.label>
+  <!-- EN: This mech is invisible. -->
+  <FFF_Camouflage.description>This mech is invisible.</FFF_Camouflage.description>
+  <!-- EN: hidden -->
+  <FFF_Camouflage.stages.hidden.label>hidden</FFF_Camouflage.stages.hidden.label>
+  
+</LanguageData>

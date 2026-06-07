@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: deactivated mech (colossal) -->
+  <FFF_MechCapsule_Colossal.label>deactivated mech</FFF_MechCapsule_Colossal.label>
+  <!-- EN: A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it. -->
+  <FFF_MechCapsule_Colossal.description>A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it.</FFF_MechCapsule_Colossal.description>
+  
+  <!-- EN: deactivated mech (huge) -->
+  <FFF_MechCapsule_Huge.label>deactivated mech</FFF_MechCapsule_Huge.label>
+  <!-- EN: A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it. -->
+  <FFF_MechCapsule_Huge.description>A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it.</FFF_MechCapsule_Huge.description>
+  
+  <!-- EN: deactivated mech (large) -->
+  <FFF_MechCapsule_Large.label>deactivated mech</FFF_MechCapsule_Large.label>
+  <!-- EN: A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it. -->
+  <FFF_MechCapsule_Large.description>A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it.</FFF_MechCapsule_Large.description>
+  
+  <!-- EN: deactivated mech (medium) -->
+  <FFF_MechCapsule_Medium.label>deactivated mech</FFF_MechCapsule_Medium.label>
+  <!-- EN: A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it. -->
+  <FFF_MechCapsule_Medium.description>A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it.</FFF_MechCapsule_Medium.description>
+  
+  <!-- EN: deactivated mech (small) -->
+  <FFF_MechCapsule_Small.label>deactivated mech</FFF_MechCapsule_Small.label>
+  <!-- EN: A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it. -->
+  <FFF_MechCapsule_Small.description>A deactivated mechanoid in hibernation mode. A mechanitor can attempt to hack and control it.</FFF_MechCapsule_Small.description>
+  
+</LanguageData>

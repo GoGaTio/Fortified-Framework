@@ -28,6 +28,9 @@
   <!-- EN: repairing TargetA. -->
   <FFF_RepairSelf.reportString>repairing TargetA.</FFF_RepairSelf.reportString>
   
+  <!-- EN: Replenishing -->
+  <FFF_Replenish.reportString>replenishing</FFF_Replenish.reportString>
+  
   <!-- EN: rebooting TargetA. -->
   <FFF_ResurrectMech.reportString>rebooting TargetA.</FFF_ResurrectMech.reportString>
   

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: disabling mech -->
+  <FFF_EjectMechCapsule.reportString>disabling mech</FFF_EjectMechCapsule.reportString>
+  
+  <!-- EN: controlling mech -->
+  <FFF_HackMechCapsule.reportString>controlling mech</FFF_HackMechCapsule.reportString>
+  
+</LanguageData>

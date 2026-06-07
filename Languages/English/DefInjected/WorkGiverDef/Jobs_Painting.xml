@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: paint building -->
+  <FFF_PaintBuildingWorkGiver.label>paint building</FFF_PaintBuildingWorkGiver.label>
+  <!-- EN: painting -->
+  <FFF_PaintBuildingWorkGiver.gerund>painting</FFF_PaintBuildingWorkGiver.gerund>
+  <!-- EN: paint -->
+  <FFF_PaintBuildingWorkGiver.verb>paint</FFF_PaintBuildingWorkGiver.verb>
+  
+  <!-- EN: paint mech -->
+  <FFF_PaintMechWorkGiver.label>paint mech</FFF_PaintMechWorkGiver.label>
+  <!-- EN: painting -->
+  <FFF_PaintMechWorkGiver.gerund>painting</FFF_PaintMechWorkGiver.gerund>
+  <!-- EN: paint -->
+  <FFF_PaintMechWorkGiver.verb>paint</FFF_PaintMechWorkGiver.verb>
+  
+</LanguageData>

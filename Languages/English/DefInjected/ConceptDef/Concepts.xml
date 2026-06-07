@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  
+  <!-- EN: environmental recipe -->
+  <FFF_EnvironmentalBill.label>special environment bill</FFF_EnvironmentalBill.label>
+  <!-- EN: Some recipes require a production building to be in a vacuum, clean, or microgravity environment. This means that the production building must be in a specific environment to use these recipes.
+
+You can view the special environment requirements of a recipe in the infocard. -->
+  <FFF_EnvironmentalBill.helpText>Some recipes require a production building to be in a vacuum, clean, or microgravity environment to use these recipes.\n\nYou can view the special environment requirements of a recipe in the infocard.</FFF_EnvironmentalBill.helpText>
+  
+  <!-- EN: automatroid trading -->
+  <FFF_MechTrade.label>automatroid trading</FFF_MechTrade.label>
+  <!-- EN: Automatroids brought from orbital trader will drop delivered to trade terminal. interaction from mechanitor with sufficient bandwidth is required to activate them. some of them can be disable for storage at any time, but all internal energy will be release during sealing proccess to prevent remote hacking activation. -->
+  <FFF_MechTrade.helpText>Automatroids brought from orbital trader will drop delivered to trade terminal. interaction from mechanitor with sufficient bandwidth is required to activate them. some of them can be disable for storage at any time, but all internal energy will be release during sealing proccess to prevent remote hacking activation.</FFF_MechTrade.helpText>
+  
+</LanguageData>
