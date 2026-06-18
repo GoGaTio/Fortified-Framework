@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- Gizmo labels -->
+  <FFF_Substation_TurnOn>Restore substation power</FFF_Substation_TurnOn>
+  <FFF_Substation_TurnOnDesc>Manually restart this substation. No skill check required — the dangerous part is shutting it down.</FFF_Substation_TurnOnDesc>
+
+  <!-- CompHackable strings (referenced by defName key, not translated inline) -->
+  <FFF_Substation_HackPrompt>Hack to shut down</FFF_Substation_HackPrompt>
+  <FFF_Substation_HackedLabel>Offline (shut down)</FFF_Substation_HackedLabel>
+  <FFF_Substation_HackedMsg>{HACKER_labelShort} shut down {SUBJECT_label}.</FFF_Substation_HackedMsg>
+
+  <!-- Inspect strings -->
+  <FFF_Substation_Online>Status: Online — generating 3000 W</FFF_Substation_Online>
+  <FFF_Substation_Offline>Status: Offline (manually shut down)</FFF_Substation_Offline>
+  <FFF_Substation_EMPDisabled>Status: Disabled by EMP</FFF_Substation_EMPDisabled>
+
+  <!-- Event messages -->
+  <FFF_Substation_ShockMessage>{PAWN_labelShort} was shocked while shutting down the substation!</FFF_Substation_ShockMessage>
+</LanguageData>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <!-- CompContinuousDamager — gizmo (showGizmo=true fallback) -->
+  <FFF_CompContinuousDamager_Activate>Activate</FFF_CompContinuousDamager_Activate>
+  <FFF_CompContinuousDamager_Deactivate>Deactivate</FFF_CompContinuousDamager_Deactivate>
+  <FFF_CompContinuousDamager_Desc>Activate this device. It will deal {0} {2} damage every interval for {1} seconds, then destroy itself.</FFF_CompContinuousDamager_Desc>
+
+  <!-- CompContinuousDamager — inspect string -->
+  <FFF_CompContinuousDamager_Remaining>Active — time remaining: {0}</FFF_CompContinuousDamager_Remaining>
+
+  <!-- CompUseEffect_ActivateContinuousDamager — rejection reasons -->
+  <FFF_NoContinuousDamagerComp>No continuous damager component found on this building.</FFF_NoContinuousDamagerComp>
+  <FFF_ContinuousDamagerAlreadyActive>Device is already active.</FFF_ContinuousDamagerAlreadyActive>
+
+  <!-- CompUsable — float menu label -->
+  <FFF_ArmThermiteDevice>Arm device</FFF_ArmThermiteDevice>
+
+</LanguageData>

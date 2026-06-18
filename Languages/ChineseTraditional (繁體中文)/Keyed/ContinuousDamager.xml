@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <!-- CompContinuousDamager — gizmo (showGizmo=true 備用) -->
+  <FFF_CompContinuousDamager_Activate>啟動</FFF_CompContinuousDamager_Activate>
+  <FFF_CompContinuousDamager_Deactivate>停用</FFF_CompContinuousDamager_Deactivate>
+  <FFF_CompContinuousDamager_Desc>啟動此裝置。它將在{1}秒內持續造成{0}點{2}傷害，隨後自毀。</FFF_CompContinuousDamager_Desc>
+
+  <!-- CompContinuousDamager — 檢查面板 -->
+  <FFF_CompContinuousDamager_Remaining>已啟動 — 剩餘時間：{0}</FFF_CompContinuousDamager_Remaining>
+
+  <!-- CompUseEffect_ActivateContinuousDamager — 拒絕原因 -->
+  <FFF_NoContinuousDamagerComp>此建築上未找到持續傷害元件。</FFF_NoContinuousDamagerComp>
+  <FFF_ContinuousDamagerAlreadyActive>裝置已啟動</FFF_ContinuousDamagerAlreadyActive>
+
+  <!-- CompUsable — 浮動選單標籤 -->
+  <FFF_ArmThermiteDevice>啟動裝置</FFF_ArmThermiteDevice>
+
+</LanguageData>

@@ -111,17 +111,22 @@ public class CompBulletproofPlate : ThingComp, IReplenishable
         float damageAmount = ArmorUtility.GetPostArmorDamage(Wearer, dinfo.Amount, dinfo.ArmorPenetrationInt- CurrentArmorRating(), dinfo.HitPart, ref damage, out var _A, out var _B);
 
         dinfo.Def = damage;
-        if (currentDurability - damageAmount > 0)
-        {
-            dinfo.SetAmount(damageAmount / 2);
-            absorbed = true;
-        }
         currentDurability -= damageAmount;
-
         if (currentDurability < 0) currentDurability = 0;
 
         DeflectEffect(dinfo);
-        dinfo.SetAmount(damageAmount);
+
+        if (currentDurability > 0)
+        {
+            // 耐久仍有剩餘：吸收一半傷害
+            dinfo.SetAmount(damageAmount / 2);
+            absorbed = true;
+        }
+        else
+        {
+            // 耐久耗盡：全額傷害穿透
+            dinfo.SetAmount(damageAmount);
+        }
     }
     public void DeflectEffect(DamageInfo dinfo)
     {
@@ -237,11 +242,13 @@ public class CompBulletproofPlate : ThingComp, IReplenishable
         Scribe_Values.Look(ref currentDurability, "currentDurability", Props.maxDurability);
         if (Scribe.mode == LoadSaveMode.PostLoadInit)
         {
-            if (currentDurability > Props.maxDurability)
-            {
-                currentDurability = Props.maxDurability;
-            }
+            // 先還原 qualityComp，CurrentMaxDurability() 才能正確計算品質加成上限
             qualityComp = parent.TryGetComp<CompQuality>();
+            float cap = CurrentMaxDurability();
+            if (currentDurability > cap)
+            {
+                currentDurability = cap;
+            }
         }
     }
 

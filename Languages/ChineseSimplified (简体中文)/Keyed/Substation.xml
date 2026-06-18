@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LanguageData>
+  <!-- 按钮文字 -->
+  <FFF_Substation_TurnOn>恢复配电箱供电</FFF_Substation_TurnOn>
+  <FFF_Substation_TurnOnDesc>手动重新启动配电箱。无需技能检查——危险的部分是关闭它。</FFF_Substation_TurnOnDesc>
+
+  <!-- CompHackable 字串 -->
+  <FFF_Substation_HackPrompt>骇入以关闭</FFF_Substation_HackPrompt>
+  <FFF_Substation_HackedLabel>离线（已关闭）</FFF_Substation_HackedLabel>
+  <FFF_Substation_HackedMsg>{HACKER_labelShort} 已关闭 {SUBJECT_label}。</FFF_Substation_HackedMsg>
+
+  <!-- 设施状态 -->
+  <FFF_Substation_Online>状态：运行中 — 输出 3000 W</FFF_Substation_Online>
+  <FFF_Substation_Offline>状态：离线（手动关闭）</FFF_Substation_Offline>
+  <FFF_Substation_EMPDisabled>状态：被 EMP 停用</FFF_Substation_EMPDisabled>
+
+  <!-- 事件消息 -->
+  <FFF_Substation_ShockMessage>{PAWN_labelShort} 在关闭配电箱时遭到电击！</FFF_Substation_ShockMessage>
+</LanguageData>

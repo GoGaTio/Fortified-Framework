@@ -205,6 +205,7 @@ namespace Fortified
 
         protected override void TickInterval(int delta)
         {
+            base.TickInterval(delta);
             if (!prepared || !CanRun) return;
             curWorkAmount -= delta * (this.GetStatValue(StatDefOf.WorkTableEfficiencyFactor) > 1 ? this.GetStatValue(StatDefOf.WorkTableEfficiencyFactor) : 1);
             if (curWorkAmount <= 0f)
@@ -246,14 +247,7 @@ namespace Fortified
         }
         public override void TickRare()
         {
-            if (activeBill != null && curWorkAmount > 0f)
-            {
-                Power.PowerOutput = -Power.Props.PowerConsumption;
-            }
-            else
-            {
-                Power.PowerOutput = -Power.Props.idlePowerDraw;
-            }
+            base.TickRare();
         }
         protected void PlayEffecter()
         {

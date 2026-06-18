@@ -50,7 +50,10 @@ namespace Fortified
         public override void PostApplied(List<LocalTargetInfo> targets, Map map)
         {
             base.PostApplied(targets, map);
-            parent.pawn.Destroy(DestroyMode.KillFinalize);
+            if (!parent.pawn.Destroyed)
+            {
+                parent.pawn.Destroy(DestroyMode.KillFinalize);
+            }
         }
         public override void DrawEffectPreview(LocalTargetInfo target)
         {

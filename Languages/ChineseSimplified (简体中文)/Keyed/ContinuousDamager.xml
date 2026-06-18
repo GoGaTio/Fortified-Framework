@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+
+  <!-- CompContinuousDamager — gizmo (showGizmo=true 备用) -->
+  <FFF_CompContinuousDamager_Activate>启动</FFF_CompContinuousDamager_Activate>
+  <FFF_CompContinuousDamager_Deactivate>停用</FFF_CompContinuousDamager_Deactivate>
+  <FFF_CompContinuousDamager_Desc>启动此装置。它将在{1}秒内持续造成{0}点{2}伤害，随后自毁。</FFF_CompContinuousDamager_Desc>
+
+  <!-- CompContinuousDamager — 检查面板 -->
+  <FFF_CompContinuousDamager_Remaining>已激活 — 剩余时间：{0}</FFF_CompContinuousDamager_Remaining>
+
+  <!-- CompUseEffect_ActivateContinuousDamager — 拒绝原因 -->
+  <FFF_NoContinuousDamagerComp>此建筑上未找到持续伤害组件。</FFF_NoContinuousDamagerComp>
+  <FFF_ContinuousDamagerAlreadyActive>装置已激活</FFF_ContinuousDamagerAlreadyActive>
+
+  <!-- CompUsable — 浮动菜单标签 -->
+  <FFF_ArmThermiteDevice>启动装置</FFF_ArmThermiteDevice>
+
+</LanguageData>

@@ -14,7 +14,7 @@ namespace Fortified
         public bool CanEnter => !innerContainer.Any;
         public static readonly Texture2D ExitFacilityIcon = ContentFinder<Texture2D>.Get("Things/ExitFacility");
         public Pawn PawnInside => innerContainer.Any ? innerContainer.First() as Pawn : null;
-        public float CurrentAccuracy => PawnInside == null ? PawnInside.GetStatValue(StatDefOf.ShootingAccuracyPawn) : 0;
+        public float CurrentAccuracy => PawnInside != null ? PawnInside.GetStatValue(StatDefOf.ShootingAccuracyPawn) : 0;
 
         public Building_TurretCapacity()
         {

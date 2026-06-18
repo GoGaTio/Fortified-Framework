@@ -24,6 +24,13 @@ namespace Fortified
         {
             base.Apply(target, dest);
 
+            // Apply() 內自行查詢 mechanitor，不依賴 Valid() 存入的 field
+            Pawn mechanitor = null;
+            if (CheckUtility.IsPlayerMech(parent.pawn))
+            {
+                CheckUtility.MechanitorCheck(parent.pawn.Map, out mechanitor);
+            }
+
             if (parent.def.GetModExtension<PawnKindExtension>() != null)
             {
                 foreach (Member m in parent.def.GetModExtension<PawnKindExtension>().members)
@@ -36,7 +43,7 @@ namespace Fortified
                         Thing weapon = ThingMaker.MakeThing(m.fixedWeapon);
                         pawn.equipment.AddEquipment(weapon as ThingWithComps);
                     }
-                    if (!m.additionalThings.NullOrEmpty()) 
+                    if (!m.additionalThings.NullOrEmpty())
                     {
                         foreach (var thing in m.additionalThings)
                         {
@@ -45,9 +52,9 @@ namespace Fortified
                             pawn.inventory.TryAddItemNotForSale(item);
                         }
                     }
-                    if (CheckUtility.IsPlayerMech(pawn) && pawn.Faction.IsPlayer)
+                    if (CheckUtility.IsPlayerMech(pawn) && mechanitor != null)
                     {
-                        pawn.relations.AddDirectRelation(PawnRelationDefOf.Overseer, this.parent.pawn.GetOverseer().mechanitor.Pawn);
+                        pawn.relations.AddDirectRelation(PawnRelationDefOf.Overseer, mechanitor);
                     }
                     list.Add(pawn);
                     ActiveTransporterInfo activeTransporter = new ActiveTransporterInfo();
@@ -62,9 +69,9 @@ namespace Fortified
                     List<Thing> list = new List<Thing>();
                     {
                         Pawn pawn = PawnGenerator.GeneratePawn(Props.KindDef, this.parent.pawn.Faction);
-                        if (CheckUtility.IsPlayerMech(pawn) && CheckUtility.MechanitorCheck(this.parent.pawn.Map, out mechanitor))
+                        if (CheckUtility.IsPlayerMech(pawn) && mechanitor != null)
                         {
-                            pawn.relations.AddDirectRelation(PawnRelationDefOf.Overseer, this.parent.pawn.GetOverseer().mechanitor.Pawn);
+                            pawn.relations.AddDirectRelation(PawnRelationDefOf.Overseer, mechanitor);
                         }
                         list.Add(pawn);
                     }
@@ -74,7 +81,7 @@ namespace Fortified
                     DropPodUtility.MakeDropPodAt(target.Cell + Rand(3), parent.pawn.Map, activeDropPodInfo);
                 }
             }
-            
+
             if (Props.sendSkipSignal)
             {
                 CompAbilityEffect_Teleport.SendSkipUsedSignal(target, parent.pawn);
@@ -84,7 +91,6 @@ namespace Fortified
         {
             return new IntVec3(Verse.Rand.Range(-range, range), 0, Verse.Rand.Range(-range, range));
         }
-        private Pawn mechanitor;
         public override bool Valid(LocalTargetInfo target, bool throwMessages = false)
         {
             if (target.Cell.Filled(parent.pawn.Map) || (!Props.allowOnBuildings && target.Cell.GetEdifice(parent.pawn.Map) != null))
@@ -98,11 +104,7 @@ namespace Fortified
             }
             if (CheckUtility.IsPlayerMech(parent.pawn))
             {
-                if (CheckUtility.MechanitorCheck(parent.pawn.Map, out Pawn pawn))
-                {
-                    mechanitor = pawn;
-                }
-                else
+                if (!CheckUtility.MechanitorCheck(parent.pawn.Map, out _))
                 {
                     Messages.Message("FFF.Reason.NotMechanitor".Translate(), MessageTypeDefOf.RejectInput);
                     return false;

@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Defs>
-<!-- 
+  <!-- 
   <ThingDef ParentName="BaseGun">
     <defName>Gun_AssaultRifle_AmmoSwitch</defName>
     <label>assault rifle (ammo switch)</label>

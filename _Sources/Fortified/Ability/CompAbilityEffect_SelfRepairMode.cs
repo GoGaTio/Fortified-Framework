@@ -8,7 +8,7 @@ namespace Fortified
     public class CompAbilityEffect_SelfRepairMode : CompAbilityEffect
     {
         public new CompProperties_AbilitySelfRepairMode Props => (CompProperties_AbilitySelfRepairMode)props;
-        public override bool CanCast => base.CanCast && IsInjuredAndAlive() && parent.pawn.IsPlayerControlled;
+        public override bool CanCast => base.CanCast && parent.pawn.IsPlayerControlled && IsInjuredAndAlive() && HasMissingParts();
         public override void Apply(LocalTargetInfo target, LocalTargetInfo dest)
         {
             base.Apply(target, dest);
@@ -31,11 +31,13 @@ namespace Fortified
         }
         private bool IsInjuredAndAlive()
         {
-            if (parent.pawn.Spawned && parent.pawn != null && !parent.pawn.Dead)
-            {
-                return true;
-            }
-            return false;
+            Pawn pawn = parent.pawn;
+            return pawn != null && pawn.Spawned && !pawn.Dead;
+        }
+
+        private bool HasMissingParts()
+        {
+            return parent.pawn?.health?.hediffSet?.hediffs?.Any(h => h is Hediff_MissingPart) ?? false;
         }
     }
     public class CompProperties_AbilitySelfRepairMode : CompProperties_AbilityEffect

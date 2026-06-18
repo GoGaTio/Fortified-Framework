@@ -24,7 +24,6 @@ namespace Fortified
         private Pawn Pawn => parent.pawn;
         private bool isActive;
         protected int tickRemain;
-        protected int interceptCountMax = 2;
         protected int interceptCount;
         #endregion
 
@@ -72,7 +71,7 @@ namespace Fortified
                 List<Thing> things = thingGrid.ThingsListAt(cell);
                 for (int i = 0; i < things.Count; i++)
                 {
-                    if (interceptCount >= interceptCountMax) return;
+                    if (interceptCount >= Props.interceptCountMax) return;
 
                     Thing thing = things[i];
                     if (!(thing is Projectile proj)) continue;
@@ -179,19 +178,29 @@ namespace Fortified
         private bool IsTargetProjectile(Thing target)
         {
             if (target is null) return false;
-            if (target is Projectile_Explosive) return true;
 
             string defName = target.def.defName;
-            if (defName.Contains("rocket") || defName.Contains("missile") || defName.Contains("grenade"))
-            {
-                return !Props.ignoreThings.Contains(defName);
-            }
-            // 白名单检查
+
+            // 黑名單優先排除
+            if (Props.ignoreThings.Contains(defName)) return false;
+
+            // 爆炸性投射物直接攔截
+            if (target is Projectile_Explosive) return true;
+
+            // 白名單檢查（精確匹配）
             List<string> intercepts = Props.interceptThings;
             for (int i = 0; i < intercepts.Count; i++)
             {
                 if (defName == intercepts[i]) return true;
             }
+
+            // 關鍵字匹配（大小寫不敏感）
+            string defNameLower = defName.ToLowerInvariant();
+            if (defNameLower.Contains("rocket") || defNameLower.Contains("missile") || defNameLower.Contains("grenade"))
+            {
+                return true;
+            }
+
             return false;
         }
 
@@ -213,6 +222,8 @@ namespace Fortified
         public SoundDef soundIntercepted;
         public float chanceToFail = 0.8f;
         public int activeTicks = 2400;
+        /// <summary>每 tick 最多攔截數量，預設 2</summary>
+        public int interceptCountMax = 2;
         public List<string> interceptThings = new List<string>();
         public List<string> ignoreThings = new List<string>();
 
