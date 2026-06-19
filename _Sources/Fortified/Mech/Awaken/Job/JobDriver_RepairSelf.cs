@@ -44,7 +44,7 @@ namespace Fortified
                 ticksToNextRepair -= delta;
                 if (ticksToNextRepair <= 0)
                 {
-                    pawn.needs.energy.CurLevel -= pawn.GetStatValue(StatDefOf.MechEnergyLossPerHP) * (float)delta;
+                    pawn.needs.energy.CurLevel -= pawn.GetStatValue(StatDefOf.MechEnergyLossPerHP);
                     MechRepairUtility.RepairTick(pawn);
                     ticksToNextRepair = TicksPerHeal;
                 }

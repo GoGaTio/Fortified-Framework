@@ -183,7 +183,7 @@ public class CompProperties_SignalReceiverBase : CompProperties
 // Example receiver: plays an effecter and shows a message when signal received.
 public class CompSignalReceiverDoEffect : CompSignalReceiverBase
 {
-    public CompProperties_SignalReceiverDoEffect Props => (CompProperties_SignalReceiverDoEffect)props;
+    public new CompProperties_SignalReceiverDoEffect Props => (CompProperties_SignalReceiverDoEffect)props;
 
     protected override void OnSignalReceived(Signal signal)
     {

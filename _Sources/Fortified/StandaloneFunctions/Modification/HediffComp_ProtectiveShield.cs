@@ -9,7 +9,7 @@ using Verse.AI;
 namespace Fortified
 {
 
-    public class HediffComp_PreApplyDamage: HediffComp
+    public class HediffComp_PreApplyDamage: HediffComp, IPreApplyDamageHandler
     {
         public override void CompPostMake()
         {
@@ -26,14 +26,18 @@ namespace Fortified
         }
         public void AddPawnComp()
         {
-            if (!parent.pawn.TryGetComp<Comp_PreApplyDamage>(out var _))
-            {
-                parent.pawn.AllComps.Add(new Comp_PreApplyDamage() { parent = parent.pawn });
-            }
+            PreApplyDamageRegistry.EnsurePawnComp(parent.pawn);
         }
+        // 伤害处理优先级 高者先挡
+        public virtual int PreApplyDamagePriority => 0;
         public virtual void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             absorbed = false;
+        }
+        // 接口转发到现有方法
+        public void HandlePreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
+        {
+            PreApplyDamage(ref dinfo, out absorbed);
         }
     }
     public class HediffComp_ProtectiveShield : HediffComp_PreApplyDamage
@@ -58,6 +62,7 @@ namespace Fortified
                 return (HediffCompProperties_ProtectiveShield)props;
             }
         }
+        public override int PreApplyDamagePriority => Props.preApplyDamagePriority;
         public override void PreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             base.PreApplyDamage(ref dinfo, out absorbed);
@@ -139,6 +144,8 @@ namespace Fortified
         public ThingDef filthOnDamaged;
         public EffecterDef effectOnDamaged;
         public int hitpoints;
+        // 伤害处理优先级 高者先挡
+        public int preApplyDamagePriority = 0;
         public HediffCompProperties_ProtectiveShield()
         {
             compClass = typeof(HediffComp_ProtectiveShield);
@@ -147,14 +154,55 @@ namespace Fortified
 
     public class Comp_PreApplyDamage : ThingComp
     {
-        public IEnumerable<HediffComp_PreApplyDamage> HediffsPreApplyDamage=>((Pawn) parent)?.health.hediffSet.GetHediffComps<HediffComp_PreApplyDamage>();
+        private Pawn Pawn => parent as Pawn;
         public override void PostPreApplyDamage(ref DamageInfo dinfo, out bool absorbed)
         {
             base.PostPreApplyDamage(ref dinfo, out absorbed);
-            foreach(var h in HediffsPreApplyDamage)
+            // 合并hediff与护甲的处理器 按优先级降序 挡住即停
+            foreach (var h in CollectHandlers().OrderByDescending(c => c.PreApplyDamagePriority))
             {
-                h.PreApplyDamage(ref dinfo, out absorbed);
+                h.HandlePreApplyDamage(ref dinfo, out bool blocked);
+                if (blocked)
+                {
+                    absorbed = true;
+                    return;
+                }
             }
+        }
+        private IEnumerable<IPreApplyDamageHandler> CollectHandlers()
+        {
+            Pawn pawn = Pawn;
+            if (pawn == null) yield break;
+            foreach (var h in pawn.health.hediffSet.GetHediffComps<HediffComp_PreApplyDamage>())
+                yield return h;
+            if (pawn.apparel?.WornApparel == null) yield break;
+            foreach (Apparel apparel in pawn.apparel.WornApparel)
+            {
+                if (apparel.AllComps.NullOrEmpty()) continue;
+                foreach (ThingComp comp in apparel.AllComps)
+                {
+                    if (comp is IPreApplyDamageHandler handler) yield return handler;
+                }
+            }
+        }
+        public override IEnumerable<FloatMenuOption> CompFloatMenuOptions(Pawn selPawn)
+        {
+            foreach (var blocker in ((Pawn)parent).health.hediffSet.GetHediffComps<HediffComp_DamageBlocker>())
+            {
+                foreach (var opt in blocker.GetReplenishFloatMenuOptions(selPawn))
+                    yield return opt;
+            }
+        }
+    }
+
+    // pawn层钩子注册
+    public static class PreApplyDamageRegistry
+    {
+        public static void EnsurePawnComp(Pawn pawn)
+        {
+            if (pawn == null) return;
+            if (!pawn.TryGetComp<Comp_PreApplyDamage>(out var _))
+                pawn.AllComps.Add(new Comp_PreApplyDamage() { parent = pawn });
         }
     }
 }
