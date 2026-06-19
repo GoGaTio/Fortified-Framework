@@ -22,6 +22,7 @@ namespace Fortified
         {
             try { HumanlikeMechApparelPatchHelper.GenerateApparelForHumanlikeMech(__result, kindDef, faction); }
             catch (Exception e) { Log.Error($"[FFF] Patch_PawnGenerator_GeneratePawn Error: {e}"); }
+            (__result as HumanlikeMech)?.ApplyWorkTypeRestrictions();
         }
     }
 
@@ -38,6 +39,7 @@ namespace Fortified
         {
             try { HumanlikeMechApparelPatchHelper.GenerateApparelForHumanlikeMech(__result, request.KindDef, request.Faction); }
             catch (Exception e) { Log.Error($"[FFF] Patch_PawnGenerator_GeneratePawn_Request Error: {e}"); }
+            (__result as HumanlikeMech)?.ApplyWorkTypeRestrictions();
         }
     }
 

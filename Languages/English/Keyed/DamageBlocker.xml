@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <FFF.DamageBlocker.Charges>Block charges: {0}/{1}</FFF.DamageBlocker.Charges>
+  <FFF.DamageBlocker.Replenish>Replenish ({0} x{1})</FFF.DamageBlocker.Replenish>
+  <FFF.DamageBlocker.Threshold>Split threshold: {0}{1}</FFF.DamageBlocker.Threshold>
+  <FFF.DamageBlocker.Absorbed>Damage absorbed.</FFF.DamageBlocker.Absorbed>
+
+  <FFF.DamageBlocker.Stat.Category>Threshold protection</FFF.DamageBlocker.Stat.Category>
+  <FFF.DamageBlocker.Stat.Threshold>Split threshold</FFF.DamageBlocker.Stat.Threshold>
+  <FFF.DamageBlocker.Stat.ThresholdDesc>The damage amount at which this protection activates.</FFF.DamageBlocker.Stat.ThresholdDesc>
+  <FFF.DamageBlocker.Stat.Charges>Block charges</FFF.DamageBlocker.Stat.Charges>
+  <FFF.DamageBlocker.Stat.ChargesDesc>Number of times this protection can block before it must be replenished.</FFF.DamageBlocker.Stat.ChargesDesc>
+
+  <FFF.DamageBlocker.Stat.Behavior>Threshold behavior</FFF.DamageBlocker.Stat.Behavior>
+  <FFF.DamageBlocker.Stat.BehaviorDesc>How this protection reacts to hits above and below the threshold.</FFF.DamageBlocker.Stat.BehaviorDesc>
+  <FFF.DamageBlocker.Stat.BehaviorAbove>Above threshold: {0} ({1})</FFF.DamageBlocker.Stat.BehaviorAbove>
+  <FFF.DamageBlocker.Stat.BehaviorBelow>Below threshold: {0} ({1})</FFF.DamageBlocker.Stat.BehaviorBelow>
+  <FFF.DamageBlocker.Stat.ActionBlock>fully blocked</FFF.DamageBlocker.Stat.ActionBlock>
+  <FFF.DamageBlocker.Stat.ActionClamp>clamped to {0}</FFF.DamageBlocker.Stat.ActionClamp>
+  <FFF.DamageBlocker.Stat.ActionPass>passes through</FFF.DamageBlocker.Stat.ActionPass>
+  <FFF.DamageBlocker.Stat.ConsumeYes>consumes a charge</FFF.DamageBlocker.Stat.ConsumeYes>
+  <FFF.DamageBlocker.Stat.ConsumeNo>no charge cost</FFF.DamageBlocker.Stat.ConsumeNo>
+
+  <FFF.DamageBlocker.Stat.Filter>Active conditions</FFF.DamageBlocker.Stat.Filter>
+  <FFF.DamageBlocker.Stat.FilterDesc>Restrictions on which attacks this protection responds to.</FFF.DamageBlocker.Stat.FilterDesc>
+  <FFF.DamageBlocker.Stat.FilterValue>Restricted</FFF.DamageBlocker.Stat.FilterValue>
+  <FFF.DamageBlocker.Stat.FilterSource>Attack sources: {0}</FFF.DamageBlocker.Stat.FilterSource>
+  <FFF.DamageBlocker.Stat.FilterAllowed>Only blocks: {0}</FFF.DamageBlocker.Stat.FilterAllowed>
+  <FFF.DamageBlocker.Stat.FilterExcluded>Ignores: {0}</FFF.DamageBlocker.Stat.FilterExcluded>
+  <FFF.DamageBlocker.Stat.FilterWeaponTags>Weapon tags: {0}</FFF.DamageBlocker.Stat.FilterWeaponTags>
+  <FFF.DamageBlocker.Stat.SourceRanged>ranged</FFF.DamageBlocker.Stat.SourceRanged>
+  <FFF.DamageBlocker.Stat.SourceMelee>melee</FFF.DamageBlocker.Stat.SourceMelee>
+  <FFF.DamageBlocker.Stat.SourceDirect>direct</FFF.DamageBlocker.Stat.SourceDirect>
+  <FFF.DamageBlocker.Stat.SourceNone>none</FFF.DamageBlocker.Stat.SourceNone>
+
+  <FFF.DamageBlocker.Stat.Era>Trigger behavior</FFF.DamageBlocker.Stat.Era>
+  <FFF.DamageBlocker.Stat.EraValue>{0} reaction(s)</FFF.DamageBlocker.Stat.EraValue>
+  <FFF.DamageBlocker.Stat.EraTrigger>Triggers on: {0}</FFF.DamageBlocker.Stat.EraTrigger>
+  <FFF.DamageBlocker.Stat.EraEntry>{0} {1} to {2}</FFF.DamageBlocker.Stat.EraEntry>
+  <FFF.DamageBlocker.Stat.EraEntryCond>If {0} below {1}: {2}</FFF.DamageBlocker.Stat.EraEntryCond>
+  <FFF.DamageBlocker.Stat.EraEntryNone>No counter damage</FFF.DamageBlocker.Stat.EraEntryNone>
+  <FFF.DamageBlocker.Stat.EraPartRandom>a random part</FFF.DamageBlocker.Stat.EraPartRandom>
+  <FFF.DamageBlocker.Stat.EraOnHit>any hit</FFF.DamageBlocker.Stat.EraOnHit>
+  <FFF.DamageBlocker.Stat.EraOnConsume>charge consumed</FFF.DamageBlocker.Stat.EraOnConsume>
+  <FFF.DamageBlocker.Stat.EraOnAbove>above threshold</FFF.DamageBlocker.Stat.EraOnAbove>
+  <FFF.DamageBlocker.Stat.EraOnBelow>below threshold</FFF.DamageBlocker.Stat.EraOnBelow>
+  <FFF.DamageBlocker.Stat.EraNever>never</FFF.DamageBlocker.Stat.EraNever>
+</LanguageData>

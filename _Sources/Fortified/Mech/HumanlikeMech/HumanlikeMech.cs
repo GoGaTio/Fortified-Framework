@@ -113,17 +113,20 @@ namespace Fortified
                 {
                     workSettings = new Pawn_WorkSettings(this);
                     workSettings.EnableAndInitializeIfNotAlreadyInitialized();
-                    // 限制機械體工作
-                    if (!this.RaceProps.IsMechanoid && !this.RaceProps.mechEnabledWorkTypes.NullOrEmpty())
-                    {
-                        foreach (WorkTypeDef w in DefDatabase<WorkTypeDef>.AllDefsListForReading)
-                        {
-                            if (!this.RaceProps.mechEnabledWorkTypes.Contains(w))
-                            {
-                                workSettings.SetPriority(w, 0);
-                            }
-                        }
-                    }
+                    ApplyWorkTypeRestrictions();
+                }
+            }
+        }
+        // 限制机械体工作类型
+        public void ApplyWorkTypeRestrictions()
+        {
+            if (workSettings == null) return;
+            if (RaceProps.IsMechanoid || RaceProps.mechEnabledWorkTypes.NullOrEmpty()) return;
+            foreach (WorkTypeDef w in DefDatabase<WorkTypeDef>.AllDefsListForReading)
+            {
+                if (!RaceProps.mechEnabledWorkTypes.Contains(w))
+                {
+                    workSettings.SetPriority(w, 0);
                 }
             }
         }

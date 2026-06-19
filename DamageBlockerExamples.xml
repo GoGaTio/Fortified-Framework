@@ -1,0 +1,293 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+  <!-- ========= 示例一:护甲(可材质化) ========= -->
+  <ThingDef ParentName="ArmorSmithableBase">
+    <defName>FFF_DamageBlocker_ArmorExample</defName>
+    <label>damage blocker armor example</label>
+    <description>Example armor using configurable damage blocking.</description>
+    <graphicData>
+      <texPath>Things/Pawn/Humanlike/Apparel/PlateArmor/PlateArmor</texPath>
+      <graphicClass>Graphic_Single</graphicClass>
+    </graphicData>
+    <apparel>
+      <wornGraphicPath>Things/Pawn/Humanlike/Apparel/PlateArmor/PlateArmor</wornGraphicPath>
+      <bodyPartGroups>
+        <li>Torso</li>
+        <li>Neck</li>
+        <li>Shoulders</li>
+        <li>Arms</li>
+        <li>Legs</li>
+      </bodyPartGroups>
+      <layers>
+        <li>Middle</li>
+        <li>Shell</li>
+      </layers>
+    </apparel>
+    <statBases>
+      <MaxHitPoints>290</MaxHitPoints>
+      <WorkToMake>38000</WorkToMake>
+      <Mass>15</Mass>
+      <StuffEffectMultiplierArmor>0.9</StuffEffectMultiplierArmor>
+      <EquipDelay>15</EquipDelay>
+    </statBases>
+    <costStuffCount>170</costStuffCount>
+    <stuffCategories>
+      <li>Metallic</li>
+      <li>Woody</li>
+    </stuffCategories>
+    <thingCategories>
+      <li>ApparelArmor</li>
+    </thingCategories>
+    <comps>
+      <li Class="Fortified.CompProperties_DamageBlocker">
+        <!-- ─── 阈值分流 ─── -->
+        <!-- 基础阈值。实际阈值 = 本值 × thresholdFactorStat材质属性 -->
+        <damageThreshold>20</damageThreshold>
+        <!-- true: 伤害>=阈值算高阈值; false: 仅>阈值算高阈值 -->
+        <thresholdInclusive>true</thresholdInclusive>
+
+        <!-- 全身防护统一按本值降序解算 高者先挡 挡住即停 跨护甲与植入物通用 -->
+        <preApplyDamagePriority>0</preApplyDamagePriority>
+
+        <!-- ─── 层数 ─── -->
+        <!-- 基础层数。实际层数 = 本值 × chargeFactorStat材质属性 -->
+        <blockCharges>3</blockCharges>
+
+        <!-- ─── 伤害过滤 ─── -->
+        <!-- 白名单:仅对列表中的DamageDef生效。省略=不限制 -->
+        <!--
+        <allowedDamageDefs>
+          <li>Bullet</li>
+          <li>Cut</li>
+        </allowedDamageDefs>
+        -->
+        <!-- 黑名单:对列表中的DamageDef不生效。省略=不排除 -->
+        <!--
+        <excludedDamageDefs>
+          <li>Flame</li>
+          <li>EMP</li>
+        </excludedDamageDefs>
+        -->
+        <!-- 攻击来源过滤:远程/近战/直接伤害 -->
+        <allowRanged>true</allowRanged>
+        <allowMelee>true</allowMelee>
+        <!-- 直接伤害:无武器无攻击者的伤害(环境/能力等) -->
+        <allowDirect>true</allowDirect>
+        <!-- 武器标签白名单:仅这些标签的武器生效。省略=不限制 -->
+        <!--
+        <allowedWeaponTags>
+          <li>Gun</li>
+          <li>SpacerGun</li>
+        </allowedWeaponTags>
+        -->
+
+        <!-- ─── 高阈值行为 ─── -->
+        <!-- 高阈值命中是否扣1层 -->
+        <consumeChargeAbove>true</consumeChargeAbove>
+        <!-- 高阈值是否阻挡(伤害归零) -->
+        <blockAboveThreshold>true</blockAboveThreshold>
+        <!-- 高阈值是否将伤害钳制到阈值(blockAboveThreshold=false时生效) -->
+        <clampAboveToThreshold>false</clampAboveToThreshold>
+
+        <!-- ─── 低阈值行为 ─── -->
+        <!-- 低阈值命中是否扣1层 -->
+        <consumeChargeBelow>false</consumeChargeBelow>
+        <!-- 低阈值是否阻挡(伤害归零) -->
+        <blockBelowThreshold>true</blockBelowThreshold>
+
+        <!-- ─── 显示翻译键 ─── -->
+        <!-- Gizmo阈值行。格式:{0}=运算符 {1}=阈值数值 -->
+        <thresholdLabelKey>FFF.DamageBlocker.Threshold</thresholdLabelKey>
+        <!-- Gizmo层数提示。格式:{0}=当前 {1}=最大 -->
+        <chargesLabelKey>FFF.DamageBlocker.Charges</chargesLabelKey>
+        <!-- 整备按钮文本。格式:{0}=材料名 {1}=数量 -->
+        <replenishLabelKey>FFF.DamageBlocker.Replenish</replenishLabelKey>
+        <!-- 高阈值命中浮动文字。留空=不显示 -->
+        <aboveThresholdTextKey>FFF.DamageBlocker.Absorbed</aboveThresholdTextKey>
+        <!-- 低阈值命中浮动文字。留空=不显示 -->
+        <belowThresholdTextKey>FFF.DamageBlocker.Absorbed</belowThresholdTextKey>
+
+        <!-- ─── 信息卡可覆盖键(留空=用框架默认) ─── -->
+        <!-- 阈值行说明 -->
+        <!-- <statThresholdDescKey>YourMod.Threshold.Desc</statThresholdDescKey> -->
+        <!-- 层数行标题/说明 -->
+        <!-- <statChargesLabelKey>YourMod.Charges.Label</statChargesLabelKey> -->
+        <!-- <statChargesDescKey>YourMod.Charges.Desc</statChargesDescKey> -->
+        <!-- 阈值行为行标题/说明 -->
+        <!-- <statBehaviorLabelKey>YourMod.Behavior.Label</statBehaviorLabelKey> -->
+        <!-- <statBehaviorDescKey>YourMod.Behavior.Desc</statBehaviorDescKey> -->
+        <!-- 生效条件行标题/说明 -->
+        <!-- <statFilterLabelKey>YourMod.Filter.Label</statFilterLabelKey> -->
+        <!-- <statFilterDescKey>YourMod.Filter.Desc</statFilterDescKey> -->
+        <!-- 反应装甲行标题 -->
+        <!-- <statEraLabelKey>YourMod.Era.Label</statEraLabelKey> -->
+
+        <!-- ─── 特效 ─── -->
+        <!-- 低阈值命中特效。省略则无 -->
+        <belowThresholdEffecter>DamageDiminished_Metal</belowThresholdEffecter>
+        <!-- 高阈值命中特效。省略则无 -->
+        <aboveThresholdEffecter>Deflect_Metal_Bullet</aboveThresholdEffecter>
+        <!-- ERA触发时特效。省略则无 -->
+        <eraEffecter>Deflect_Metal_Bullet</eraEffecter>
+
+        <!-- ─── 其他 ─── -->
+        <!-- 是否显示充能Gizmo。默认true -->
+        <showGizmo>true</showGizmo>
+        <!-- 阻挡时战斗日志规则包。省略则不记录 -->
+        <!-- <battleLogRulePack>YourMod_DamageBlocked</battleLogRulePack> -->
+
+        <!-- ─── ERA 爆炸反应装甲 ─── -->
+        <!-- 触发时机开关(可多开叠加) -->
+        <eraOnConsumeCharge>true</eraOnConsumeCharge>
+        <eraOnHit>false</eraOnHit>
+        <eraOnAboveThreshold>false</eraOnAboveThreshold>
+        <eraOnBelowThreshold>false</eraOnBelowThreshold>
+        <!-- ERA规则列表:逐条独立判定,不达标的全部生效 -->
+        <!-- 信息卡默认显示"当<护甲属性>低于<值>时:对<部位>造成X点Y";设labelKey可整条自定义 -->
+        <eraEntries>
+          <!-- 条目1:穿戴者锐防<0.6 → 受10点锐伤 -->
+          <li>
+            <armorStat>ArmorRating_Sharp</armorStat>
+            <requiredArmorValue>0.6</requiredArmorValue>
+            <damageDef>Cut</damageDef>
+            <damageAmount>10</damageAmount>
+            <!-- 自伤命中部位。省略=随机部位 -->
+            <!-- <hitPart>Torso</hitPart> -->
+            <!-- 此条触发时战斗日志规则包。省略则不记录 -->
+            <!-- <battleLogRulePack>YourMod_EraReaction</battleLogRulePack> -->
+            <!-- 信息卡此条自定义文本。留空=用默认条件+效果文本 -->
+            <!-- <labelKey>YourMod.Era.Entry1</labelKey> -->
+          </li>
+          <!-- 条目2:穿戴者钝防<0.4 → 受5点钝伤 -->
+          <li>
+            <armorStat>ArmorRating_Blunt</armorStat>
+            <requiredArmorValue>0.4</requiredArmorValue>
+            <damageDef>Blunt</damageDef>
+            <damageAmount>5</damageAmount>
+          </li>
+        </eraEntries>
+
+        <!-- ─── 材质倍率(仅护甲版可用) ─── -->
+        <!-- 层数倍率:取材质此属性绝对值(约0~1)乘基础层数。省略=1 -->
+        <chargeFactorStat>ArmorRating_Sharp</chargeFactorStat>
+        <!-- 阈值倍率:取材质此属性绝对值乘基础阈值。省略=1 -->
+        <thresholdFactorStat>ArmorRating_Blunt</thresholdFactorStat>
+
+        <!-- ─── 整备(二选一:手动整备 或 自动回充) ─── -->
+        <!-- 材料来源。true:用服装自身材质; false:用repairMaterial -->
+        <useStuffForReplenish>true</useStuffForReplenish>
+        <!-- 整备材料(useStuffForReplenish=false时生效) -->
+        <repairMaterial>Steel</repairMaterial>
+        <!-- 每份材料回充层数 -->
+        <chargesPerMaterial>2</chargesPerMaterial>
+        <!-- 整备所需工作类型。省略则不限制 -->
+        <requiredReplenishWorkType>Crafting</requiredReplenishWorkType>
+        <!-- 自动回充开关。true:无需材料按间隔免费补层 -->
+        <autoRecharge>false</autoRecharge>
+        <!-- 自动回充间隔tick,每次补1层 -->
+        <rechargeIntervalTicks>2500</rechargeIntervalTicks>
+      </li>
+    </comps>
+  </ThingDef>
+
+  <!-- ========= 示例二:健康状态(植入物/基因等) ========= -->
+  <!-- Hediff版无材质,没有 chargeFactorStat/thresholdFactorStat/useStuffForReplenish -->
+  <HediffDef>
+    <defName>FFF_DamageBlocker_HediffExample</defName>
+    <label>damage blocker hediff example</label>
+    <description>Example hediff using configurable damage blocking.</description>
+    <hediffClass>HediffWithComps</hediffClass>
+    <isBad>false</isBad>
+    <comps>
+      <li Class="Fortified.HediffCompProperties_DamageBlocker">
+        <!-- ─── 阈值分流 ─── -->
+        <damageThreshold>18</damageThreshold>
+        <thresholdInclusive>true</thresholdInclusive>
+
+        <!-- 多防护叠加时的处理优先级。高者先判定 挡住即停 跨护甲与植入物通用 -->
+        <preApplyDamagePriority>0</preApplyDamagePriority>
+
+        <!-- ─── 层数(不缩放) ─── -->
+        <blockCharges>5</blockCharges>
+
+        <!-- ─── 伤害过滤 ─── -->
+        <!-- 白名单:仅对列表中的DamageDef生效。省略=不限制 -->
+        <!--
+        <allowedDamageDefs>
+          <li>Bullet</li>
+        </allowedDamageDefs>
+        -->
+        <!-- 黑名单:对列表中的DamageDef不生效。省略=不排除 -->
+        <!--
+        <excludedDamageDefs>
+          <li>EMP</li>
+        </excludedDamageDefs>
+        -->
+        <!-- 攻击来源过滤 -->
+        <allowRanged>true</allowRanged>
+        <allowMelee>true</allowMelee>
+        <allowDirect>true</allowDirect>
+        <!-- 武器标签白名单。省略=不限制 -->
+        <!--
+        <allowedWeaponTags>
+          <li>Gun</li>
+        </allowedWeaponTags>
+        -->
+
+        <!-- ─── 高阈值行为 ─── -->
+        <consumeChargeAbove>true</consumeChargeAbove>
+        <blockAboveThreshold>true</blockAboveThreshold>
+        <clampAboveToThreshold>false</clampAboveToThreshold>
+
+        <!-- ─── 低阈值行为 ─── -->
+        <consumeChargeBelow>false</consumeChargeBelow>
+        <blockBelowThreshold>true</blockBelowThreshold>
+
+        <!-- ─── 显示翻译键 ─── -->
+        <thresholdLabelKey>FFF.DamageBlocker.Threshold</thresholdLabelKey>
+        <chargesLabelKey>FFF.DamageBlocker.Charges</chargesLabelKey>
+        <replenishLabelKey>FFF.DamageBlocker.Replenish</replenishLabelKey>
+        <aboveThresholdTextKey>FFF.DamageBlocker.Absorbed</aboveThresholdTextKey>
+        <belowThresholdTextKey>FFF.DamageBlocker.Absorbed</belowThresholdTextKey>
+
+        <!-- ─── 信息卡可覆盖键(留空=用框架默认) ─── -->
+        <!-- <statThresholdDescKey/> <statChargesLabelKey/> <statChargesDescKey/> -->
+        <!-- <statBehaviorLabelKey/> <statBehaviorDescKey/> -->
+        <!-- <statFilterLabelKey/> <statFilterDescKey/> <statEraLabelKey/> -->
+
+        <!-- ─── 特效 ─── -->
+        <belowThresholdEffecter>DamageDiminished_General</belowThresholdEffecter>
+        <aboveThresholdEffecter>Deflect_General_Bullet</aboveThresholdEffecter>
+        <eraEffecter>Deflect_General_Bullet</eraEffecter>
+
+        <!-- ─── 其他 ─── -->
+        <showGizmo>true</showGizmo>
+        <!-- <battleLogRulePack>YourMod_DamageBlocked</battleLogRulePack> -->
+
+        <!-- ─── ERA ─── -->
+        <eraOnConsumeCharge>true</eraOnConsumeCharge>
+        <eraOnHit>false</eraOnHit>
+        <eraOnAboveThreshold>false</eraOnAboveThreshold>
+        <eraOnBelowThreshold>false</eraOnBelowThreshold>
+        <eraEntries>
+          <!-- 省略armorStat=无条件触发 -->
+          <li>
+            <armorStat>ArmorRating_Sharp</armorStat>
+            <requiredArmorValue>0.5</requiredArmorValue>
+            <damageDef>Cut</damageDef>
+            <damageAmount>8</damageAmount>
+            <!-- <hitPart>Torso</hitPart> -->
+            <!-- <labelKey>YourMod.Era.Entry</labelKey> -->
+          </li>
+        </eraEntries>
+
+        <!-- ─── 整备 ─── -->
+        <repairMaterial>Steel</repairMaterial>
+        <chargesPerMaterial>1</chargesPerMaterial>
+        <requiredReplenishWorkType>Crafting</requiredReplenishWorkType>
+        <autoRecharge>false</autoRecharge>
+        <rechargeIntervalTicks>2500</rechargeIntervalTicks>
+      </li>
+    </comps>
+  </HediffDef>
+</Defs>

@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <FFF.DamageBlocker.Charges>阻挡次数: {0}/{1}</FFF.DamageBlocker.Charges>
+  <FFF.DamageBlocker.Replenish>整备 ({0} x{1})</FFF.DamageBlocker.Replenish>
+  <FFF.DamageBlocker.Threshold>分流阈值: {0}{1}</FFF.DamageBlocker.Threshold>
+  <FFF.DamageBlocker.Absorbed>伤害被吸收</FFF.DamageBlocker.Absorbed>
+
+  <FFF.DamageBlocker.Stat.Category>阈值防护</FFF.DamageBlocker.Stat.Category>
+  <FFF.DamageBlocker.Stat.Threshold>分流阈值</FFF.DamageBlocker.Stat.Threshold>
+  <FFF.DamageBlocker.Stat.ThresholdDesc>触发该防护所需的伤害量。</FFF.DamageBlocker.Stat.ThresholdDesc>
+  <FFF.DamageBlocker.Stat.Charges>阻挡次数</FFF.DamageBlocker.Stat.Charges>
+  <FFF.DamageBlocker.Stat.ChargesDesc>需要整备前可阻挡的次数。</FFF.DamageBlocker.Stat.ChargesDesc>
+
+  <FFF.DamageBlocker.Stat.Behavior>阈值行为</FFF.DamageBlocker.Stat.Behavior>
+  <FFF.DamageBlocker.Stat.BehaviorDesc>该防护对高于和低于阈值伤害的处理方式。</FFF.DamageBlocker.Stat.BehaviorDesc>
+  <FFF.DamageBlocker.Stat.BehaviorAbove>高于阈值：{0}（{1}）</FFF.DamageBlocker.Stat.BehaviorAbove>
+  <FFF.DamageBlocker.Stat.BehaviorBelow>低于阈值：{0}（{1}）</FFF.DamageBlocker.Stat.BehaviorBelow>
+  <FFF.DamageBlocker.Stat.ActionBlock>完全阻挡</FFF.DamageBlocker.Stat.ActionBlock>
+  <FFF.DamageBlocker.Stat.ActionClamp>钳制到 {0}</FFF.DamageBlocker.Stat.ActionClamp>
+  <FFF.DamageBlocker.Stat.ActionPass>放行</FFF.DamageBlocker.Stat.ActionPass>
+  <FFF.DamageBlocker.Stat.ConsumeYes>消耗 1 层</FFF.DamageBlocker.Stat.ConsumeYes>
+  <FFF.DamageBlocker.Stat.ConsumeNo>不耗层</FFF.DamageBlocker.Stat.ConsumeNo>
+
+  <FFF.DamageBlocker.Stat.Filter>生效条件</FFF.DamageBlocker.Stat.Filter>
+  <FFF.DamageBlocker.Stat.FilterDesc>该防护响应攻击的限制条件。</FFF.DamageBlocker.Stat.FilterDesc>
+  <FFF.DamageBlocker.Stat.FilterValue>有限制</FFF.DamageBlocker.Stat.FilterValue>
+  <FFF.DamageBlocker.Stat.FilterSource>攻击来源：{0}</FFF.DamageBlocker.Stat.FilterSource>
+  <FFF.DamageBlocker.Stat.FilterAllowed>仅阻挡：{0}</FFF.DamageBlocker.Stat.FilterAllowed>
+  <FFF.DamageBlocker.Stat.FilterExcluded>忽略：{0}</FFF.DamageBlocker.Stat.FilterExcluded>
+  <FFF.DamageBlocker.Stat.FilterWeaponTags>武器标签：{0}</FFF.DamageBlocker.Stat.FilterWeaponTags>
+  <FFF.DamageBlocker.Stat.SourceRanged>远程</FFF.DamageBlocker.Stat.SourceRanged>
+  <FFF.DamageBlocker.Stat.SourceMelee>近战</FFF.DamageBlocker.Stat.SourceMelee>
+  <FFF.DamageBlocker.Stat.SourceDirect>直接</FFF.DamageBlocker.Stat.SourceDirect>
+  <FFF.DamageBlocker.Stat.SourceNone>无</FFF.DamageBlocker.Stat.SourceNone>
+
+  <FFF.DamageBlocker.Stat.Era>触发行为</FFF.DamageBlocker.Stat.Era>
+  <FFF.DamageBlocker.Stat.EraValue>{0} 条自伤</FFF.DamageBlocker.Stat.EraValue>
+  <FFF.DamageBlocker.Stat.EraTrigger>触发时机：{0}</FFF.DamageBlocker.Stat.EraTrigger>
+  <FFF.DamageBlocker.Stat.EraEntry>对{2}造成 {0} 点{1}</FFF.DamageBlocker.Stat.EraEntry>
+  <FFF.DamageBlocker.Stat.EraEntryCond>当{0}低于 {1} 时：{2}</FFF.DamageBlocker.Stat.EraEntryCond>
+  <FFF.DamageBlocker.Stat.EraEntryNone>无自伤</FFF.DamageBlocker.Stat.EraEntryNone>
+  <FFF.DamageBlocker.Stat.EraPartRandom>随机部位</FFF.DamageBlocker.Stat.EraPartRandom>
+  <FFF.DamageBlocker.Stat.EraOnHit>任意命中</FFF.DamageBlocker.Stat.EraOnHit>
+  <FFF.DamageBlocker.Stat.EraOnConsume>消耗充能</FFF.DamageBlocker.Stat.EraOnConsume>
+  <FFF.DamageBlocker.Stat.EraOnAbove>超过阈值</FFF.DamageBlocker.Stat.EraOnAbove>
+  <FFF.DamageBlocker.Stat.EraOnBelow>低于阈值</FFF.DamageBlocker.Stat.EraOnBelow>
+  <FFF.DamageBlocker.Stat.EraNever>从不</FFF.DamageBlocker.Stat.EraNever>
+</LanguageData>
