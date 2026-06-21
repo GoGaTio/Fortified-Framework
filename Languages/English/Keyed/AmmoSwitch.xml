@@ -4,4 +4,8 @@
   <FFF.AmmoSwitch.Label>{0}</FFF.AmmoSwitch.Label>
   <FFF.AmmoSwitch.Desc>click to switch ammo type</FFF.AmmoSwitch.Desc>
   <FFF.AmmoSwitch.AmmoTooltip>{0} - {1}</FFF.AmmoSwitch.AmmoTooltip>
+  <FFF.AmmoSwitch.DefaultAmmo>Default Ammo</FFF.AmmoSwitch.DefaultAmmo>
+  <FFF.AmmoSwitch.DefaultProjectile>Default Projectile</FFF.AmmoSwitch.DefaultProjectile>
+  <FFF.AmmoSwitch.StatFactor>Accuracy Factor</FFF.AmmoSwitch.StatFactor>
+  <FFF.AmmoSwitch.UsingDefault>Using default</FFF.AmmoSwitch.UsingDefault>
 </LanguageData>

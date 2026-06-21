@@ -24,4 +24,10 @@
   <!-- EN: Disposable ceramic armor protects the mecha from damage as ablative armor until its durability is exhausted and needs replacement. -->
   <FFF.PlatingTooltip>Disposable ceramic armor protects the mecha from damage as ablative armor until its durability is exhausted and needs replacement.</FFF.PlatingTooltip>
 
+  <!-- Weapon mod targeting rejection reasons -->
+  <FFF.Mod.CannotUseDueToNotSupport>This weapon mod cannot be applied here</FFF.Mod.CannotUseDueToNotSupport>
+  <FFF.Mod.NotAGun>Target is not a weapon</FFF.Mod.NotAGun>
+  <FFF.Mod.NotModifiable>This weapon does not support modifications</FFF.Mod.NotModifiable>
+  <FFF.Mod.NotValidForThisWeapon>This modification is not valid for this weapon</FFF.Mod.NotValidForThisWeapon>
+
 </LanguageData>

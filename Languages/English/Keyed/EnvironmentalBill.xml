@@ -31,4 +31,7 @@
 
   <FFF.MicroGravity>Microgravity</FFF.MicroGravity>
 
+  <!-- Used in ModExt_EnvironmentalBill.ValidateBillOnce with pressure percentage arg -->
+  <FFF.PressureRestriction>Requires pressure: {0}</FFF.PressureRestriction>
+
 </LanguageData>

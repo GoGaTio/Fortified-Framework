@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<LanguageData>
+  <FFF_PaintSystemTitle>Paint &amp; Color System</FFF_PaintSystemTitle>
+  <FFF_ChangePaint>Change Paint</FFF_ChangePaint>
+  <FFF_ChangePaintDesc>Open the custom paint interface.</FFF_ChangePaintDesc>
+  <FFF_NoDye>No dye available nearby</FFF_NoDye>
+  <FFF_CancelPaint>Cancel Paint</FFF_CancelPaint>
+  <FFF_CancelPaintDesc>Cancel the pending paint job</FFF_CancelPaintDesc>
+  <FFF_PaintRequestSent>Paint job dispatched</FFF_PaintRequestSent>
+  <FFF_ConfirmPaint>Confirm Color</FFF_ConfirmPaint>
+  <FFF_CamoScheme>Camouflage Scheme</FFF_CamoScheme>
+  <FFF_2Columns>2 Columns</FFF_2Columns>
+  <FFF_4Columns>4 Columns</FFF_4Columns>
+  <FFF_6Columns>6 Columns</FFF_6Columns>
+  <FFF_CamoStandard>Standard</FFF_CamoStandard>
+  <FFF_CamoStandardDesc>Standard (no camouflage)</FFF_CamoStandardDesc>
+  <FFF_Color1>Color 1 (R)</FFF_Color1>
+  <FFF_Color2>Color 2 (G)</FFF_Color2>
+  <FFF_Color3>Color 3 (B)</FFF_Color3>
+  <FFF_Red>Red</FFF_Red>
+  <FFF_Green>Green</FFF_Green>
+  <FFF_Blue>Blue</FFF_Blue>
+  <FFF_BaseBrightness>Base Brightness</FFF_BaseBrightness>
+  <FFF_OverlayMultiply> [Multiply]</FFF_OverlayMultiply>
+  <FFF_OverlayDirect> [Direct]</FFF_OverlayDirect>
+  <FFF_OverlayTitle>Overlay</FFF_OverlayTitle>
+  <FFF_OverlayNone>No overlay</FFF_OverlayNone>
+  <FFF_CopyPaintConfig>Copy Config</FFF_CopyPaintConfig>
+  <FFF_PaintConfigCopied>Config copied</FFF_PaintConfigCopied>
+  <FFF_PastePaintConfig>Paste Config</FFF_PastePaintConfig>
+  <FFF_PastePaintConfigDesc>Paste the copied paint configuration</FFF_PastePaintConfigDesc>
+</LanguageData>

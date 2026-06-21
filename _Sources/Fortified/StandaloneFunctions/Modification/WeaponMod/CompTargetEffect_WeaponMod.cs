@@ -48,7 +48,7 @@ namespace Fortified
 
             if (!CanApplyOnWeapon(thingWithComps))
             {
-                if (showMessages) Messages.Message("FFF.Mod.CannotUseDueToNotSupport", MessageTypeDefOf.RejectInput);
+                if (showMessages) Messages.Message("FFF.Mod.CannotUseDueToNotSupport".Translate(), MessageTypeDefOf.RejectInput);
                 return false;
             }
             return true;
@@ -56,13 +56,13 @@ namespace Fortified
         }
         protected AcceptanceReport CanApplyOnWeapon(ThingWithComps target)
         {
-            if (!target.def.IsWeapon) return new AcceptanceReport("FFF.Mod.NotAGun");
-            if (!target.TryGetComp<CompWeaponMod>(out var u)) return new AcceptanceReport("FFF.Mod.NotModifiable");
+            if (!target.def.IsWeapon) return new AcceptanceReport("FFF.Mod.NotAGun".Translate());
+            if (!target.TryGetComp<CompWeaponMod>(out var u)) return new AcceptanceReport("FFF.Mod.NotModifiable".Translate());
 
             if (Props.availableUsers.NullOrEmpty()) return true;
             else if (Props.availableUsers.Contains(target.def.defName)) return true;
 
-            return new AcceptanceReport("FFF.Mod.NotValidForThisWeapon");
+            return new AcceptanceReport("FFF.Mod.NotValidForThisWeapon".Translate());
         }
         public override void DoEffect(Pawn usedBy)
         {

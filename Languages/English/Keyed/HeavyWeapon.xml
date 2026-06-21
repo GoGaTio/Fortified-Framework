@@ -19,4 +19,9 @@
     <FFF.BodysizeNotSupported>bodysize not supported (need:{0})</FFF.BodysizeNotSupported>
     
     <FFF.ViewUsableWeapons>View Usable Weapons</FFF.ViewUsableWeapons>
+
+    <!-- Used in CanEquip failure: weapon type not supported by this frame -->
+    <FFF.WeaponNotSupported>Weapon not supported</FFF.WeaponNotSupported>
+    <!-- Used in float menu option when mech frame cannot mount the weapon -->
+    <FFF.FrameNotSupported>Mech frame not supported</FFF.FrameNotSupported>
 </LanguageData>

@@ -27,7 +27,6 @@ namespace Fortified
         {
             foreach (string e in base.ConfigErrors(parentDef))
                 yield return e;
-
             if (safeShutdownSkillLevel < 0 || safeShutdownSkillLevel > 20)
                 yield return $"{nameof(CompProperties_SubstationPower)}: safeShutdownSkillLevel must be 0–20.";
             if (shockChance < 0f || shockChance > 1f)
