@@ -319,4 +319,112 @@
     </children>
   </EffecterDef>
 
+
+  <!-- ══════════════════════════════════════════════════════════════
+       Alert Scanner 狀態 Effecter
+       ══════════════════════════════════════════════════════════════ -->
+
+  <!-- 藍色閒置閃爍光暈（自訂 FleckDef，複用 SharpLensFlareB 貼圖） -->
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>FFF_Fleck_ScannerIdleGlow</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <fadeInTime>0.5</fadeInTime>
+    <solidTime>0.15</solidTime>
+    <fadeOutTime>1.0</fadeOutTime>
+    <fleckSystemClass>FleckSystemThrown</fleckSystemClass>
+    <graphicData>
+      <graphicClass>Graphic_Fleck</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <texPath>Things/Mote/mote_Glow</texPath>
+      <!-- 青藍色，低飽和度 -->
+      <color>(0.35, 0.85, 1.0, 0.7)</color>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+    <unattachedDrawOffset>(0, 0.15, 0)</unattachedDrawOffset>
+    <useAttachLink>true</useAttachLink>
+  </FleckDef>
+
+  <FleckDef ParentName="FleckBase_Thrown">
+    <defName>FFF_Fleck_ScannerAlertGlow</defName>
+    <altitudeLayer>MoteOverhead</altitudeLayer>
+    <fadeInTime>0.5</fadeInTime>
+    <solidTime>0.15</solidTime>
+    <fadeOutTime>1.0</fadeOutTime>
+    <fleckSystemClass>FleckSystemThrown</fleckSystemClass>
+    <graphicData>
+      <graphicClass>Graphic_Fleck</graphicClass>
+      <shaderType>MoteGlow</shaderType>
+      <texPath>Things/Mote/mote_Glow</texPath>
+      <!-- 青藍色，低飽和度 -->
+      <color>(1, 0.35, 0.35, 0.7)</color>
+      <drawSize>1.5</drawSize>
+    </graphicData>
+    <unattachedDrawOffset>(0, 0.15, 0)</unattachedDrawOffset>
+    <useAttachLink>true</useAttachLink>
+  </FleckDef>
+
+  <!-- FFF_Scanner_Idle：掃描器正常待機，緩慢藍光閃爍（looping） -->
+  <EffecterDef>
+    <defName>FFF_Scanner_Idle</defName>
+    <children>
+      <!-- 主閃爍：慢頻率青藍光（約 3 秒一次）-->
+      <li>
+        <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+        <fleckDef>FFF_Fleck_ScannerIdleGlow</fleckDef>
+        <ticksBetweenMotes>180</ticksBetweenMotes>
+        <spawnLocType>OnSource</spawnLocType>
+        <positionOffset>(0, 0, 0.15)</positionOffset>
+      </li>
+    </children>
+  </EffecterDef>
+
+  <!-- FFF_Scanner_Alert：偵測到威脅，快速紅光閃爍（looping） -->
+  <EffecterDef>
+    <defName>FFF_Scanner_Alert</defName>
+    <children>
+      <!-- 快速紅色鏡頭閃光（約 0.7 秒一次）-->
+      <li>
+        <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+        <fleckDef>FFF_Fleck_ScannerAlertGlow</fleckDef>
+        <ticksBetweenMotes>42</ticksBetweenMotes>
+        <spawnLocType>OnSource</spawnLocType>
+        <positionOffset>(0, 0, 0.2)</positionOffset>
+      </li>
+      <!-- 紅色寶石持續閃爍 -->
+      <li>
+        <subEffecterClass>SubEffecter_SprayerContinuous</subEffecterClass>
+        <fleckDef>FFF_Fleck_ScannerAlertGlow</fleckDef>
+        <ticksBetweenMotes>60</ticksBetweenMotes>
+        <spawnLocType>OnSource</spawnLocType>
+        <positionOffset>(0, 0, 0.11)</positionOffset>
+      </li>
+    </children>
+  </EffecterDef>
+
+  <!-- FFF_Scanner_Trigger：掃描器觸發訊號時一次性爆閃（one-shot） -->
+  <EffecterDef>
+    <defName>FFF_Scanner_Trigger</defName>
+    <children>
+      <!-- 火花迸射 -->
+      <li>
+        <subEffecterClass>SubEffecter_SprayerTriggered</subEffecterClass>
+        <fleckDef>SparkFlash</fleckDef>
+        <burstCount>6~10</burstCount>
+        <scale>1.5~2.5</scale>
+        <angle>0~360</angle>
+        <absoluteAngle>true</absoluteAngle>
+        <speed>0.08~0.18</speed>
+        <airTime>0.8~1.5</airTime>
+        <rotationRate>-30~30</rotationRate>
+        <spawnLocType>OnSource</spawnLocType>
+        <positionRadius>0.3</positionRadius>
+      </li>
+      <!-- 觸發訊號音效 -->
+      <li>
+        <subEffecterClass>SubEffecter_SoundTriggered</subEffecterClass>
+        <soundDef>TurretAcquireTarget</soundDef>
+      </li>
+    </children>
+  </EffecterDef>
+
 </Defs>

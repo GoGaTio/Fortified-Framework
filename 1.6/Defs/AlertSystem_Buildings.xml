@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Defs>
+
+  <!-- ══════════════════════════════════════════════════════════════
+       基礎底座（Alert 系列建築共用）
+       ══════════════════════════════════════════════════════════════ -->
+  <ThingDef Name="FFF_AlertBuildingBase" Abstract="True" ParentName="BuildingBase">
+    <category>Building</category>
+    <altitudeLayer>Building</altitudeLayer>
+    <passability>PassThroughOnly</passability>
+    <pathCost>50</pathCost>
+    <fillPercent>0.3</fillPercent>
+    <useHitPoints>true</useHitPoints>
+    <rotatable>true</rotatable>
+    <selectable>true</selectable>
+    <tickerType>Normal</tickerType>
+    <receivesSignals>true</receivesSignals>
+    <building>
+      <claimable>false</claimable>
+      <deconstructible>false</deconstructible>
+    </building>
+    <designationCategory>FFF_DevCategory</designationCategory>
+    <statBases>
+      <MaxHitPoints>80</MaxHitPoints>
+      <Flammability>0.5</Flammability>
+      <Beauty>-8</Beauty>
+    </statBases>
+    <!-- EMP / Stun 癱瘓（搭配 CompCanBeDormant 停止掃描） -->
+    <comps>
+      <li Class="CompProperties_Stunnable">
+        <affectedDamageDefs>
+          <li>EMP</li>
+          <li>Stun</li>
+        </affectedDamageDefs>
+      </li>
+      <li Class="CompProperties_CanBeDormant">
+        <startsDormant>false</startsDormant>
+      </li>
+    </comps>
+  </ThingDef>
+</Defs>
