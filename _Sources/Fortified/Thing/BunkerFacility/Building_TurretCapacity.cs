@@ -85,6 +85,11 @@ namespace Fortified
                 //只有在這兩個同時都小於10%時會自動出來
                 if (PawnInside.needs.food.CurLevel <= 0.1f && PawnInside.needs.rest.CurLevel <= 0.1f)
                 {
+                    // 地圖上仍有敵對威脅時，不因休息值或飢餓值自動退出
+                    if (GenHostility.AnyHostileActiveThreatToPlayer(this.Map,false ,false))
+                    {
+                        return false;
+                    }
                     return true;
                 }
             }
